@@ -165,7 +165,7 @@ footer{margin-block:40px 48px;color:var(--muted);font-size:13px}
 
   <section>
     <h2>分野ごとに見ると</h2>
-    <p class="lede">毎日くり返す「入力」と「見回り」を自動にしたものが、特に大きく効いています。</p>
+    <p class="lede">毎日くり返す実績の「入力」を自動にしたものが、特に大きく効いています。</p>
     <div class="cats" id="cats"></div>
   </section>
 
@@ -222,13 +222,13 @@ footer{margin-block:40px 48px;color:var(--muted);font-size:13px}
 <script>
 // ▼ 数字を直すときはここだけ。 times=月の回数, before/after=1回あたりの分
 const ITEMS = [
-  {name:"出退勤の見回り(LINE自動通知)", cat:"勤怠・手配", freq:"毎日", times:30, before:40, after:5},
+  {name:"出退勤の見回り(LINE自動通知)", cat:"勤怠", freq:"毎日", times:30, before:12.5, beforeLabel:"10〜15分", after:3, note:"スタッフへの連絡を含む"},
   {name:"コネクトα 実績の入力", cat:"みんスマ実績", freq:"毎日", times:30, before:30, after:3},
   {name:"営業提案資料づくり", cat:"資料・報告", freq:"月1本", times:1, before:480, after:120},
   {name:"SP商材 実績の入力", cat:"みんスマ実績", freq:"平日", times:20, before:20, after:3},
   {name:"毎朝のメール点検", cat:"メール・採用", freq:"平日", times:22, before:15, after:3},
   {name:"メールの下書きづくり", cat:"メール・採用", freq:"月20通", times:20, before:15, after:5},
-  {name:"月次の手配チェック", cat:"勤怠・手配", freq:"月1回", times:1, before:180, after:40},
+  {name:"月次の手配チェック", cat:"手配", freq:"月1回", times:1, before:120, after:30},
   {name:"NG確認メール", cat:"みんスマ実績", freq:"月8件", times:8, before:20, after:3},
   {name:"採用応募の一次対応", cat:"メール・採用", freq:"月8件", times:8, before:25, after:8},
   {name:"シフト表+見積書の送付準備", cat:"ヘルパー派遣", freq:"月1回", times:1, before:150, after:30},
@@ -238,7 +238,7 @@ const ITEMS = [
   {name:"みんスマ月次シートづくり", cat:"みんスマ実績", freq:"月1回", times:1, before:90, after:15},
   {name:"MT報告シートの入力", cat:"資料・報告", freq:"月2回", times:2, before:45, after:15},
 ];
-const CAT_ORDER = ["みんスマ実績","勤怠・手配","メール・採用","ヘルパー派遣","資料・報告"];
+const CAT_ORDER = ["みんスマ実績","勤怠","手配","メール・採用","ヘルパー派遣","資料・報告"];
 
 const saved = i => i.times*(i.before-i.after);
 const h = m => m/60;
@@ -275,7 +275,7 @@ ITEMS.forEach(i=>{
     <span class="track"><span class="fill" data-w="${h(i.saved)/maxH*100}"></span></span>
     <span class="val num">${fmtH(i.saved)}<small>時間</small></span>`;
   const show=(x,y)=>{
-    tip.innerHTML=`<strong>${i.name}</strong><br>${i.freq}:1回 <b>${i.before}分</b> → <b>${i.after}分</b><br>これまで 月${fmtH(i.times*i.before)}時間 → いま 月${fmtH(i.times*i.after)}時間`;
+    tip.innerHTML=`<strong>${i.name}</strong><br>${i.freq}:1回 <b>${i.beforeLabel||i.before+"分"}</b> → <b>${i.after}分</b><br>これまで 月${fmtH(i.times*i.before)}時間 → いま 月${fmtH(i.times*i.after)}時間`;
     const r=tip.getBoundingClientRect();
     tip.style.left=Math.min(x+14,innerWidth-r.width-8)+"px";
     tip.style.top=Math.max(8,y-r.height-12)+"px"; tip.style.opacity=1;
@@ -303,8 +303,8 @@ CAT_ORDER.map(c=>({c,items:ITEMS.filter(i=>i.cat===c)}))
     <ul>${o.items.map(i=>`<li>${i.name}</li>`).join("")}</ul></div>`));
 
 // table
-document.getElementById("tbody").innerHTML=ITEMS.map(i=>`<tr><td>${i.name}</td><td>${i.freq}</td>
-  <td class="r num">${i.before}分</td><td class="r num">${i.after}分</td><td class="r num">${fmtH(i.saved)}時間</td></tr>`).join("");
+document.getElementById("tbody").innerHTML=ITEMS.map(i=>`<tr><td>${i.name}${i.note?`<br><span style="font-size:12.5px;color:var(--muted)">${i.note}</span>`:""}</td><td>${i.freq}</td>
+  <td class="r num">${i.beforeLabel||i.before+"分"}</td><td class="r num">${i.after}分</td><td class="r num">${fmtH(i.saved)}時間</td></tr>`).join("");
 document.getElementById("tfoot").textContent=fmtH(total)+"時間";
 </script>
 </body>
