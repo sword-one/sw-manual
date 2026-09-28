@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Outlook仕分けルールの大掃除</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">共通 ・ メール</div>
+    <h1>Outlook仕分けルールの大掃除 ― 数百件をAIで整理</h1>
+    <div class="tags"><span class="tag claude">一度きりの作業</span><span class="tag accent">山口PCで実施</span></div>
+    <p class="lead">増えすぎたOutlookの仕分けルールをClaudeが全部書き出して分類し、人が決めた内容で整理しました。同じような大掃除をしたいときの進め方の見本です。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>同じ相手のルールが重なっていたり、送り先のフォルダが消えて壊れたルールや、オフのままのルールが放置されていました。画面で1件ずつ見るのは現実的ではありませんでした。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>重複と壊れたルールを減らし、よくメールが来るのにルールがなかった取引先には、フォルダとルールを新しく作りました。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">一度きり</td><td>2026年8月に実施しました。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who claude">Claude</div><div class="body"><strong>すべてのルールを書き出す(読むだけ)</strong><span>この時点では何も変えません。書き出したものがバックアップになります。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>4種類に分けたレポートを作る</strong><span>①そのまままとめられる重複 ②送り先が食いちがう重複 ③壊れたもの ④オフのもの</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>②について、どれを残すか決める</strong></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>決めた内容で、不要なルールを削除する</strong></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>よく来るのにルールがない差出人を挙げる</strong><span>人が承認したものだけ、フォルダとルールを作りました。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>自動で消せなかった分を手で片付ける</strong><span>Claudeが「残作業まとめ」を作ってくれます。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">Outlookの仕分けルールを全部一覧にして、重複・壊れている・使っていないものに分けて。削除や変更はまだしないで、まず状況確認だけ</div>
+      <p style="color:var(--sub)">最初は必ず「読むだけ」で頼むのがコツです。</p>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>どのルールを残すか決める</li>
+        <li>新しく作るフォルダを承認する</li>
+        <li>自動で消せなかった分を手で削除する</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">Claude Code</td><td>ルールの書き出し・分類・整理のプログラムを作って動かします。</td></tr>
+        <tr><td class="c">Outlook(パソコン版)</td><td></td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>消す前に必ずバックアップ</strong><p>ルールを書き出したファイルを残してから作業します。</p></div>
+    <div class="note"><strong>一部のルールはプログラムから変えられません</strong><p>その分は手作業が残ります。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年9月28日</span></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>毎朝の自動メール点検</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">共通 ・ メール</div>
+    <h1>毎朝の自動メール点検 ― 未読と返信漏れを1通で確認</h1>
+    <div class="tags"><span class="tag auto">毎朝9時</span><span class="tag accent">山口PCが必要</span></div>
+    <p class="lead">会社のメールアカウントの未読数と、共有アドレスに届いた「催事申請」の問い合わせに返信済みかどうかを、毎朝自分宛てのメール1通にまとめて届けます。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>会社の7つのアカウントの受信トレイを1つずつ開いて未読を確かめ、催事申請の問い合わせは送信済みフォルダと見比べて、返信したかを目で確かめていました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>朝、1通のメールを読むだけで全体がわかります。まだ返事をしていない問い合わせには「★未対応」の印が付きます。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">毎朝9時</td><td>そのときPCが起動していなければ、次に起動したときに動きます。同じ日に2回送ることはありません。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who auto">自動</div><div class="body"><strong>Outlookに接続する</strong><span>起動しきっていないときは、少し待ってやり直します。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>各アカウントの未読数を数える</strong></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>直近14日の「催事申請」メールに返信したかを調べる</strong><span>受信したあとに、同じ相手へ送ったメールがあれば「対応済み」、なければ「★未対応」とします。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>結果を自分宛てにメールで送る</strong></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>朝メールを読み、★の付いた問い合わせに返信する</strong></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">Outlookの全アカウントの未読数と、催事申請メールに返信済みかを毎朝チェックして、自分宛てに報告する仕組みを作って</div>
+      <p style="color:var(--sub)">この仕組みはClaudeに作ってもらったもので、毎日の実行にはAIを使っていません(利用料もかかりません)。似た仕組みを作りたいときの頼み方の例です。</p>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>朝の報告メールを読み、★未対応に返信する</li>
+        <li>報告メールが届かない日は山口に知らせる</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">Outlook(パソコン版)</td><td>メールを読み、報告を送ります。</td></tr>
+        <tr><td class="c">PowerShell</td><td>点検をするプログラムです(Claudeが作成)。</td></tr>
+        <tr><td class="c">Windowsのタスクスケジューラ</td><td>毎朝9時に動かす予約です。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>動くための条件</h2>
+    <div class="card">
+      <ul>
+        <li>山口のPCとOutlookが動いていること</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>電話で対応した分は「未対応」と出ます</strong><p>「返信メールを送ったか」で判定しているためです。</p></div>
+    <div class="note"><strong>件名が違う問い合わせは拾えません</strong><p>件名の「催事申請」などの言葉で探しています。</p></div>
+    <div class="note"><strong>報告メールが届かない日がときどきあります</strong><p>原因を調査中です。届かない日は、受信トレイを直接確認してください。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年9月28日</span></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>月次MT報告シートの改善</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">資料づくり ・ 社内報告</div>
+    <h1>月次MT報告シートの改善 ― 部長が5分で読める形に</h1>
+    <div class="tags"><span class="tag claude">Claudeで改善(一度きり)</span><span class="tag accent">クラウドで動く</span></div>
+    <p class="lead">課の月次報告(月初MT・中間MT)を、総括1枚と事業別のシートで完結させるGoogleスプレッドシートの型です。Claudeに頼んで、読みやすさと入力のしやすさを改善しました。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>どこに何を書けばいいか分かりにくく、未入力のところに「×」や「0」が出て、読む人も書く人も迷っていました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>改善7項目を約30分で完了。課長が触るのは黄色いセルだけ(1回十数セル+打ち手の記入)で、部長・役員は5分で読めます。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">毎月1日と15日</td><td>MTの前に課長が入力します。翌月も同じ型を使い回します。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who human">山口</div><div class="body"><strong>Claudeに改善を頼む</strong></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>改善案を出す</strong><span>別のAI(Codex)にも案を出させて、比べて採否を決めました。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>書式・数式・保護をまとめて変更する</strong><span>ブラウザからスプレッドシートを操作します。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>前と後で合計が変わっていないか検算する</strong></div></li>
+      <li><div class="who human">課長</div><div class="body"><strong>黄色いセルに入力する</strong><span>総括は自動で集計されます。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>主な改善内容</h2>
+
+    <ul>
+      <li>売上が前月に確定する事業は、日割りの○△×判定をやめ、「確定見積 − 減額 = 着地」に変更</li>
+      <li>未入力のときに「×」や「0」を出さない</li>
+      <li>結論をいちばん上に置き、使わない欄は折りたたむ</li>
+      <li>○△×を色分けし、入力するセルだけ濃い黄色に。ほかは保護</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">MT報告シートを部長が5分で読めるように直して。行の追加はしないで、直す前にコピーを取って</div>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>実績・着地見込み・打ち手を入力する</li>
+        <li>改善案を採用するか決める</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">Googleスプレッドシート+Apps Script</td><td>報告シートと、まとめて変更するためのプログラムです。</td></tr>
+        <tr><td class="c">Claude(ブラウザ操作)</td><td>シートを直接直します。</td></tr>
+        <tr><td class="c">Codex</td><td>別の案を出させるAIです。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>事業シートに行を追加したり、並べ替えたりしないでください</strong><p>総括は決まったセルを直接見ているので、集計がこわれます。</p></div>
+    <div class="note"><strong>直す前には必ずコピーを取ります</strong><p>直したあとは、先月の合計が変わっていないことで確かめます。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年9月28日</span></footer>
+</div>
+</body>
+</html>

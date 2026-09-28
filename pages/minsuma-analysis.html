@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>みんスマ売上・分析ブック(開発中)</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">みんスマ ・ 分析</div>
+    <h1>みんスマ売上・分析ブック ― 売上が変わった理由が3クリックでわかる</h1>
+    <div class="tags"><span class="tag claude">開発中</span><span class="tag accent">クラウドで動く</span></div>
+    <p class="lead">店舗の報告表をもとに、会社の売上と個人の実績をまとめ、売上の増減が「稼働日数・応対数・成約率・単価」のどれで起きたのかを金額に分けて見せる分析ブックです。現在開発中です。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>集計表はあっても、「なぜ売上が下がったのか」は数字を並べて人が考えるしかありませんでした。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>責任者が「なぜ?」に3クリック以内で答えられることを目指しています。メニューを押すだけで分析シートが更新されます。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">メニューの「分析シートを更新」を押したとき</td><td>月ごとの処理は2クリック以内でできるように作っています。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who human">人</div><div class="body"><strong>仕様書(何を作るかの決まりごと)を承認する</strong></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>仕様書を読んでプログラムを作る</strong></div></li>
+      <li><div class="who claude">別のAI</div><div class="body"><strong>別のAI(Codex)が仕様どおりかチェックする</strong><span>意見が分かれたところは文書に残し、人が決めます。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>黄色いセルに目標売上などを入れ、メニューで更新する</strong></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>いまの進み具合</h2>
+
+    <div class="cols"><table><tbody>
+      <tr><td class="c">完了</td><td>店舗の表との接続、データの土台、売上の要因分解</td></tr>
+      <tr><td class="c">試作</td><td>店頭の営業プロセス管理表(紙と比べて試している段階)</td></tr>
+      <tr><td class="c">これから</td><td>要因のランキング、トレンドとアラート、個人実績の追加、使い勝手の仕上げ、確定値との照合</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">TASKS.mdを読んで、上から順に進めて。レビューはCodexにお願いして</div>
+      <p style="color:var(--sub)">開発を進めるときの頼み方です。ClaudeとCodex(別のAI)に、作る役とチェックする役を分けています。</p>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>仕様の承認と、選択肢つきで来る質問への回答</li>
+        <li>目標売上など黄色いセルの入力</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">Googleスプレッドシート+Apps Script</td><td></td></tr>
+        <tr><td class="c">Claude Code</td><td>プログラムを作ります。</td></tr>
+        <tr><td class="c">Codex</td><td>チェック役の別のAIです。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>PCが苦手な人でも使えるように作っています</strong><p>メニューは2クリック以内、入力するのは黄色いセルだけ、エラーは日本語で表示、月ごとの処理の前に自動でバックアップします。</p></div>
+    <div class="note"><strong>過去につまずいたところはルールにしています</strong><p>日付のずれ、単価の切り替え、店舗の表の新旧の取りちがえなど。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年9月28日</span></footer>
+</div>
+</body>
+</html>

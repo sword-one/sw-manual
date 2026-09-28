@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>応募管理の自動化(HP・採用LINE)</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">採用</div>
+    <h1>応募管理の自動化 ― 応募が来たら台帳に記録してLINEで通知</h1>
+    <div class="tags"><span class="tag auto">応募が来たらすぐ</span><span class="tag accent">クラウドで動く</span></div>
+    <p class="lead">ホームページの応募フォームや採用LINEから応募・問い合わせが来ると、数秒〜1分で応募台帳(Googleスプレッドシート)に1行追加され、採用担当のLINEグループに通知が届きます。そのあとのSMS文面づくりは「採用応募の一次対応」でClaudeが手伝います。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>応募メールやLINEを見て、台帳に手で書き写し、担当者に「応募が来たよ」と連絡していました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>台帳への記録と通知は自動です。担当者がやるのは、通知を見てからの連絡・面談・結果の入力だけです。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">ホームページから応募があったとき</td><td>台帳に登録(状態=未対応、期限=翌日)し、グループに【HP応募】と通知します。</td></tr>
+        <tr><td class="c">採用LINEに名前や面談希望日が届いたとき</td><td>自由な書き方でも名前・場所・日時を読み取って台帳に登録し、【LINE面談希望】と通知します。</td></tr>
+        <tr><td class="c">採用LINEで友だち追加やボタン操作があったとき</td><td>1人1行で、押したボタンの履歴と段階(登録のみ→求人確認→問い合わせ→面談希望)を記録します。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who human">応募者</div><div class="body"><strong>ホームページか採用LINEから応募する</strong></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>応募台帳に1行追加する</strong><span>同じ人が10分以内に続けて送った分は、二重登録しないよう止めます。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>採用担当のLINEグループに通知する</strong><span>電話番号やメールは通知に載せません。台帳で見ます。</span></div></li>
+      <li><div class="who human">担当者</div><div class="body"><strong>SMSやLINEで一次連絡し、面談日を決める</strong><span>SMS文面はClaudeに作ってもらえます(「採用応募の一次対応」)。</span></div></li>
+      <li><div class="who human">担当者</div><div class="body"><strong>台帳の状態・判定を更新する</strong></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>採用LINEの設定を変えるときの約束</h2>
+
+    <p>採用LINEのボタンや自動返信の文字を変えると、自動記録が止まることがあります(実際に一度止まりました)。変える前にここを確認してください。</p>
+    <div class="cols"><table>
+      <thead><tr><th>区分</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td class="c">自由に変えてOK</td><td>メニュー画像のデザイン、画像の中の文字、配置、あいさつ文の言い回し</td></tr>
+        <tr><td class="c">変えたら山口に共有</td><td>ボタンを押したときにトークに出る文字、自動返信のキーワード、面談場所の選択肢</td></tr>
+        <tr><td class="c">さわらない</td><td>名前を聞く文の言い回し、ボタンの種類を「テキスト」から「リンク」に変えること、Webhookをオフにすること</td></tr>
+      </tbody>
+    </table></div>
+    <p>変更したら、自分のスマホで全部のボタンを押して、返信が出るか確認してください(3分ほど)。</p>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">昨日のHP応募が台帳に入らなかった理由を調べて</div>
+      <div class="bubble">応募フォームに項目を1つ追加したい。どこを直せばいい?</div>
+      <p style="color:var(--sub)">ふだんは自動で動くので、頼むのは困ったときや変更したいときです。</p>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>通知を見て一次連絡・面談日の確定をする</li>
+        <li>台帳の状態・判定、面談の有無、どこで知ったかを入力する</li>
+        <li>読み取りがまちがっていたら手で直す</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">ホームページの応募フォーム</td><td>応募の入口です。</td></tr>
+        <tr><td class="c">LINE公式アカウント</td><td>採用用と、担当者への通知用があります。</td></tr>
+        <tr><td class="c">Googleスプレッドシート+Apps Script</td><td>応募台帳と、記録・通知のプログラムです。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>こんなときは</h2>
+    <div class="faq">
+      <details><summary>テストで送ったのに台帳に入らない</summary><p>同じ電話番号・メールで10分以内の応募は止まる仕組みです。番号を変えるか、10分あけてください。</p></details>
+      <details><summary>応募が台帳に入っていない</summary><p>台帳の非表示シート「受信ログ」に、届いた記録が残っています。山口に知らせてください。</p></details>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>台帳の列を追加・移動・削除しないでください</strong><p>見出しの名前を変えたり、隠れている列を消したりすると記録が止まります。</p></div>
+    <div class="note"><strong>通知は取り消せません</strong></div>
+    <div class="note"><strong>Apps Scriptの「新しいデプロイ」は押さないでください</strong><p>受け取り口のアドレスが変わり、全部止まります。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年9月28日</span></footer>
+</div>
+</body>
+</html>
