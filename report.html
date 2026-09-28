@@ -118,6 +118,11 @@ tr:last-child td{border-bottom:none}
 tfoot td{font-weight:700;background:var(--bg)}
 
 .note{font-size:13.5px;color:var(--ink2);margin-top:12px}
+.others{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.others{grid-template-columns:repeat(2,1fr)}}
+.other{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;gap:2px}
+.other b{font-size:15.5px}
+.other span{font-size:14px;color:var(--ink2)}
 .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--hero-bg);color:#fff;border-radius:16px;padding:24px 26px}
 .cta p{margin:0;color:var(--hero-sub)}
 .cta a{background:#fff;color:#0f1d2e;text-decoration:none;font-weight:700;border-radius:999px;padding:10px 20px}
@@ -134,7 +139,7 @@ footer{margin-block:40px 48px;color:var(--muted);font-size:13px}
       <div>
         <div class="kicker">AI TIME-SAVING REPORT</div>
         <h1>AIに任せた仕事で、<br>毎月これだけの時間が浮いています</h1>
-        <p>見積書づくり、実績の入力、出退勤の見回り、メールの下書き…。山口がClaudeなどのAIで自動化・時短した仕事の効果を、1か月あたりの時間にまとめました。</p>
+        <p>実績の入力、出退勤の見回り、見積書づくり、手配チェック…。毎日・毎月のルーティン業務のうち、山口がClaudeなどのAIで自動化したものの効果を、1か月あたりの時間にまとめました。</p>
       </div>
       <div class="big">
         <span class="label">1か月あたりの時短(試算)</span>
@@ -147,7 +152,7 @@ footer{margin-block:40px 48px;color:var(--muted);font-size:13px}
 
 <main class="wrap">
   <div class="kpis">
-    <div class="kpi"><span class="k">自動化・時短した仕組み</span><span class="v num" id="kpiCount">0<small>件</small></span><span class="n">毎月効果が出ているもの</span></div>
+    <div class="kpi"><span class="k">自動化したルーティン業務</span><span class="v num" id="kpiCount">0<small>件</small></span><span class="n">毎日・毎月くり返すもの</span></div>
     <div class="kpi"><span class="k">作業時間の削減率</span><span class="v num" id="kpiRate">0<small>%</small></span><span class="n">対象業務の合計で比べて</span></div>
     <div class="kpi"><span class="k">年間に直すと</span><span class="v num" id="kpiYear">0<small>時間</small></span><span class="n">月の時短 × 12か月</span></div>
     <div class="kpi"><span class="k">いちばん効いたもの</span><span class="v" id="kpiTop" style="font-size:18px;line-height:1.5;padding-top:6px">―</span><span class="n num" id="kpiTopN"></span></div>
@@ -193,7 +198,7 @@ footer{margin-block:40px 48px;color:var(--muted);font-size:13px}
 
   <section>
     <h2>試算の前提</h2>
-    <p class="lede">「1回あたりの作業時間 × 月の回数」で、これまでといまを比べています。実測ではなく、山口の体感をもとにした目安です。AI化したあとは指示を出して結果を見るだけなので、「いま」はほぼ1分です(資料づくりは人の確認や判断が残るため、そのぶんを見込んでいます)。</p>
+    <p class="lede">「1回あたりの作業時間 × 月の回数」で、これまでといまを比べています。実測ではなく、山口の体感をもとにした目安です。AI化したあとは指示を出して結果を見るだけなので、「いま」はほぼ1分です(MT報告は課長の入力が残るため、そのぶんを見込んでいます)。</p>
     <div class="tablewrap">
       <table>
         <thead><tr><th>仕事</th><th>月の回数</th><th class="r">これまで(1回)</th><th class="r">いま(1回)</th><th class="r">月の時短</th></tr></thead>
@@ -201,7 +206,24 @@ footer{margin-block:40px 48px;color:var(--muted);font-size:13px}
         <tfoot><tr><td colspan="4">合計</td><td class="r num" id="tfoot"></td></tr></tfoot>
       </table>
     </div>
-    <p class="note">「いま」は、人が確認・送信などをする時間です。このほか、Outlookの仕分けルール数百件の整理、クレーム時のお詫び文づくり、写真素材の整理など、一度きりの作業でも時間が浮いています(上の合計には入れていません)。</p>
+    <p class="note">「いま」は、人が確認・送信などをする時間です。ここでは毎日・毎月くり返すルーティン業務だけを数えています。その都度・一度きりの仕事は、下の「その他、AIに任せていること」にまとめています。</p>
+  </section>
+
+  <section>
+    <h2>その他、AIに任せていること</h2>
+    <p class="lede">毎日・毎月のルーティンではないものの、その都度AIに任せて早く片付けている仕事です。</p>
+    <div class="others">
+      <div class="other"><b>採用の応募管理</b><span>HPや採用LINEからの応募を台帳に記録し、担当者のLINEグループに通知</span></div>
+      <div class="other"><b>採用応募の一次対応</b><span>応募者へのSMS文面づくり、台帳への記録、返信期限のリマインド</span></div>
+      <div class="other"><b>メールの下書き</b><span>差出人アカウントを選び、返信や新規メールをOutlookの下書きまで作成</span></div>
+      <div class="other"><b>営業提案資料づくり</b><span>ヒアリングから構成・デザイン・AIどうしの検品まで行い、PowerPointを作成</span></div>
+      <div class="other"><b>クレーム対応の文章づくり</b><span>取引先へのお詫びメールと、社内向けの対応報告文を作成</span></div>
+      <div class="other"><b>Outlook仕分けルールの大掃除</b><span>数百件のルールを一覧にして分類し、重複や壊れたものを整理</span></div>
+      <div class="other"><b>トラブルの調べもの</b><span>メールの送受信エラーなどの原因を、設定や記録から順番に確認</span></div>
+      <div class="other"><b>書類・シートづくり</b><span>取引先向けの条件表、確認シート、MT報告シートの改善など</span></div>
+      <div class="other"><b>フォルダ・ファイルの整理</b><span>見積書フォルダの整理と配置、大量の写真素材の振り分け</span></div>
+      <div class="other"><b>売上分析ブック(開発中)</b><span>売上の増減が「稼働日数・応対数・成約率・単価」のどれで起きたかを金額で分解</span></div>
+    </div>
   </section>
 
   <section>
@@ -224,20 +246,16 @@ footer{margin-block:40px 48px;color:var(--muted);font-size:13px}
 const ITEMS = [
   {name:"出退勤の見回り(LINE自動通知)", cat:"勤怠", freq:"毎日", times:30, before:12.5, beforeLabel:"10〜15分", after:1, note:"スタッフへの連絡を含む"},
   {name:"コネクトα 実績の入力", cat:"みんスマ実績", freq:"毎日", times:30, before:30, after:1},
-  {name:"営業提案資料づくり", cat:"資料・報告", freq:"月1本", times:1, before:480, after:120},
   {name:"SP商材 実績の入力", cat:"みんスマ実績", freq:"平日", times:20, before:20, after:1},
-  {name:"毎朝のメール点検", cat:"メール・採用", freq:"平日", times:22, before:15, after:1},
-  {name:"メールの下書きづくり", cat:"メール・採用", freq:"月20通", times:20, before:15, after:1},
+  {name:"毎朝のメール点検", cat:"メール", freq:"平日", times:22, before:15, after:1},
   {name:"月次の手配チェック", cat:"手配", freq:"月1回", times:1, before:120, after:1},
   {name:"NG確認メール", cat:"みんスマ実績", freq:"月8件", times:8, before:20, after:1},
-  {name:"採用応募の一次対応", cat:"メール・採用", freq:"月8件", times:8, before:25, after:1},
   {name:"シフト表+見積書の送付準備", cat:"ヘルパー派遣", freq:"月1回", times:1, before:150, after:1},
   {name:"ヘルパー見積書づくり(7枚)", cat:"ヘルパー派遣", freq:"月1回", times:1, before:120, after:1},
-  {name:"応募の台帳記録と通知", cat:"メール・採用", freq:"月8件", times:8, before:10, after:0},
   {name:"みんスマ月次シートづくり", cat:"みんスマ実績", freq:"月1回", times:1, before:90, after:1},
-  {name:"MT報告シートの入力", cat:"資料・報告", freq:"月2回", times:2, before:45, after:15},
+  {name:"MT報告シートの入力", cat:"報告", freq:"月2回", times:2, before:45, after:15},
 ];
-const CAT_ORDER = ["みんスマ実績","勤怠","手配","メール・採用","ヘルパー派遣","資料・報告"];
+const CAT_ORDER = ["みんスマ実績","勤怠","手配","メール","ヘルパー派遣","報告"];
 
 const saved = i => i.times*(i.before-i.after);
 const h = m => m/60;
