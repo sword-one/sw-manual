@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>出退勤お知らせLINE</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">SP事業部 ・ 勤怠</div>
+    <h1>出退勤お知らせLINE ― 報告が遅れたらLINEで自動でお知らせ</h1>
+    <div class="tags"><span class="tag auto">見張り役(5分おき)</span><span class="tag accent">2026年9月27日から稼働</span></div>
+    <p class="lead">スタッフの出退勤報告(SmartStaff)が期限を過ぎても入っていないとき、本人と勤怠通知グループにLINEで自動でお知らせする仕組みです。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>SmartStaffには「報告が遅れている人」を知らせる機能がないため、管理側が画面を開いて一人ずつ確認していました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>プログラムが5分おきに手配一覧を確認し、遅れている人がいれば本人とグループにLINEが届きます。遅れがなければ何も届きません。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつお知らせが届く?</h2>
+    <p>毎日6:00〜23:59の間、5分おきに確認しています。下の時刻を過ぎても報告がないとお知らせが届きます。</p>
+    <div class="cols">
+      <table>
+        <thead><tr><th>報告</th><th>この時刻を過ぎても未報告ならお知らせ</th></tr></thead>
+        <tbody>
+          <tr><td class="c">前日確認</td><td>勤務前日の15:00</td></tr>
+          <tr><td class="c">出発確認</td><td>本人が前日確認で返した出発予定時刻(返事がない人は勤務開始の60分前)</td></tr>
+          <tr><td class="c">出勤報告</td><td>勤務開始時刻</td></tr>
+          <tr><td class="c">退勤報告</td><td>勤務終了時刻の30分後</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>最初のお知らせから<strong>15分たってもまだ未報告なら、グループにもう一度</strong>お知らせします。同じ報告について何度も送ることはありません。</p>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who auto">自動</div><div class="body"><strong>5分おきにプログラムが起動</strong><span>Googleのサーバーで動くので、だれかのPCが止まっていても動きます。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>SmartStaffの手配一覧を読み取る</strong><span>会社の専用アカウントでログインして、見るだけです。SmartStaffに書き込むことはありません。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>期限を過ぎた未報告の人を探す</strong><span>「通知対象」でOFFの人や、すでにお知らせ済みの報告は外します。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>本人とグループに同時にLINE</strong><span>本人(LINE登録済みの人)には個別に、グループには未報告の人をまとめて1通で送ります。本人にも届いた人には「※本人LINE済」と付きます。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>15分後もまだなら、グループに再通知</strong><span>「まだ未報告・15分経過」とグループに届きます。</span></div></li>
+      <li><div class="who human">管理側</div><div class="body"><strong>グループを見た人が本人に連絡</strong><span>SmartStaffで状況を確かめ、まだなら電話などで本人に連絡します。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>使っている道具</h2>
+    <div class="cols">
+      <table>
+        <tbody>
+          <tr><td class="c">Googleスプレッドシート</td><td>設定と記録の置き場所。「通知対象」「通知履歴」「LINE登録」の3枚のシートがあります。</td></tr>
+          <tr><td class="c">Apps Script</td><td>プログラム本体。5分おきの確認と、LINEからのメッセージの受け取りをします。</td></tr>
+          <tr><td class="c">LINE公式アカウント</td><td>会社の出退勤用アカウントからメッセージを送ります。</td></tr>
+          <tr><td class="c">SmartStaff</td><td>手配一覧を読み取るだけです。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>みなさんがやること</h2>
+    <div class="two">
+      <div class="card">
+        <span class="tag human">スタッフ(最初の1回だけ)</span>
+        <ol>
+          <li>会社の出退勤用LINE公式アカウントを友だち追加する(QRコードは山口からもらってください)</li>
+          <li>トークに自分のスタッフ番号(5桁)を送る</li>
+          <li>「登録しました」と返事が来たら完了</li>
+        </ol>
+        <p style="color:var(--sub)">お知らせが来たら、SmartStaffで報告をすませればOK。LINEへの返信はいりません。ふだんどおり報告していれば、LINEは来ません。</p>
+      </div>
+      <div class="card">
+        <span class="tag human">管理者(山口)</span>
+        <ul>
+          <li>「通知対象」シートで、スタッフごとにON/OFFを切り替える(新しい人は自動でONで追加されます)</li>
+          <li>自分で登録できないスタッフは、「LINE登録」シートに番号を代わりに書く</li>
+          <li>止めたいときは、Apps Scriptの「トリガー」から定期実行を消す</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>動くための条件</h2>
+    <div class="card">
+      <ul>
+        <li>SmartStaffの専用アカウントでログインできること(パスワードを変えたら、プログラムの設定欄も変える)</li>
+        <li>SmartStaffの画面の作りが大きく変わっていないこと</li>
+        <li>LINE公式アカウントが勤怠通知グループに入っていること</li>
+        <li>LINEの無料プランの上限(月200通)に収まっていること。グループへの1通は、グループの人数分として数えられます</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>こんなときは</h2>
+    <div class="faq">
+      <details><summary>遅れているのにお知らせが来ない</summary><p>その人が「通知対象」でOFFになっていないか、6時より前ではないか、すでにお知らせ済みでないか(「通知履歴」シート)を確認してください。</p></details>
+      <details><summary>本人に届かない(「※本人LINE済」が付かない)</summary><p>その人はLINE未登録です。友だち追加と番号の送信をお願いするか、管理者が「LINE登録」シートに番号を書いてください。</p></details>
+      <details><summary>スタッフが番号をまちがえて送った</summary><p>正しい番号をもう一度送れば上書きされます。</p></details>
+      <details><summary>エラーのメールが届いた</summary><p>SmartStaffにログインできなかったか、SmartStaffの画面が変わった可能性があります。パスワードが変わっていないか確認し、山口に知らせてください。</p></details>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>SmartStaffの画面が変わると止まることがあります</strong><p>画面を読み取る方式なので、SmartStaff側の変更に弱い仕組みです。「最近お知らせが来ないな」と思ったら山口に声をかけてください。</p></div>
+    <div class="note"><strong>プログラムの編集・実行は山口だけが行います</strong><p>テスト用の操作をまちがえると、本番のお知らせが送られてしまうおそれがあります。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 2026年9月作成</span></footer>
+</div>
+</body>
+</html>

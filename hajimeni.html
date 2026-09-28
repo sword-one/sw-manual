@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>はじめに読むページ</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">AIがはじめての人へ</div>
+    <h1>はじめに読むページ ― 自動化のしくみを5分で</h1>
+    <p class="lead">このサイトで紹介している仕組みは、どれも「AI(Claude)」や「決まった時間に動くプログラム」を組み合わせて作っています。むずかしい言葉を使わずに、全体像を説明します。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>自動化には3つのタイプがあります</h2>
+    <div class="three">
+      <div class="card">
+        <span class="tag auto">時間になったら動く</span>
+        <h3>決まった時刻に、勝手に動く</h3>
+        <p>「毎朝8時」「毎日12時」のように時間を決めておくと、だれも何もしなくても動きます。結果はメールやレポートで届きます。</p>
+      </div>
+      <div class="card">
+        <span class="tag auto">見張り役</span>
+        <h3>ずっと見張っていて、何かあれば動く</h3>
+        <p>5分おきなどに状態を確認し、「報告が遅れている」「ボタンが押された」などに気づいたら、LINEやメールを送ります。</p>
+      </div>
+      <div class="card">
+        <span class="tag claude">Claudeに頼むと動く</span>
+        <h3>ひとこと頼むと、手順どおりにやってくれる</h3>
+        <p>「10月分の見積書作って」とClaudeに話しかけると、覚えさせた手順(スキル)どおりに作業してくれます。最後の確認と送信は人がします。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>よく出てくる言葉</h2>
+    <div class="cols">
+      <table>
+        <thead><tr><th>言葉</th><th>ひとことで言うと</th></tr></thead>
+        <tbody>
+          <tr><td class="c">Claude(クロード)</td><td>文章を読んだり、ファイルを作ったり、パソコン作業を手伝ってくれるAIです。山口のPCで動いています。</td></tr>
+          <tr><td class="c">スキル</td><td>Claudeに覚えさせた「業務の手順書」です。たとえば「見積書はこのファイルをコピーして、ここの日付を変えて…」という手順を一度まとめておくと、次からはひとこと頼むだけで同じやり方でやってくれます。</td></tr>
+          <tr><td class="c">スケジュールタスク</td><td>「毎朝8時にこのスキルを実行して」という予約です。時間になるとClaudeが自動で作業を始めます。</td></tr>
+          <tr><td class="c">Apps Script(GAS)</td><td>Googleスプレッドシートに付けられる小さなプログラムです。Googleのサーバーで動くので、山口のPCが止まっていても動きます。</td></tr>
+          <tr><td class="c">見張り役(常駐スクリプト)</td><td>山口のPCの中で、5分おきなどに動き続けている小さなプログラムです。PCの電源が入っている間だけ動きます。</td></tr>
+          <tr><td class="c">下書き</td><td>メールを「送信」せずに、Outlookの下書きフォルダに入れた状態です。人が中身を見て、送信ボタンを押します。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>AIとの役割分担の考え方</h2>
+    <div class="ba">
+      <div class="card"><span class="tag claude">AI・プログラムにまかせること</span>
+        <ul>
+          <li>ファイルを開いて、決まった場所に数字を入れる</li>
+          <li>2つの表を見比べて、違うところを探す</li>
+          <li>毎回ほぼ同じ文面のメールを作る</li>
+          <li>時間を見張って、遅れていたら知らせる</li>
+        </ul>
+      </div>
+      <div class="arrow">＋</div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+          <li>できあがったものを見て、おかしくないか確認する</li>
+          <li>社外に出るメールの送信ボタンを押す</li>
+          <li>判断が必要なこと(取引先との調整、例外対応)</li>
+          <li>「いつもと違う」ときに山口に知らせる</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">
+      <strong>大事なルール:社外に出るものは、最後に人が確認する</strong>
+      <p>見積書やシフト表のメールは、Claudeが「下書き」まで作り、送信は人が行います。例外は、中身が決まりきっている通知(出退勤の遅れ、NG確認のお願いなど)だけで、これらは自動で送られます。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>Claudeへの頼み方のコツ</h2>
+    <div class="card say">
+      <p>ふだん人に頼むときと同じ言葉で大丈夫です。スキルは言葉の意味で呼び出されるので、決まった言い方を覚える必要はありません。</p>
+      <div class="bubble">10月分の見積書作って</div>
+      <div class="bubble">コスモテレコムにシフト送って</div>
+      <div class="bubble">今月の手配チェックして</div>
+      <p style="color:var(--sub)">「何月分か」「どの取引先か」を入れると、聞き返されずにスムーズに進みます。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>このサイトについて</h2>
+    <div class="card">
+      <p>このサイトはインターネット上に置いてあるため、<strong>お客様の情報・社外の方のお名前・メールアドレス・ログイン方法などは書いていません。</strong>実際の管理表やファイルの場所は、社内の共有フォルダで確認するか、山口に聞いてください。</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>わからないことは山口まで。</span>
+  </footer>
+</div>
+</body>
+</html>

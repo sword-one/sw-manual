@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ソードワン 自動化マニュアル</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">ソードワン 社内向け</div>
+    <h1>自動化マニュアル</h1>
+    <p class="lead">山口がAI(Claude)などを使って自動化した仕組みを、1か所にまとめています。「何が自動で動いているのか」「どう頼めばいいのか」がわかるように書いています。</p>
+  </header>
+
+  <section>
+    <a class="item" href="hajimeni.html">
+      <span class="t">はじめに読むページ ― 自動化のしくみを5分で</span>
+      <span class="d">AIがはじめての人向けに、「時間になったら動く」「見張り役」「Claudeに頼むと動く」の3タイプと、よく出てくる言葉を説明しています。</span>
+    </a>
+  </section>
+
+  <section>
+    <h2 class="grouphead">みんスマ・実績管理</h2>
+    <div class="list">
+      <a class="item" href="pages/minsuma-connect.html">
+        <span class="t">コネクトα 実績の自動入力</span>
+        <span class="d">さくら少短から毎朝届く申込一覧(CSV)を読み、店舗ごとの報告表の実績欄に件数を自動で入れます。</span>
+        <span class="meta"><span class="tag auto">毎朝8時+届いたらすぐ</span><span class="tag accent">山口PCが必要</span></span>
+      </a>
+      <a class="item" href="pages/minsuma-sp.html">
+        <span class="t">SP商材 実績の自動入力</span>
+        <span class="d">セールスパートナーから届く獲得ログ(Excel)を読み、報告表のSP商材の行に件数を自動で入れます。</span>
+        <span class="meta"><span class="tag auto">毎日12時+届いたらすぐ</span><span class="tag accent">山口PCが必要</span></span>
+      </a>
+      <a class="item" href="pages/ng-mail.html">
+        <span class="t">NG確認メールの自動送信</span>
+        <span class="d">コネクトαのチェックNG・不成立が出たら、さくら少短に確認のお願いを自動で送信。こちらの対応を書いたら、ボタンで完了のお知らせを送ります。</span>
+        <span class="meta"><span class="tag auto">見張り役+ボタン</span><span class="tag accent">山口PCが必要</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="grouphead">ヘルパー派遣(見積書・シフト・売上)</h2>
+    <div class="list">
+      <a class="item" href="pages/mitsumori.html">
+        <span class="t">毎月のヘルパー見積書づくり</span>
+        <span class="d">取引先に出すヘルパー派遣の見積書(全7枚)を、先月分をもとにClaudeが作り直してPDFにします。</span>
+        <span class="meta"><span class="tag claude">Claudeに頼むと動く</span><span class="tag accent">山口PCが必要</span></span>
+      </a>
+      <a class="item" href="pages/shift-soufu.html">
+        <span class="t">シフト表+見積書の送付準備</span>
+        <span class="d">取引先(コスモテレコム・アド松・鳥羽など)に渡す翌月の店舗用シフト表をPDFで作り、見積書と一緒に添付したメールの下書きまで作ります。</span>
+        <span class="meta"><span class="tag claude">Claudeに頼むと動く</span><span class="tag accent">山口PCが必要</span></span>
+      </a>
+      <a class="item" href="pages/uriage.html">
+        <span class="t">ヘルパー売上の月次集計</span>
+        <span class="d">その月の請求書PDFを全部読み、販売ヘルパー・設定ヘルパーの売上(税抜)を会社別・店舗別の表にまとめます。</span>
+        <span class="meta"><span class="tag claude">Claudeに頼むと動く</span><span class="tag accent">山口PCが必要</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="grouphead">SP事業部 手配・勤怠</h2>
+    <div class="list">
+      <a class="item" href="pages/line-shukkin.html">
+        <span class="t">出退勤お知らせLINE</span>
+        <span class="d">SmartStaffの出退勤報告が期限を過ぎても入っていないと、本人と勤怠通知グループにLINEが届きます。</span>
+        <span class="meta"><span class="tag auto">見張り役(5分おき)</span><span class="tag accent">クラウドで動く</span></span>
+      </a>
+      <a class="item" href="pages/tehai-check.html">
+        <span class="t">月次の手配チェック</span>
+        <span class="d">シフト表とSmartStaffの手配を1日ずつ見比べ、ズレだけを報告します。OKを出せば手配・有給登録なども手伝います。</span>
+        <span class="meta"><span class="tag claude">Claudeに頼むと動く</span><span class="tag accent">山口PCが必要</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="grouphead">メール・採用</h2>
+    <div class="list">
+      <a class="item" href="pages/mail-draft.html">
+        <span class="t">Outlookメールの下書きづくり</span>
+        <span class="d">「メール作って」と頼むと、正しい会社アカウントから、返信や新規メールをOutlookの下書きに保存するところまで進めます。</span>
+        <span class="meta"><span class="tag claude">Claudeに頼むと動く</span><span class="tag accent">山口PCが必要</span></span>
+      </a>
+      <a class="item" href="pages/saiyo.html">
+        <span class="t">採用応募の一次対応</span>
+        <span class="d">ホームページの採用フォームから応募が届いたら、SMSの文面・採用台帳への記録・返信期限のリマインドをまとめて用意します。</span>
+        <span class="meta"><span class="tag claude">Claudeに頼むと動く</span><span class="tag accent">山口PCが必要</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="note"><strong>このサイトはインターネット上に置いています</strong><p>お客様の情報、社外の方のお名前、メールアドレス、ログイン方法などは書いていません。管理表やファイルの場所は、社内の共有フォルダで確認するか、山口に聞いてください。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年9月28日</span></footer>
+</div>
+</body>
+</html>

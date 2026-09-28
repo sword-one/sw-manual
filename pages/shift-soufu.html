@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>シフト表+見積書の送付準備</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">ヘルパー派遣 ・ シフト表とメール</div>
+    <h1>シフト表+見積書の送付準備 ― メールの下書きまで自動</h1>
+    <div class="tags"><span class="tag claude">Claudeに頼むと動く</span><span class="tag accent">山口PCが必要</span></div>
+    <p class="lead">取引先に渡す翌月の店舗用シフト表をPDFで作り、見積書PDFと一緒に添付したメールをOutlookの下書きに用意します。送信ボタンは人が押します。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>毎月、シフト表から店舗ごとの勤務表を作り直してPDFにし、先月送ったメールを探して、宛先・件名・本文・添付を差し替えて送っていました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>Claudeが先月の同じメールを確認し、シフト表をPDFで作り(土曜は青、日曜・祝日は赤、合計日数つき)、見積書と一緒にOutlookの下書きに保存します。人は確認して送信するだけです。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">販売・設定ヘルパー</td><td>毎月、前月15日ごろ〜翌月8日ごろ(見積書ができたあと)</td></tr>
+        <tr><td class="c">軒先販売の見積書</td><td>取引先から軒先販売の日程連絡が来たら、その日のうちに</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who human">人</div><div class="body"><strong>「10月のシフト送って」と頼む</strong></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>Outlookで先月の同じメールを探す</strong><span>宛先・件名・本文・添付の組み合わせを、推測ではなく実物で確認します。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>最新のシフト表を取り直してチェック</strong><span>同じスタッフが同じ日に2店舗に入っていたら止めます。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>店舗ごとのシフト表(A4・1枚)を作ってPDFに</strong><span>見積書の日数と合っているかも照らし合わせます。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>見積書PDFと合わせて、Outlookに下書きを作る</strong><span>件名と本文の「月」を直し、添付を差し替えて保存します。送信はしません。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>下書きを確認して、送信ボタンを押す</strong><span>宛先・件名・本文・添付を目で確認してください。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">10月のシフト送って</div>
+      <div class="bubble">コスモテレコムにシフトと見積書を送る準備して</div>
+      <div class="bubble">鳥羽のシフト表作って</div>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>Outlookの「下書き」フォルダで中身を確認する</li>
+        <li>送信ボタンを押す</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">Googleスプレッドシート</td><td>月ごとのシフト表です。</td></tr>
+        <tr><td class="c">Excel / PDF</td><td>店舗用シフト表を作ってPDFにします。</td></tr>
+        <tr><td class="c">Dropbox</td><td>見積書PDFを取ってきます。</td></tr>
+        <tr><td class="c">Outlook</td><td>メールの下書きを作ります。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>Claudeは送信しません</strong><p>送信ボタンは必ず人が押します。下書きが「送信トレイ」に入ってしまったときは「下書き」に戻します。</p></div>
+    <div class="note"><strong>取引先によって添付の組み合わせがちがいます</strong><p>先月のメールに合わせます(例:見積書だけを送る取引先もあります)。</p></div>
+    <div class="note"><strong>アド松の「設定」の日数は、シフト表と見積書で一致しません</strong><p>一部を軒先販売として請求しているためで、まちがいではありません。</p></div>
+    <div class="note"><strong>シフト表には自社の担当者名・軒先販売の列は入れません</strong></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年9月28日</span></footer>
+</div>
+</body>
+</html>

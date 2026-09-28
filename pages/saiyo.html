@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>採用応募の一次対応</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">採用</div>
+    <h1>採用応募の一次対応 ― SMS文面・台帳・リマインドをまとめて</h1>
+    <div class="tags"><span class="tag claude">Claudeに頼むと動く</span><span class="tag accent">山口PCが必要</span></div>
+    <p class="lead">ホームページの採用フォームから応募が届いたら、Claudeが応募者へ送るSMSの文面を作り、採用台帳に記録し、返信がないときのためのリマインドを設定します。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>応募メールを読んでどんな応募か判断し、SMSの文面をゼロから考え、台帳に書き写し、返信の期限も自分で覚えておく必要がありました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>Claudeが応募の種類(気軽な面談希望か、正式な応募か)を見分け、詐欺とまちがわれにくいSMS文面を作り、台帳に1行追加して、返信期限の翌営業日にリマインドを設定します。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">応募の転送メールが届いたとき</td><td>その都度使います。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who human">人</div><div class="body"><strong>転送された応募メールを渡して「一次対応して」と頼む</strong></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>応募の種類を見分ける</strong><span>面談希望ならオンライン30分の面談を提案、正式な応募なら履歴書などを送ってもらうよう依頼します。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>SMSの文面を作る(300字前後)</strong><span>社名と担当者名を最初に入れ、お願いは3つまで、返信期限(3営業日後)を書きます。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>文面を確認して、自分のスマホからSMSを送る</strong></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>採用台帳に1行追加する</strong><span>状態は「返信待ち」、判定は「未判定」で入れます。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>返信期限の翌営業日にリマインドを設定</strong><span>返信がなければ1回だけ電話、つながらなければ終了します。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>面談をして、採用するか判断する</strong><span>面談の進行表はClaudeが用意できます。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">採用の応募が来たので一次対応して</div>
+      <div class="bubble">この応募者へのSMS文面を作って</div>
+      <div class="bubble">応募を台帳に追加して、リマインドも設定して</div>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>SMSの文面を確認して送る</li>
+        <li>リマインドの日に返信があったか確認する</li>
+        <li>面談と採用の判断</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">採用フォーム(ホームページ)</td><td>応募が転送メールで届きます。</td></tr>
+        <tr><td class="c">SMS</td><td>人のスマホから送ります。</td></tr>
+        <tr><td class="c">Googleスプレッドシート</td><td>採用台帳です。</td></tr>
+        <tr><td class="c">Claudeのスケジュール機能</td><td>リマインドを設定します。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>SMSに書かないこと</strong><p>志望動機のお願い(返信が減るため)や、在留資格の確認(面談のときに口頭で確認します)は書きません。</p></div>
+    <div class="note"><strong>台帳の扱い</strong><p>「情報削除期限」の列には数式が入っているのでさわりません。台帳は選考に関わる人にだけ「閲覧のみ」で共有します。</p></div>
+    <div class="note"><strong>見送り・辞退の人の情報は6か月後に削除</strong><p>判定から6か月たったら行ごと削除し、応募書類も破棄します。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年9月28日</span></footer>
+</div>
+</body>
+</html>
