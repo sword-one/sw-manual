@@ -4,239 +4,303 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="dark">
 <title>AI時短レポート</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Inter:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Inter:wght@400;600;800;900&display=swap">
 <style>
 :root{
-  --bg:#f6f5f2; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984; --line:#e4e2dc;
-  --bar:#2a78d6; --bar-soft:#e3eefb; --track:#efeee9;
-  --hero-bg:#0f1d2e; --hero-ink:#ffffff; --hero-sub:#b9c7d8; --hero-accent:#7fb8ff;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --bg:#121211; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#8f8e86; --line:#2e2e2b;
-    --bar:#3987e5; --bar-soft:#1c2a3b; --track:#262624;
-    --hero-bg:#0b1522; --hero-sub:#9fb0c4;
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --bg:#121211; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#8f8e86; --line:#2e2e2b;
-  --bar:#3987e5; --bar-soft:#1c2a3b; --track:#262624;
-  --hero-bg:#0b1522; --hero-sub:#9fb0c4;
+  --bg:#07090e; --card:rgba(255,255,255,.035); --card2:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
+  --ink:#f4f6fa; --ink2:#aab3c2; --muted:#6f7888;
+  --accent:#3987e5; --accent2:#7cc0ff; --violet:#a58bff;
+  --before:#3a4252;
+  --grad:linear-gradient(100deg,#8fd0ff 0%,#6aa8ff 45%,#b59bff 100%);
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"BIZ UDPGothic","Yu Gothic UI","Hiragino Sans",sans-serif;line-height:1.8;font-size:16px}
-.num{font-family:"Inter","BIZ UDPGothic",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.wrap{max-width:1000px;margin:0 auto;padding-inline:16px}
-@media (min-width:640px){.wrap{padding-inline:28px}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic UI",sans-serif;font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.en{font-family:"Inter",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px}
+@media (min-width:720px){.wrap{padding-inline:32px}}
+::selection{background:#3987e555}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);background:rgba(7,9,14,.62);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none}
+.logo i{width:26px;height:26px;border-radius:8px;background:var(--grad);display:grid;place-items:center;font-style:normal;color:#07090e;font-family:Inter;font-weight:900;font-size:12px}
+.nav ul{display:none;list-style:none;margin:0;padding:0;gap:26px;font-size:13.5px;color:var(--ink2)}
+@media (min-width:860px){.nav ul{display:flex}}
+.nav ul a{text-decoration:none}.nav ul a:hover{color:var(--ink)}
+.pill-btn{font-size:13px;font-weight:700;text-decoration:none;border:1px solid var(--line2);border-radius:999px;padding:7px 16px;transition:.2s;white-space:nowrap}
+.pill-btn:hover{background:#fff;color:#07090e}
 
 /* hero */
-.hero{background:var(--hero-bg);color:var(--hero-ink);padding-block:28px 56px;position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(127,184,255,.22),rgba(127,184,255,0) 70%)}
-.hero nav{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--hero-sub);position:relative;z-index:1}
-.hero nav a{color:var(--hero-sub);text-decoration:none}
-.hero nav a:hover{color:#fff}
-.hero .inner{position:relative;z-index:1;margin-top:44px;display:grid;gap:28px}
-@media (min-width:820px){.hero .inner{grid-template-columns:1.2fr 1fr;align-items:end}}
-.kicker{font-size:13px;letter-spacing:.14em;color:var(--hero-accent);font-weight:700}
-.hero h1{font-size:28px;line-height:1.45;margin:8px 0 12px;text-wrap:balance}
-@media (min-width:640px){.hero h1{font-size:36px}}
-.hero p{margin:0;color:var(--hero-sub);max-width:34em}
-.big{display:flex;flex-direction:column;gap:4px}
-.big .label{font-size:14px;color:var(--hero-sub)}
-.big .value{font-size:72px;font-weight:800;line-height:1;color:#fff}
-@media (min-width:640px){.big .value{font-size:96px}}
-.big .value small{font-size:24px;font-weight:700;margin-left:6px;color:var(--hero-sub)}
-.big .sub{font-size:15px;color:var(--hero-sub)}
-.big .sub b{color:#fff}
+.hero{position:relative;padding-block:72px 88px;overflow:hidden;isolation:isolate}
+@media (min-width:720px){.hero{padding-block:110px 120px}}
+.hero .grid-bg{position:absolute;inset:0;z-index:-2;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);opacity:.55}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);z-index:-1;opacity:.55}
+.orb.a{width:520px;height:520px;background:#1e6fd9;top:-180px;left:-120px;animation:float 14s ease-in-out infinite}
+.orb.b{width:440px;height:440px;background:#7a5cff;top:-60px;right:-160px;opacity:.38;animation:float 17s ease-in-out infinite reverse}
+@keyframes float{50%{transform:translate(40px,30px) scale(1.06)}}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;letter-spacing:.1em;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:6px 14px 6px 8px;background:rgba(255,255,255,.03)}
+.eyebrow b{background:var(--grad);color:#07090e;border-radius:999px;padding:1px 9px;font-family:Inter;font-weight:800;letter-spacing:.06em;font-size:11px}
+.hero h1{font-size:clamp(34px,6.4vw,76px);line-height:1.18;font-weight:900;letter-spacing:-.01em;margin:24px 0 22px;text-wrap:balance}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{max-width:40em;color:var(--ink2);font-size:clamp(15px,1.6vw,17.5px);margin:0}
+.metrics{margin-top:56px;display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));overflow:hidden}
+@media (min-width:860px){.metrics{grid-template-columns:1.5fr 1fr 1fr 1fr}}
+.metric{padding:22px 22px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.metric:nth-child(2n){border-right:none}
+@media (min-width:860px){.metric{border-bottom:none}.metric:nth-child(2n){border-right:1px solid var(--line)}.metric:last-child{border-right:none}}
+.metric .k{font-size:12.5px;color:var(--ink2);letter-spacing:.06em}
+.metric .v{font-size:clamp(34px,4.4vw,48px);font-weight:900;line-height:1}
+.metric .v small{font-size:15px;font-weight:600;color:var(--ink2);margin-left:4px;font-family:"Zen Kaku Gothic New",sans-serif;letter-spacing:0}
+.metric.main .v{font-size:clamp(52px,7vw,84px)}
+.metric .n{font-size:12.5px;color:var(--muted)}
 
-/* kpis */
-.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:-28px;position:relative;z-index:2}
-@media (min-width:820px){.kpis{grid-template-columns:repeat(4,1fr)}}
-.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:2px;box-shadow:0 6px 20px rgba(0,0,0,.05)}
-.kpi .k{font-size:13px;color:var(--ink2)}
-.kpi .v{font-size:30px;font-weight:700}
-.kpi .v small{font-size:14px;color:var(--ink2);margin-left:3px;font-family:"BIZ UDPGothic",sans-serif}
-.kpi .n{font-size:12.5px;color:var(--muted)}
+/* sections */
+section.block{padding-block:80px;border-top:1px solid var(--line);position:relative}
+@media (min-width:720px){section.block{padding-block:112px}}
+.sec-head{display:grid;gap:14px;margin-bottom:44px}
+@media (min-width:860px){.sec-head{grid-template-columns:240px 1fr;align-items:end;gap:40px}}
+.sec-no{font-family:Inter;font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--accent2)}
+.sec-no span{display:block;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.12em;margin-top:4px}
+.sec-head h2{font-size:clamp(26px,3.6vw,42px);line-height:1.3;font-weight:900;margin:0;text-wrap:balance}
+.sec-head p{margin:10px 0 0;color:var(--ink2);max-width:40em}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.orb{animation:none}}
 
-section{margin-top:56px}
-h2{font-size:22px;margin:0 0 6px;text-wrap:balance}
-.lede{margin:0 0 20px;color:var(--ink2);font-size:15px}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
-@media (min-width:640px){.panel{padding:24px 28px}}
+/* before / after */
+.ba{display:grid;gap:18px}
+.ba-row{display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:end}
+@media (min-width:720px){.ba-row{grid-template-columns:130px 1fr 170px;align-items:center;gap:22px}}
+.ba-row .lab{font-size:14px;color:var(--ink2);letter-spacing:.06em}
+.ba-row .track{grid-column:1/-1;height:46px;border-radius:0 10px 10px 0;background:rgba(255,255,255,.03);position:relative;overflow:hidden}
+@media (min-width:720px){.ba-row .track{grid-column:auto}}
+.ba-row .fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:0 10px 10px 0;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.ba-row.before .fill{background:var(--before)}
+.ba-row.after .fill{background:var(--accent);box-shadow:0 0 30px #3987e580}
+.ba-row .val{font-size:30px;font-weight:900;line-height:1;grid-row:1;grid-column:2}
+@media (min-width:720px){.ba-row .val{grid-row:auto;grid-column:auto}}
+.ba-row .val small{font-size:14px;color:var(--ink2);font-weight:600;margin-left:3px;font-family:"Zen Kaku Gothic New"}
+.ba-note{margin-top:28px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.ba-note .big{font-size:clamp(36px,5vw,56px);font-weight:900;line-height:1}
+.ba-note p{margin:0;color:var(--ink2)}
 
-/* bar chart */
-.chart-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.chart-title{font-weight:700}
-.chart-note{font-size:13px;color:var(--muted)}
-.bars{display:flex;flex-direction:column;gap:6px;position:relative}
-.row{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:6px 8px;margin-inline:-8px;border-radius:8px;cursor:default}
-@media (min-width:640px){.row{grid-template-columns:230px minmax(0,1fr) 70px;align-items:center;gap:14px}}
-.row:hover,.row:focus-visible{background:var(--bar-soft);outline:none}
-.row .name{font-size:14.5px;line-height:1.4}
-.row .name .bcat{display:block;font-size:12px;color:var(--muted)}
-.track{display:block;height:14px;background:var(--track);border-radius:4px;position:relative}
-.fill{display:block;height:14px;background:var(--bar);border-radius:0 4px 4px 0;width:0;transition:width .9s cubic-bezier(.2,.7,.2,1)}
-.row .val{font-size:15px;font-weight:700;text-align:left}
-@media (min-width:640px){.row .val{text-align:right}}
-.row .val small{font-size:12px;color:var(--ink2);font-weight:400;margin-left:2px;font-family:"BIZ UDPGothic",sans-serif}
-.axis{display:none}
-@media (min-width:640px){.axis{display:grid;grid-template-columns:230px minmax(0,1fr) 70px;gap:14px;font-size:12px;color:var(--muted);margin-top:6px}}
-.axis .ticks{display:flex;justify-content:space-between}
-.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:13px;line-height:1.6;padding:8px 12px;border-radius:8px;opacity:0;transition:opacity .12s;z-index:10;max-width:260px}
-.tip b{font-family:"Inter",sans-serif}
+/* timeline */
+.tl{list-style:none;margin:0;padding:0;display:grid;position:relative}
+.tl::before{content:"";position:absolute;left:81px;top:10px;bottom:10px;width:1px;background:linear-gradient(var(--accent),var(--violet),transparent)}
+@media (min-width:980px){.tl{grid-template-columns:repeat(6,1fr);gap:18px}.tl::before{left:0;right:0;top:44px;bottom:auto;height:1px;width:auto;background:linear-gradient(90deg,var(--accent),var(--violet),transparent)}}
+.tl li{display:grid;grid-template-columns:60px 15px 1fr;gap:0 14px;padding-bottom:28px;position:relative}
+@media (min-width:980px){.tl li{grid-template-columns:1fr;gap:12px;padding:0}}
+.tl .time{font-family:Inter;font-weight:800;font-size:15px;text-align:right}
+@media (min-width:980px){.tl .time{text-align:left;font-size:22px;line-height:1.2}}
+.tl .dot{width:15px;height:15px;border-radius:50%;background:var(--bg);border:3px solid var(--accent2);margin-top:6px;box-shadow:0 0 0 5px rgba(57,135,229,.15)}
+@media (min-width:980px){.tl .dot{margin:0}}
+.tl .body b{display:block;font-size:15.5px;line-height:1.5}
+.tl .body span.d{display:block;font-size:13.5px;color:var(--ink2);margin-top:4px;line-height:1.65}
+.tl .tag{display:inline-block;font-size:11px;letter-spacing:.08em;color:var(--accent2);border:1px solid rgba(124,192,255,.35);border-radius:999px;padding:0 8px;margin-bottom:6px}
+
+/* bars */
+.panel{border:1px solid var(--line);border-radius:22px;background:var(--card);padding:22px}
+@media (min-width:720px){.panel{padding:30px 34px}}
+.panel-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--ink2);margin-bottom:18px}
+.bars{display:flex;flex-direction:column;gap:4px}
+.brow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;padding:10px 12px;margin-inline:-12px;border-radius:12px;transition:background .2s;outline:none}
+@media (min-width:720px){.brow{grid-template-columns:260px minmax(0,1fr) 90px;align-items:center}}
+.brow:hover,.brow:focus-visible{background:rgba(255,255,255,.05)}
+.brow .nm{font-size:15px;line-height:1.4}
+.brow .nm em{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:.04em}
+.brow .tr{grid-column:1/-1;height:12px;border-radius:0 4px 4px 0;background:rgba(255,255,255,.05);position:relative}
+@media (min-width:720px){.brow .tr{grid-column:auto}}
+.brow .fl{position:absolute;inset:0 auto 0 0;width:0;border-radius:0 4px 4px 0;background:var(--accent);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.brow .vl{font-size:17px;font-weight:800;text-align:right;grid-row:1;grid-column:2}
+@media (min-width:720px){.brow .vl{grid-row:auto;grid-column:auto}}
+.brow .vl small{font-size:12px;color:var(--ink2);font-weight:600;margin-left:2px;font-family:"Zen Kaku Gothic New"}
+.tip{position:fixed;z-index:60;pointer-events:none;opacity:0;transition:opacity .15s;background:#f4f6fa;color:#07090e;border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.65;max-width:280px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.tip b{font-family:Inter}
 
 /* categories */
-.cats{display:grid;grid-template-columns:1fr;gap:12px}
-@media (min-width:640px){.cats{grid-template-columns:repeat(2,1fr)}}
-.cat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px}
-.cat .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.cat h3{margin:0;font-size:16.5px}
-.cat .h{font-size:26px;font-weight:700}
-.cat .h small{font-size:13px;color:var(--ink2);margin-left:2px;font-family:"BIZ UDPGothic",sans-serif}
-.cat ul{margin:0;padding-left:1.2em;color:var(--ink2);font-size:14.5px}
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+@media (min-width:860px){.cats{grid-template-columns:repeat(3,1fr)}}
+.cat{border:1px solid var(--line);border-radius:18px;padding:18px 20px;background:var(--card);display:flex;flex-direction:column;gap:6px;transition:border-color .2s,transform .2s}
+.cat:hover{border-color:var(--line2);transform:translateY(-2px)}
+.cat .ct{font-size:13px;color:var(--ink2);letter-spacing:.06em}
+.cat .cv{font-size:32px;font-weight:900;line-height:1.1}
+.cat .cv small{font-size:13px;color:var(--ink2);font-weight:600;margin-left:3px;font-family:"Zen Kaku Gothic New"}
+.cat .cl{font-size:12.5px;color:var(--muted);line-height:1.6}
 
-/* how */
-.how{display:grid;grid-template-columns:1fr;gap:12px}
-@media (min-width:820px){.how{grid-template-columns:repeat(3,1fr)}}
-.how .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
-.how .ico{width:40px;height:40px;border-radius:10px;background:var(--bar-soft);color:var(--bar);display:grid;place-items:center;margin-bottom:10px}
-.how h3{margin:0 0 4px;font-size:16.5px}
-.how p{margin:0;color:var(--ink2);font-size:14.5px}
+/* ways */
+.ways{display:grid;gap:14px}
+@media (min-width:860px){.ways{grid-template-columns:repeat(3,1fr)}}
+.way{position:relative;border:1px solid var(--line);border-radius:22px;padding:28px 26px 30px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01));overflow:hidden}
+.way::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(57,135,229,.35),transparent 70%)}
+.way .no{font-family:Inter;font-weight:900;font-size:56px;line-height:1;opacity:.12;position:absolute;right:22px;bottom:14px}
+.way .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(57,135,229,.14);color:var(--accent2);margin-bottom:18px;border:1px solid rgba(124,192,255,.25)}
+.way h3{margin:0 0 8px;font-size:19px;font-weight:700}
+.way p{margin:0;color:var(--ink2);font-size:14.5px;position:relative;z-index:1}
 
-/* table */
-.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
-table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
-th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:12.5px;color:var(--ink2);background:var(--bg);font-weight:700;white-space:nowrap}
+/* assumptions */
+details.assume{border:1px solid var(--line);border-radius:18px;background:var(--card);margin-top:22px}
+details.assume summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+details.assume summary::-webkit-details-marker{display:none}
+details.assume summary::after{content:"+";font-family:Inter;font-size:22px;color:var(--ink2);transition:transform .2s}
+details.assume[open] summary::after{transform:rotate(45deg)}
+details.assume summary:focus-visible{outline:2px solid var(--accent2);outline-offset:-2px;border-radius:18px}
+.tw{overflow-x:auto;border-top:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+th,td{text-align:left;padding:12px 22px;border-bottom:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:600}
 td.r,th.r{text-align:right;white-space:nowrap}
-tr:last-child td{border-bottom:none}
-tfoot td{font-weight:700;background:var(--bg)}
+tfoot td{font-weight:800;border-bottom:none}
+.assume .memo{padding:14px 22px 20px;color:var(--ink2);font-size:13.5px;margin:0}
 
-.note{font-size:13.5px;color:var(--ink2);margin-top:12px}
-.others{display:grid;grid-template-columns:1fr;gap:10px}
-@media (min-width:640px){.others{grid-template-columns:repeat(2,1fr)}}
-.other{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;gap:2px}
+/* others */
+.others{display:grid;gap:12px}
+@media (min-width:720px){.others{grid-template-columns:repeat(2,1fr)}}
+.other{display:grid;grid-template-columns:38px 1fr;gap:4px 14px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:var(--card);transition:border-color .2s,background .2s}
+.other:hover{border-color:var(--line2);background:var(--card2)}
+.other .oi{grid-row:1/3;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:rgba(165,139,255,.13);color:#c7b8ff;font-family:Inter;font-weight:800;font-size:13px}
 .other b{font-size:15.5px}
-.other span{font-size:14px;color:var(--ink2)}
-.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--hero-bg);color:#fff;border-radius:16px;padding:24px 26px}
-.cta p{margin:0;color:var(--hero-sub)}
-.cta a{background:#fff;color:#0f1d2e;text-decoration:none;font-weight:700;border-radius:999px;padding:10px 20px}
-.cta a:focus-visible{outline:2px solid var(--hero-accent);outline-offset:3px}
-footer{margin-block:40px 48px;color:var(--muted);font-size:13px}
+.other span.d{font-size:13.5px;color:var(--ink2);line-height:1.65}
+
+/* cta */
+.cta{position:relative;overflow:hidden;border-radius:28px;padding:48px 24px;text-align:center;background:radial-gradient(ellipse at 20% 0%,#1d5fc2 0%,transparent 55%),radial-gradient(ellipse at 90% 100%,#5b3fd6 0%,transparent 55%),#0d1320;border:1px solid var(--line2)}
+@media (min-width:720px){.cta{padding:72px 40px}}
+.cta h2{font-size:clamp(24px,3.4vw,38px);font-weight:900;margin:0 0 12px;line-height:1.35}
+.cta p{margin:0 auto 28px;color:#c8d2e2;max-width:34em}
+.cta a{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#07090e;text-decoration:none;font-weight:700;border-radius:999px;padding:14px 28px;transition:transform .2s}
+.cta a:hover{transform:translateY(-2px)}
+.cta a:focus-visible,.pill-btn:focus-visible,.nav a:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
+footer{padding-block:40px 56px;color:var(--muted);font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
 </head>
 <body>
 
-<header class="hero">
+<nav class="nav">
   <div class="wrap">
-    <nav><span>ソードワン 営業部門</span><a href="index.html">マニュアル一覧 →</a></nav>
-    <div class="inner">
-      <div>
-        <div class="kicker">AI TIME-SAVING REPORT</div>
-        <h1>AIに任せた仕事で、<br>毎月これだけの時間が浮いています</h1>
-        <p>実績の入力、出退勤の見回り、見積書づくり、手配チェック…。毎日・毎月のルーティン業務のうち、山口がClaudeなどのAIで自動化したものの効果を、1か月あたりの時間にまとめました。</p>
-      </div>
-      <div class="big">
-        <span class="label">1か月あたりの時短(試算)</span>
-        <span class="value num"><span id="heroHours">0</span><small>時間</small></span>
-        <span class="sub">1日8時間で換算すると <b class="num" id="heroDays">0</b> 人日分</span>
-      </div>
+    <a class="logo" href="#top"><i>SW</i>AI TIME REPORT</a>
+    <ul>
+      <li><a href="#result">成果</a></li>
+      <li><a href="#day">AIの1日</a></li>
+      <li><a href="#detail">内訳</a></li>
+      <li><a href="#others">任せていること</a></li>
+    </ul>
+    <a class="pill-btn" href="index.html">マニュアル →</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="grid-bg"></div><div class="orb a"></div><div class="orb b"></div>
+  <div class="wrap">
+    <span class="eyebrow reveal"><b>2026.09</b>ソードワン 営業部門 ・ AI活用レポート</span>
+    <h1 class="reveal">毎月<span class="grad en" id="h1Hours">0</span>時間の<br>ルーティン業務を、<br><span class="grad">AIが引き受けています。</span></h1>
+    <p class="sub reveal">実績の入力、出退勤の見回り、見積書づくり、手配チェック。毎日・毎月くり返していた仕事を、山口がClaudeなどのAIで自動化しました。人は指示を出して、結果を確かめるだけです。</p>
+    <div class="metrics reveal">
+      <div class="metric main"><span class="k">1か月あたりの時短</span><span class="v en"><span id="mHours">0</span><small>時間</small></span><span class="n">試算・前提は「内訳」にまとめています</span></div>
+      <div class="metric"><span class="k">人日に換算</span><span class="v en"><span id="mDays">0</span><small>人日</small></span><span class="n">1日8時間として</span></div>
+      <div class="metric"><span class="k">作業時間の削減率</span><span class="v en"><span id="mRate">0</span><small>%</small></span><span class="n">対象業務の合計</span></div>
+      <div class="metric"><span class="k">年間に直すと</span><span class="v en"><span id="mYear">0</span><small>時間</small></span><span class="n">月の時短 × 12</span></div>
     </div>
   </div>
 </header>
 
-<main class="wrap">
-  <div class="kpis">
-    <div class="kpi"><span class="k">自動化したルーティン業務</span><span class="v num" id="kpiCount">0<small>件</small></span><span class="n">毎日・毎月くり返すもの</span></div>
-    <div class="kpi"><span class="k">作業時間の削減率</span><span class="v num" id="kpiRate">0<small>%</small></span><span class="n">対象業務の合計で比べて</span></div>
-    <div class="kpi"><span class="k">年間に直すと</span><span class="v num" id="kpiYear">0<small>時間</small></span><span class="n">月の時短 × 12か月</span></div>
-    <div class="kpi"><span class="k">いちばん効いたもの</span><span class="v" id="kpiTop" style="font-size:18px;line-height:1.5;padding-top:6px">―</span><span class="n num" id="kpiTopN"></span></div>
-  </div>
-
-  <section>
-    <h2>どの仕事で、どれくらい浮いた?</h2>
-    <p class="lede">1か月あたりに浮いた時間が多い順です。行にカーソルを合わせると、これまでといまの作業時間が見られます。</p>
-    <div class="panel">
-      <div class="chart-head"><span class="chart-title">1か月あたりの時短(時間)</span><span class="chart-note">試算・前提は下の表</span></div>
-      <div class="bars" id="bars" role="list"></div>
-      <div class="axis" aria-hidden="true"><span></span><span class="ticks" id="ticks"></span><span></span></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>分野ごとに見ると</h2>
-    <p class="lede">毎日くり返す実績の「入力」を自動にしたものが、特に大きく効いています。</p>
-    <div class="cats" id="cats"></div>
-  </section>
-
-  <section>
-    <h2>時短のしかたは3つ</h2>
-    <p class="lede">仕事の性質に合わせて、AIやプログラムの使い方を変えています。</p>
-    <div class="how">
-      <div class="card">
-        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <h3>時間になったら勝手に動く</h3>
-        <p>毎朝8時・毎日12時などに、AIが実績の入力やメール点検を自動で行います。だれも操作しません。</p>
+<main>
+  <section class="block" id="result">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-no">01<span>BEFORE / AFTER</span></div>
+        <div><h2>同じ仕事にかかる時間が、ここまで変わりました</h2><p>自動化した<span id="cnt"></span>件のルーティン業務の、1か月あたりの作業時間の合計です。</p></div>
       </div>
-      <div class="card">
-        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <h3>ずっと見張って、知らせる</h3>
-        <p>5分おきに状態を確認し、出退勤の報告漏れやNGの発生に気づいたら、LINEやメールで知らせます。</p>
+      <div class="ba reveal" id="ba">
+        <div class="ba-row before"><span class="lab">これまで</span><span class="track"><span class="fill" id="baB"></span></span><span class="val en" id="baBv"></span></div>
+        <div class="ba-row after"><span class="lab">AI化したいま</span><span class="track"><span class="fill" id="baA"></span></span><span class="val en" id="baAv"></span></div>
       </div>
-      <div class="card">
-        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h3>ひとこと頼むと、手順どおりに</h3>
-        <p>「10月分の見積書作って」と話しかけると、覚えさせた手順で作業し、下書きまで作ります。送信は人が行います。</p>
+      <div class="ba-note reveal"><span class="big grad en" id="baSave"></span><p>が、毎月まるごと浮いた時間。ほかの仕事や、お客様・スタッフと向き合う時間に使えます。</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="day">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-no">02<span>A DAY WITH AI</span></div>
+        <div><h2>AIの1日</h2><p>早朝も、会議中も、AIとプログラムが決まった時間に仕事をしています。</p></div>
+      </div>
+      <ol class="tl reveal">
+        <li><span class="time">04:30</span><span class="dot"></span><div class="body"><span class="tag">自動</span><b>申込一覧が届いたら、すぐ取り込み</b><span class="d">コネクトαの申込データを読み、店舗ごとの報告表に実績を入力。NGがあれば確認メールも送信。</span></div></li>
+        <li><span class="time">08:00</span><span class="dot"></span><div class="body"><span class="tag">自動</span><b>取りこぼしの最終チェック</b><span class="d">朝の入力に漏れがないか、もう一度確かめてレポート。</span></div></li>
+        <li><span class="time">09:00</span><span class="dot"></span><div class="body"><span class="tag">自動</span><b>メール点検</b><span class="d">全アカウントの未読と、催事申請への返信漏れを1通にまとめて届ける。</span></div></li>
+        <li><span class="time">12:00</span><span class="dot"></span><div class="body"><span class="tag">自動</span><b>SP商材の実績入力</b><span class="d">セールスパートナーからの獲得ログを読み、報告表に入力。</span></div></li>
+        <li><span class="time">15:00</span><span class="dot"></span><div class="body"><span class="tag">見張り</span><b>翌日分の前日確認をチェック</b><span class="d">前日確認が済んでいないスタッフに、LINEでお知らせ。</span></div></li>
+        <li><span class="time">終日</span><span class="dot"></span><div class="body"><span class="tag">見張り</span><b>5分おきに出退勤を見回り</b><span class="d">出発・出勤・退勤の報告が遅れたら、本人とグループにLINE。</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="detail">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-no">03<span>BREAKDOWN</span></div>
+        <div><h2>どの仕事で、どれだけ浮いた?</h2><p>1か月あたりに浮いた時間が多い順です。行にカーソルを合わせると、これまでといまの作業時間が見られます。</p></div>
+      </div>
+      <div class="panel reveal">
+        <div class="panel-head"><span>1か月あたりの時短(時間)</span><span>試算</span></div>
+        <div class="bars" id="bars" role="list"></div>
+      </div>
+      <div class="cats reveal" id="cats"></div>
+      <details class="assume reveal">
+        <summary>試算の前提を見る</summary>
+        <div class="tw">
+          <table>
+            <thead><tr><th>仕事</th><th>頻度</th><th class="r">これまで(1回)</th><th class="r">いま(1回)</th><th class="r">月の時短</th></tr></thead>
+            <tbody id="tbody"></tbody>
+            <tfoot><tr><td colspan="4">合計</td><td class="r en" id="tfoot"></td></tr></tfoot>
+          </table>
+        </div>
+        <p class="memo">「1回あたりの作業時間 × 月の回数」で比べた、山口の体感による目安です。AI化したあとは指示を出して結果を見るだけなので「いま」はほぼ1分(MT報告は課長の入力が残るため、そのぶんを見込んでいます)。</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-no">04<span>HOW IT WORKS</span></div>
+        <div><h2>AIの使い方は、3つのパターン</h2><p>仕事の性質に合わせて、任せ方を変えています。</p></div>
+      </div>
+      <div class="ways">
+        <div class="way reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>時間になったら動く</h3><p>毎朝・毎日決まった時刻に、AIが実績の入力やメール点検を自動で行います。だれも操作しません。</p><span class="no">01</span></div>
+        <div class="way reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><h3>見張って、知らせる</h3><p>5分おきに状態を確認し、報告の遅れやNGの発生に気づいたら、LINEやメールですぐ知らせます。</p><span class="no">02</span></div>
+        <div class="way reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>ひとこと頼むと動く</h3><p>「10月分の見積書作って」と話しかけるだけで、覚えさせた手順どおりに作業。送信だけは人が行います。</p><span class="no">03</span></div>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2>試算の前提</h2>
-    <p class="lede">「1回あたりの作業時間 × 月の回数」で、これまでといまを比べています。実測ではなく、山口の体感をもとにした目安です。AI化したあとは指示を出して結果を見るだけなので、「いま」はほぼ1分です(MT報告は課長の入力が残るため、そのぶんを見込んでいます)。</p>
-    <div class="tablewrap">
-      <table>
-        <thead><tr><th>仕事</th><th>月の回数</th><th class="r">これまで(1回)</th><th class="r">いま(1回)</th><th class="r">月の時短</th></tr></thead>
-        <tbody id="tbody"></tbody>
-        <tfoot><tr><td colspan="4">合計</td><td class="r num" id="tfoot"></td></tr></tfoot>
-      </table>
-    </div>
-    <p class="note">「いま」は、人が確認・送信などをする時間です。ここでは毎日・毎月くり返すルーティン業務だけを数えています。その都度・一度きりの仕事は、下の「その他、AIに任せていること」にまとめています。</p>
-  </section>
-
-  <section>
-    <h2>その他、AIに任せていること</h2>
-    <p class="lede">毎日・毎月のルーティンではないものの、その都度AIに任せて早く片付けている仕事です。</p>
-    <div class="others">
-      <div class="other"><b>採用の応募管理</b><span>HPや採用LINEからの応募を台帳に記録し、担当者のLINEグループに通知</span></div>
-      <div class="other"><b>採用応募の一次対応</b><span>応募者へのSMS文面づくり、台帳への記録、返信期限のリマインド</span></div>
-      <div class="other"><b>メールの下書き</b><span>差出人アカウントを選び、返信や新規メールをOutlookの下書きまで作成</span></div>
-      <div class="other"><b>営業提案資料づくり</b><span>ヒアリングから構成・デザイン・AIどうしの検品まで行い、PowerPointを作成</span></div>
-      <div class="other"><b>クレーム対応の文章づくり</b><span>取引先へのお詫びメールと、社内向けの対応報告文を作成</span></div>
-      <div class="other"><b>Outlook仕分けルールの大掃除</b><span>数百件のルールを一覧にして分類し、重複や壊れたものを整理</span></div>
-      <div class="other"><b>トラブルの調べもの</b><span>メールの送受信エラーなどの原因を、設定や記録から順番に確認</span></div>
-      <div class="other"><b>書類・シートづくり</b><span>取引先向けの条件表、確認シート、MT報告シートの改善など</span></div>
-      <div class="other"><b>フォルダ・ファイルの整理</b><span>見積書フォルダの整理と配置、大量の写真素材の振り分け</span></div>
-      <div class="other"><b>売上分析ブック(開発中)</b><span>売上の増減が「稼働日数・応対数・成約率・単価」のどれで起きたかを金額で分解</span></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="cta">
-      <div>
-        <strong style="font-size:18px">それぞれの仕組みの詳しい説明は、マニュアルサイトへ</strong>
-        <p>何が自動で動いているか、どう頼めばいいかを、AIがはじめての人向けにまとめています。</p>
+  <section class="block" id="others">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-no">05<span>ALSO HANDLED BY AI</span></div>
+        <div><h2>その他、AIに任せていること</h2><p>毎日・毎月のルーティンではないものの、その都度AIに任せて早く片付けている仕事です。</p></div>
       </div>
-      <a href="index.html">マニュアルを見る</a>
+      <div class="others" id="othersList"></div>
     </div>
   </section>
 
-  <footer>作成:山口 / 2026年9月時点の試算</footer>
+  <section class="block">
+    <div class="wrap">
+      <div class="cta reveal">
+        <h2>仕組みの中身は、<br>マニュアルサイトで公開しています</h2>
+        <p>何が自動で動いているか、どう頼めばいいかを、AIがはじめての人にもわかるようにまとめています。</p>
+        <a href="index.html">マニュアルを見る <span aria-hidden="true">→</span></a>
+      </div>
+      <footer><span>作成:山口</span><span>2026年9月時点の試算</span></footer>
+    </div>
+  </section>
 </main>
 
 <div class="tip" id="tip" role="tooltip"></div>
@@ -250,79 +314,89 @@ const ITEMS = [
   {name:"毎朝のメール点検", cat:"メール", freq:"平日", times:22, before:15, after:1},
   {name:"月次の手配チェック", cat:"手配", freq:"月1回", times:1, before:120, after:1},
   {name:"NG確認メール", cat:"みんスマ実績", freq:"月8件", times:8, before:20, after:1},
-  {name:"シフト表+見積書の送付準備", cat:"ヘルパー派遣", freq:"月1回", times:1, before:150, after:1},
+  {name:"シフト表+見積書の送付準備", cat:"ヘルパー派遣", freq:"月1回", times:1, before:70, beforeLabel:"1時間10分", after:1},
   {name:"ヘルパー見積書づくり(7枚)", cat:"ヘルパー派遣", freq:"月1回", times:1, before:120, after:1},
-  {name:"みんスマ月次シートづくり", cat:"みんスマ実績", freq:"月1回", times:1, before:90, after:1},
+  {name:"みんスマ月次シートづくり", cat:"みんスマ実績", freq:"月1回", times:1, before:15, after:1},
   {name:"MT報告シートの入力", cat:"報告", freq:"月2回", times:2, before:45, after:15},
+];
+// ▼ その他、AIに任せていること(時間は書かない)
+const OTHERS = [
+  ["採用の応募管理","HPや採用LINEからの応募を台帳に記録し、担当者のLINEグループに通知"],
+  ["採用応募の一次対応","応募者へのSMS文面づくり、台帳への記録、返信期限のリマインド"],
+  ["メールの下書き","差出人アカウントを選び、返信や新規メールをOutlookの下書きまで作成"],
+  ["営業提案資料づくり","ヒアリングから構成・デザイン・AIどうしの検品まで行い、PowerPointを作成"],
+  ["クレーム対応の文章づくり","取引先へのお詫びメールと、社内向けの対応報告文を作成"],
+  ["Outlook仕分けルールの大掃除","数百件のルールを一覧にして分類し、重複や壊れたものを整理"],
+  ["トラブルの調べもの","メールの送受信エラーなどの原因を、設定や記録から順番に確認"],
+  ["書類・シートづくり","取引先向けの条件表、確認シート、MT報告シートの改善など"],
+  ["フォルダ・ファイルの整理","見積書フォルダの整理と配置、大量の写真素材の振り分け"],
+  ["売上分析ブック(開発中)","売上の増減が「稼働日数・応対数・成約率・単価」のどれで起きたかを金額で分解"],
 ];
 const CAT_ORDER = ["みんスマ実績","勤怠","手配","メール","ヘルパー派遣","報告"];
 
-const saved = i => i.times*(i.before-i.after);
-const h = m => m/60;
-const fmtH = m => (Math.round(h(m)*10)/10).toFixed(1);
-ITEMS.forEach(i=>i.saved=saved(i));
+const $=id=>document.getElementById(id);
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ITEMS.forEach(i=>i.saved=i.times*(i.before-i.after));
 ITEMS.sort((a,b)=>b.saved-a.saved);
-const total = ITEMS.reduce((s,i)=>s+i.saved,0);
-const totalBefore = ITEMS.reduce((s,i)=>s+i.times*i.before,0);
+const total=ITEMS.reduce((s,i)=>s+i.saved,0);
+const tBefore=ITEMS.reduce((s,i)=>s+i.times*i.before,0);
+const tAfter=tBefore-total;
+const H=m=>m/60, f1=m=>(Math.round(H(m)*10)/10).toFixed(1);
+const bl=i=>i.beforeLabel||i.before+"分";
 
-// hero & KPIs
-const countUp=(el,to,dec=0,suffix="")=>{
-  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const t0=performance.now(),d=reduce?0:1100;
-  const step=t=>{const p=d?Math.min(1,(t-t0)/d):1;const e=1-Math.pow(1-p,3);
-    el.innerHTML=(to*e).toFixed(dec)+suffix; if(p<1)requestAnimationFrame(step)};
-  requestAnimationFrame(step);
-};
-countUp(document.getElementById("heroHours"),Math.round(h(total)));
-countUp(document.getElementById("heroDays"),h(total)/8,1);
-document.getElementById("kpiCount").innerHTML=ITEMS.length+"<small>件</small>";
-document.getElementById("kpiRate").innerHTML=Math.round(total/totalBefore*100)+"<small>%</small>";
-document.getElementById("kpiYear").innerHTML=Math.round(h(total)*12)+"<small>時間</small>";
-document.getElementById("kpiTop").textContent=ITEMS[0].name;
-document.getElementById("kpiTopN").textContent="月 "+fmtH(ITEMS[0].saved)+" 時間";
+function countUp(el,to,dec=0){
+  if(reduce){el.textContent=to.toFixed(dec);return}
+  const t0=performance.now(),d=1400;
+  (function step(t){const p=Math.min(1,(t-t0)/d),e=1-Math.pow(1-p,4);el.textContent=(to*e).toFixed(dec);if(p<1)requestAnimationFrame(step)})(t0);
+}
+$("h1Hours").textContent=Math.round(H(total));
+$("cnt").textContent=ITEMS.length;
 
-// bar chart
-const maxH=Math.ceil(h(ITEMS[0].saved)/5)*5;
-const bars=document.getElementById("bars"), tip=document.getElementById("tip");
+$("baBv").innerHTML=Math.round(H(tBefore))+"<small>時間/月</small>";
+$("baAv").innerHTML=f1(tAfter)+"<small>時間/月</small>";
+$("baSave").textContent="−"+Math.round(H(total))+"時間";
+
+const max=ITEMS[0].saved, bars=$("bars"), tip=$("tip");
 ITEMS.forEach(i=>{
-  const row=document.createElement("div");
-  row.className="row"; row.setAttribute("role","listitem"); row.tabIndex=0;
-  row.setAttribute("aria-label",`${i.name}:月${fmtH(i.saved)}時間の時短`);
-  row.innerHTML=`<span class="name">${i.name}<span class="bcat">${i.cat}</span></span>
-    <span class="track"><span class="fill" data-w="${h(i.saved)/maxH*100}"></span></span>
-    <span class="val num">${fmtH(i.saved)}<small>時間</small></span>`;
+  const r=document.createElement("div");
+  r.className="brow"; r.tabIndex=0; r.setAttribute("role","listitem");
+  r.setAttribute("aria-label",`${i.name}:月${f1(i.saved)}時間の時短(1回 ${bl(i)} → ${i.after}分)`);
+  r.innerHTML=`<span class="nm">${i.name}<em>${i.cat}・${i.freq}</em></span><span class="tr"><span class="fl" data-w="${i.saved/max*100}"></span></span><span class="vl en">${f1(i.saved)}<small>時間</small></span>`;
   const show=(x,y)=>{
-    tip.innerHTML=`<strong>${i.name}</strong><br>${i.freq}:1回 <b>${i.beforeLabel||i.before+"分"}</b> → <b>${i.after}分</b><br>これまで 月${fmtH(i.times*i.before)}時間 → いま 月${fmtH(i.times*i.after)}時間`;
-    const r=tip.getBoundingClientRect();
-    tip.style.left=Math.min(x+14,innerWidth-r.width-8)+"px";
-    tip.style.top=Math.max(8,y-r.height-12)+"px"; tip.style.opacity=1;
+    tip.innerHTML=`<strong>${i.name}</strong><br>${i.freq}:1回 <b>${bl(i)}</b> → <b>${i.after}分</b>${i.note?`<br>※${i.note}`:""}<br>月 ${f1(i.times*i.before)}時間 → ${f1(i.times*i.after)}時間`;
+    const b=tip.getBoundingClientRect();
+    tip.style.left=Math.max(8,Math.min(x+16,innerWidth-b.width-8))+"px";
+    tip.style.top=Math.max(8,y-b.height-14)+"px"; tip.style.opacity=1;
   };
-  row.addEventListener("mousemove",e=>show(e.clientX,e.clientY));
-  row.addEventListener("mouseleave",()=>tip.style.opacity=0);
-  row.addEventListener("focus",()=>{const r=row.getBoundingClientRect();show(r.left+r.width/2,r.top)});
-  row.addEventListener("blur",()=>tip.style.opacity=0);
-  bars.appendChild(row);
+  r.addEventListener("mousemove",e=>show(e.clientX,e.clientY));
+  r.addEventListener("mouseleave",()=>tip.style.opacity=0);
+  r.addEventListener("focus",()=>{const b=r.getBoundingClientRect();show(b.left+40,b.top)});
+  r.addEventListener("blur",()=>tip.style.opacity=0);
+  bars.appendChild(r);
 });
 addEventListener("scroll",()=>tip.style.opacity=0,{passive:true});
-const ticks=document.getElementById("ticks");
-for(let t=0;t<=maxH;t+=maxH/4) ticks.insertAdjacentHTML("beforeend",`<span class="num">${t}</span>`);
-const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){
-  bars.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%"); io.disconnect();}}),{threshold:.2});
-io.observe(bars);
 
-// categories
-const cats=document.getElementById("cats");
-CAT_ORDER.map(c=>({c,items:ITEMS.filter(i=>i.cat===c)}))
-  .map(o=>({...o,sum:o.items.reduce((s,i)=>s+i.saved,0)}))
-  .sort((a,b)=>b.sum-a.sum)
-  .forEach(o=>cats.insertAdjacentHTML("beforeend",`<div class="cat">
-    <div class="top"><h3>${o.c}</h3><span class="h num">${fmtH(o.sum)}<small>時間/月</small></span></div>
-    <ul>${o.items.map(i=>`<li>${i.name}</li>`).join("")}</ul></div>`));
+CAT_ORDER.map(c=>{const it=ITEMS.filter(i=>i.cat===c);return{c,it,s:it.reduce((a,i)=>a+i.saved,0)}})
+  .sort((a,b)=>b.s-a.s)
+  .forEach(o=>$("cats").insertAdjacentHTML("beforeend",
+    `<div class="cat"><span class="ct">${o.c}</span><span class="cv en">${f1(o.s)}<small>時間/月</small></span><span class="cl">${o.it.map(i=>i.name).join(" / ")}</span></div>`));
 
-// table
-document.getElementById("tbody").innerHTML=ITEMS.map(i=>`<tr><td>${i.name}${i.note?`<br><span style="font-size:12.5px;color:var(--muted)">${i.note}</span>`:""}</td><td>${i.freq}</td>
-  <td class="r num">${i.beforeLabel||i.before+"分"}</td><td class="r num">${i.after}分</td><td class="r num">${fmtH(i.saved)}時間</td></tr>`).join("");
-document.getElementById("tfoot").textContent=fmtH(total)+"時間";
+$("tbody").innerHTML=ITEMS.map(i=>`<tr><td>${i.name}${i.note?`<br><span style="font-size:12px;color:var(--muted)">${i.note}</span>`:""}</td><td>${i.freq}</td><td class="r en">${bl(i)}</td><td class="r en">${i.after}分</td><td class="r en">${f1(i.saved)}時間</td></tr>`).join("");
+$("tfoot").textContent=f1(total)+"時間";
+
+$("othersList").innerHTML=OTHERS.map((o,n)=>`<div class="other reveal"><span class="oi">${String(n+1).padStart(2,"0")}</span><b>${o[0]}</b><span class="d">${o[1]}</span></div>`).join("");
+
+let metricsDone=false;
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target; el.classList.add("in"); io.unobserve(el);
+  if(el.classList.contains("metrics")&&!metricsDone){metricsDone=true;
+    countUp($("mHours"),Math.round(H(total)));countUp($("mDays"),H(total)/8,1);
+    countUp($("mRate"),Math.round(total/tBefore*100));countUp($("mYear"),Math.round(H(total)*12));}
+  if(el.id==="ba"){$("baB").style.width="100%";$("baA").style.width=Math.max(1.5,tAfter/tBefore*100)+"%"}
+  if(el.classList.contains("panel"))el.querySelectorAll(".fl").forEach((f,k)=>setTimeout(()=>f.style.width=f.dataset.w+"%",reduce?0:k*60));
+}),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
