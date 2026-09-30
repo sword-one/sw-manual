@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>交通費報告ボタン</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">SP事業部 ・ 交通費</div>
+    <h1>交通費報告ボタン ― 毎日の報告を10秒で</h1>
+    <div class="tags"><span class="tag auto">ボタンを押すと動く</span><span class="tag accent">スマホで動く</span></div>
+    <p class="lead">交通費報告のLINEを、毎回手で打たずに送れるようにするツールです。自分のルート(電車・バス・自家用車の距離・送迎)を最初に1回だけ登録すると、次からはボタン1つで今日の日付入りの報告文ができます。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>毎日、【交通費報告】の文面をコピーして日付・区間・運賃を書き換えて送っていました。まとめて送ると日付や金額のまちがいが出やすく、事務からの確認や催促も発生していました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>ボタンを押すとLINEが開き、報告文が入った状態になります。送り先に交通費報告のグループを選んで送信するだけです。合計の運賃・距離は自動で計算されます。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">毎日、移動が終わったとき</td><td>その日の行き先のボタンを押して送ります。前の日の分は、日付を変えてから押します。</td></tr>
+        <tr><td class="c">最初の1回だけ</td><td>よく使うルートを登録します(1ルート約1分)。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who human">人</div><div class="body"><strong>ツールをSafariかChromeで開き、ホーム画面に追加する</strong><span>LINEの中で開くと登録が保存されないので、必ずブラウザで開きます。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>よく使うルートを登録する(最初の1回だけ)</strong><span>設定コードや個人専用リンクをもらった人は、開くだけで登録が終わります。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>ボタンを押すと、今日の日付入りの報告文を作ってLINEを開く</strong><span>業務名は空欄ならルートに登録したものが入ります。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>交通費報告のグループを選んで送信する</strong></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>ツールの入口</h2>
+
+    <p><a href="../kotsuhi-routes.html"><b>交通費報告ボタンを開く</b></a>(スマホのSafariかChromeで開いて、共有メニューから「ホーム画面に追加」しておくと便利です)</p>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>全体の地図</h2>
+
+    <div class="cols"><table><tbody>
+      <tr><td class="c">報告画面</td><td>日付・業務名(空欄なら自動)・登録したルートのボタン・在宅ボタン。押すとLINEが開く</td></tr>
+      <tr><td class="c">ルートの登録・編集</td><td>ボタンの名前・実施場所・いつもの業務名・行きと帰りの区間を登録する。区間は「電車・バス」「送迎(0円)」「自家用車(距離で精算)」から選ぶ</td></tr>
+      <tr><td class="c">設定コード</td><td>登録したルートを文字列にして、別のスマホに引っ越したり、ほかの人に配ったりする</td></tr>
+      <tr><td class="c">個人専用リンク</td><td>ルートが入った状態で開くリンク。本人は開くだけで登録が終わる</td></tr>
+      <tr><td class="c">置き場所</td><td>このマニュアルと同じGitHub(sw-manual)の kotsuhi-routes.html。1つのファイルを全員で使う</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>なぜこの作りにしたか</h2>
+
+    <ul>
+      <li><b>送信は人が押す</b>:個人のLINEグループに自動で投稿するには、グループにボットを入れる設定と全員の了承が必要になるため、LINEの共有機能で「文面入りで開く」ところまでにしています。</li>
+      <li><b>1つのファイルを全員で使う</b>:人ごとにファイルを作ると、直すたびに人数分の作業になります。ルートは各自のスマホに保存するので、ファイルは1つで足ります。</li>
+      <li><b>運賃は自動で調べない</b>:運賃を自動で取るには有料のサービスが必要で、まちがった金額が入ると精算の手戻りになるため、実際に報告している金額を登録する形にしています。</li>
+      <li><b>登録はスマホの中だけ</b>:最寄り駅などの情報をどこかに集めないよう、登録内容は各自のスマホ(ブラウザ)にだけ保存します。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">○○さんの交通費LINEのトーク履歴から、ルートを登録した設定コードを作って</div>
+      <p style="color:var(--sub)">トーク履歴を使うときは、必ず本人の了承を取ってから受け取ります。</p>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>ブラウザで開いてホーム画面に追加する</li>
+        <li>ルートを登録する(または設定コード・個人専用リンクを開く)</li>
+        <li>毎日ボタンを押して、送り先を選んで送信する</li>
+        <li>運賃が変わったらルートの金額を直す</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">ブラウザ(Safari・Chrome)</td><td>ツールを開いて使います。</td></tr>
+        <tr><td class="c">LINE</td><td>報告文が入った状態で開きます。送り先を選ぶのと送信は人がします。</td></tr>
+        <tr><td class="c">GitHub Pages</td><td>ツールを置いている場所です。ログインなしで誰でも開けます。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">9</span>動くための条件</h2>
+    <div class="card">
+      <ul>
+        <li>スマホにLINEが入っていること</li>
+        <li>ツールはSafariかChromeで開くこと(LINEの中のブラウザでは登録が保存されません)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">10</span>こんなときは</h2>
+    <div class="faq">
+      <details><summary>登録したルートが消えた</summary><p>別のブラウザやLINEの中で開いていないか確かめてください。登録はブラウザごとに保存されます。設定コードを書き出しておけば、読み込むだけで元に戻せます。</p></details>
+      <details><summary>LINEが開かない</summary><p>「文面をコピー」を押して、交通費報告のグループに貼り付けて送ってください。</p></details>
+      <details><summary>設定コードが読み込めない</summary><p>コードだけを1通で送ってもらい、途中で切れずに全部コピーできているか確かめてください。</p></details>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">11</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>金額は各自の実際の運賃で登録します</strong><p>精算のルール(距離で精算など)が変わったら、ルートの内容を直してください。</p></div>
+    <div class="note"><strong>トーク履歴は本人の了承を取ってから</strong><p>ルートの自動登録にトーク履歴を使うときは、本人に確認してから受け取ります。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年9月30日</span></footer>
+</div>
+</body>
+</html>
