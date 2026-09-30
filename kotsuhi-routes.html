@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>交通費報告（ルート登録式）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#E9EDF1; --ink:#1C2733; --sub:#5B6875; --paper:#FFFFFF; --line:#C9D1D9; --accent:#0A7BC1; --danger:#C8323C; --ok:#1E9E63;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#141A21; --ink:#E6ECF2; --sub:#9AA7B4; --paper:#1D252E; --line:#33404C; }
+}
+:root[data-theme="dark"]{ --bg:#141A21; --ink:#E6ECF2; --sub:#9AA7B4; --paper:#1D252E; --line:#33404C; }
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;font-weight:500;-webkit-text-size-adjust:100%}
+main{max-width:480px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.25rem;font-weight:900;margin:0 0 16px}
+h2{font-size:1rem;font-weight:700;margin:22px 0 8px}
+label{display:block;font-size:.8rem;color:var(--sub);margin-bottom:4px}
+.field{margin-bottom:12px}
+input,select,textarea{width:100%;min-width:0;max-width:100%;-webkit-appearance:none;appearance:none;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{font-size:.8rem;min-height:90px}
+input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button{font:inherit;cursor:pointer}
+.btn{width:100%;font-weight:700;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);margin-top:8px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.small{width:auto;padding:8px 12px;margin:0;font-size:.85rem}
+.btn.danger{color:var(--danger)}
+.hint{font-size:.8rem;color:var(--sub);line-height:1.6;margin:0 0 8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.ticket{display:flex;flex-direction:column;justify-content:space-between;min-height:104px;padding:12px 14px;border-radius:12px;background:var(--paper);color:var(--ink);text-decoration:none;border:1px solid var(--line);border-left:8px solid var(--c)}
+.ticket:active{transform:scale(.98)}
+.ticket .place{font-weight:700;font-size:1.05rem;word-break:break-all}
+.ticket .route{font-size:.75rem;color:var(--sub);line-height:1.4;margin-top:2px}
+.ticket .fare{font-weight:900;font-size:1.6rem;font-variant-numeric:tabular-nums;color:var(--c);align-self:flex-end}
+.ticket .fare small{font-size:.8rem;margin-left:2px}
+.ticket.wide{grid-column:1 / -1;min-height:64px;flex-direction:row;align-items:center}
+.empty{grid-column:1 / -1;background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:18px;font-size:.9rem;line-height:1.7}
+pre{white-space:pre-wrap;background:var(--paper);border:1px dashed var(--line);border-radius:10px;padding:12px;font-family:inherit;font-size:.85rem;line-height:1.5;margin:0;min-height:60px}
+.status{min-height:1.2em;font-size:.8rem;color:var(--ok);margin-top:6px}
+.item{display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-left:8px solid var(--c);border-radius:10px;padding:10px;margin-bottom:8px}
+.item .name{flex:1;min-width:0}
+.item .name b{display:block;font-weight:700}
+.item .name span{font-size:.75rem;color:var(--sub)}
+.icon{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;min-width:36px;height:36px;padding:0 8px;font-size:.85rem}
+.leg{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px}
+.leg .two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.leg .two:last-child{margin-bottom:0}
+.leg .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.8rem;color:var(--sub)}
+.legbtns{display:flex;gap:8px;margin-bottom:6px}
+.legbtns .btn{margin:0;font-size:.85rem;padding:10px}
+.colors{display:flex;gap:10px;flex-wrap:wrap}
+.colors button{width:36px;height:36px;border-radius:50%;border:3px solid transparent;background:var(--c)}
+.colors button[aria-pressed="true"]{border-color:var(--ink)}
+.total{font-weight:900;font-size:1.3rem;text-align:right;margin:8px 0;font-variant-numeric:tabular-nums}
+.bar{display:flex;gap:8px}
+.bar .btn{flex:1}
+</style>
+</head>
+<body>
+<main id="app"></main>
+
+<script>
+const KEY="kotsuhi_routes_v1";
+const COLORS=["#E8691E","#6A3D99","#0A7BC1","#1E9E63","#C8323C","#7A8590"];
+const LINES=["地下鉄","JR","名鉄","近鉄","あおなみ線","バス","その他"];
+function t(from,to,line,fare){return{type:"train",from,to,line,fare}}
+function c(text){return{type:"car",text}}
+
+let routes=load();
+(function(){
+  const m=location.hash.match(/^#r=(.+)$/); if(!m)return;
+  try{
+    const data=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
+    if(Array.isArray(data)&&(!routes.length||confirm(`あなた専用のルート${data.length}件を読み込みますか？（今のルートは置き換わります）`))){routes=data;save();}
+  }catch(e){}
+  history.replaceState(null,"",location.pathname+location.search);
+})();
+let view="home", draft=null, editIndex=-1, lastText="";
+const app=document.getElementById("app");
+const pad=n=>String(n).padStart(2,"0");
+const now=new Date();
+let dateVal=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`, bizVal="";
+
+function load(){try{const s=localStorage.getItem(KEY);return s?JSON.parse(s):[]}catch(e){return[]}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(routes))}catch(e){}}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function total(r){return [...r.go,...r.back].reduce((a,l)=>a+(l.type==="train"?(Number(l.fare)||0):0),0)}
+function kmSum(r){return Math.round([...r.go,...r.back].reduce((a,l)=>a+(l.type==="km"?(Number(l.km)||0):0),0)*10)/10}
+function fareLabel(r){const y=total(r),k=kmSum(r);return k&&y?`${k}km＋${y.toLocaleString()}円`:k?`${k}km`:`${y.toLocaleString()}円`}
+function fareHTML(r){const y=total(r),k=kmSum(r);return k&&y?`${y.toLocaleString()}<small>円＋${k}km</small>`:k?`${k}<small>km</small>`:`${y.toLocaleString()}<small>円</small>`}
+function legText(l,mixed){if(l.type==="km")return (l.text||"自家用車")+(mixed?`　${Number(l.km)||0}km`:"");return l.type==="car"?(l.text||"車"):`▲${l.from}⇒${l.to}（${l.line}）\n${Number(l.fare)||0}円`}
+function summary(r){
+  const lb=l=>l.type==="km"?"自家用車":l.type==="car"?(l.text||"車"):l.line; const g=r.go.map(lb), b=r.back.map(lb);
+  const u=a=>[...new Set(a)].join("＋")||"なし";
+  return r.back.length?`行き ${u(g)}／帰り ${u(b)}`:`片道 ${u(g)}`;
+}
+function build(r,date,biz){
+  const d=(date||"").replace(/-/g,"/");
+  if(!r) return `【交通費報告】\n${d}\n在宅のため交通費なし`;
+  const legs=[...r.go,...r.back];
+  const head=`【交通費報告】\n${d}\n●業務名→${(biz||"").trim()||r.biz||""}\n●実施場所⇒${r.place||""}\n`;
+  const k=kmSum(r), y=total(r);
+  if(legs.length&&legs.every(l=>l.type==="km")) return head+`●経路\n${legs.map(l=>l.text||"自家用車").join("\n")}\n\n■合計距離　${k}km`;
+  const mixed=k>0;
+  const modes=[...new Set(legs.map(l=>l.type==="km"?"自家用車":l.type==="car"?"車":l.line))].join("・");
+  let s=head+`●経路（${modes}）\n《行き》\n${r.go.map(l=>legText(l,mixed)).join("\n")}`;
+  if(r.back.length) s+=`\n\n《帰り》\n${r.back.map(l=>legText(l,mixed)).join("\n")}`;
+  s+=mixed?`\n\n■合計　${k}km＋${y}円`:`\n\n■${r.back.length?"往復":""}合計　${y}円`;
+  return s;
+}
+const lineUrl=s=>"https://line.me/R/msg/text/?"+encodeURIComponent(s);
+
+function render(){ if(view==="home")renderHome(); else if(view==="list")renderList(); else renderEdit(); window.scrollTo(0,0); }
+
+function renderHome(){
+  const tickets=routes.map((r,i)=>`<a class="ticket" style="--c:${esc(r.color)}" data-i="${i}" target="_blank" rel="noopener" href="${lineUrl(build(r,dateVal,bizVal))}">
+    <div><div class="place">${esc(r.name)}</div><div class="route">${esc(summary(r))}</div></div>
+    <div class="fare">${fareHTML(r)}</div></a>`).join("");
+  app.innerHTML=`
+  <h1>交通費報告</h1>
+  <div class="field"><label for="d">日付</label><input type="date" id="d" value="${dateVal}"></div>
+  <div class="field"><label for="biz">業務名（空欄ならルートに登録した業務名）</label><input type="text" id="biz" value="${esc(bizVal)}" placeholder="例：商談、全体研修"></div>
+  <p class="hint">押すとLINEが開きます。交通費報告のグループを選んで送信してください。</p>
+  <div class="grid">
+    ${routes.length?tickets:`<div class="empty">まだルートが登録されていません。下の「ルートを登録・編集」から、よく使う行き先を登録してください。</div>`}
+    <a class="ticket wide" style="--c:#7A8590" data-home="1" target="_blank" rel="noopener" href="${lineUrl(build(null,dateVal))}">
+      <div><div class="place">在宅</div><div class="route">交通費なし</div></div><div class="fare">0<small>円</small></div></a>
+  </div>
+  <label>送信内容</label>
+  <pre id="preview">${esc(lastText||"ボタンを押すとここに表示されます")}</pre>
+  <button class="btn" id="copy" type="button">文面をコピー</button>
+  <div class="status" id="status" role="status"></div>
+  <button class="btn primary" id="toList" type="button">ルートを登録・編集</button>`;
+  const refresh=()=>{app.querySelectorAll(".ticket").forEach(a=>{a.href=lineUrl(a.dataset.home?build(null,dateVal):build(routes[a.dataset.i],dateVal,bizVal))})};
+  app.querySelector("#d").addEventListener("change",e=>{dateVal=e.target.value;refresh()});
+  app.querySelector("#biz").addEventListener("input",e=>{bizVal=e.target.value;refresh()});
+  app.querySelectorAll(".ticket").forEach(a=>a.addEventListener("click",()=>{
+    lastText=a.dataset.home?build(null,dateVal):build(routes[a.dataset.i],dateVal,bizVal);
+    a.href=lineUrl(lastText); app.querySelector("#preview").textContent=lastText;
+  }));
+  app.querySelector("#copy").addEventListener("click",()=>copyText(lastText,app.querySelector("#preview")));
+  app.querySelector("#toList").addEventListener("click",()=>{view="list";render()});
+}
+
+async function copyText(txt,node){
+  const st=app.querySelector("#status");
+  if(!txt){st.textContent="先にボタンを押してください";return}
+  try{await navigator.clipboard.writeText(txt);st.textContent="コピーしました"}
+  catch(e){const r=document.createRange();r.selectNodeContents(node);const s=getSelection();s.removeAllRanges();s.addRange(r);st.textContent="文面を選択しました。長押しでコピーしてください"}
+}
+
+function renderList(){
+  app.innerHTML=`
+  <h1>ルートの登録・編集</h1>
+  ${routes.length?"":`<p class="hint">よく使う行き先をボタンとして登録します。登録内容はこのスマホ（このブラウザ）にだけ保存されます。</p>`}
+  <div id="items">${routes.map((r,i)=>`
+    <div class="item" style="--c:${esc(r.color)}">
+      <div class="name"><b>${esc(r.name)}</b><span>${esc(summary(r))}／${fareLabel(r)}</span></div>
+      <button class="icon" data-act="up" data-i="${i}" aria-label="上へ" ${i===0?"disabled":""}>↑</button>
+      <button class="icon" data-act="down" data-i="${i}" aria-label="下へ" ${i===routes.length-1?"disabled":""}>↓</button>
+      <button class="icon" data-act="edit" data-i="${i}">編集</button>
+    </div>`).join("")}</div>
+  <button class="btn primary" id="add" type="button">ルートを追加</button>
+  <button class="btn" id="back" type="button">報告画面に戻る</button>
+
+  <h2>設定コード（ほかのスマホへ引っ越し・配布）</h2>
+  <p class="hint">書き出したコードを別のスマホで読み込むと、同じルートがそのまま入ります。</p>
+  <textarea id="code" placeholder="ここに設定コードを貼り付けて「読み込む」"></textarea>
+  <div class="bar">
+    <button class="btn" id="export" type="button">書き出す</button>
+    <button class="btn" id="import" type="button">読み込む</button>
+  </div>
+  ${location.hostname.endsWith("github.io")?`<button class="btn" id="plink" type="button">この設定で個人専用リンクを作る</button>`:""}
+  <div class="status" id="status" role="status"></div>
+
+`;
+  const st=app.querySelector("#status");
+  app.querySelector("#items").addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b)return; const i=+b.dataset.i;
+    if(b.dataset.act==="up"){[routes[i-1],routes[i]]=[routes[i],routes[i-1]];save();render()}
+    if(b.dataset.act==="down"){[routes[i+1],routes[i]]=[routes[i],routes[i+1]];save();render()}
+    if(b.dataset.act==="edit"){editIndex=i;draft=JSON.parse(JSON.stringify(routes[i]));view="edit";render()}
+  });
+  app.querySelector("#add").addEventListener("click",()=>{editIndex=-1;draft={name:"",place:"",biz:"",color:COLORS[routes.length%COLORS.length],go:[t("","","地下鉄","")],back:[t("","","地下鉄","")]};view="edit";render()});
+  app.querySelector("#back").addEventListener("click",()=>{view="home";render()});
+  app.querySelector("#export").addEventListener("click",()=>{
+    const code=btoa(unescape(encodeURIComponent(JSON.stringify(routes))));
+    const ta=app.querySelector("#code"); ta.value=code; ta.select();
+    navigator.clipboard?.writeText(code).then(()=>st.textContent="コピーしました。LINEなどで送れます",()=>st.textContent="選択しました。長押しでコピーしてください");
+  });
+  app.querySelector("#import").addEventListener("click",()=>{
+    const v=app.querySelector("#code").value.trim(); if(!v){st.textContent="設定コードを貼り付けてください";return}
+    try{
+      const data=JSON.parse(decodeURIComponent(escape(atob(v))));
+      if(!Array.isArray(data))throw 0;
+      if(routes.length&&!confirm(`今のルート${routes.length}件を、読み込んだ${data.length}件で置き換えますか？`))return;
+      routes=data;save();render();
+    }catch(e){st.style.color="var(--danger)";st.textContent="設定コードが読み取れません。コピーが途中で切れていないか確認してください"}
+  });
+  const pl=app.querySelector("#plink");
+  if(pl)pl.addEventListener("click",()=>{
+    const code=btoa(unescape(encodeURIComponent(JSON.stringify(routes))));
+    const url=location.origin+location.pathname+"#r="+encodeURIComponent(code);
+    const ta=app.querySelector("#code"); ta.value=url; ta.select();
+    navigator.clipboard?.writeText(url).then(()=>st.textContent="個人専用リンクをコピーしました。本人にLINEで送ってください",()=>st.textContent="選択しました。長押しでコピーしてください");
+  });
+}
+
+function legHTML(l,side,i){
+  const del=`<button class="icon" data-act="del" data-side="${side}" data-i="${i}" type="button">削除</button>`;
+  if(l.type==="km") return `<div class="leg"><div class="head"><span>自家用車（距離で精算）</span>${del}</div>
+    <div class="two"><input data-side="${side}" data-i="${i}" data-f="text" value="${esc(l.text)}" placeholder="例：自宅⇒事務所⇒自宅"><input data-side="${side}" data-i="${i}" data-f="km" type="number" inputmode="decimal" step="0.1" min="0" value="${esc(l.km)}" placeholder="距離（km）"></div></div>`;
+  if(l.type==="car") return `<div class="leg"><div class="head"><span>車・送迎・徒歩（0円）</span>${del}</div>
+    <input data-side="${side}" data-i="${i}" data-f="text" value="${esc(l.text)}" placeholder="例：同乗（〇〇さんの車）"></div>`;
+  return `<div class="leg"><div class="head"><span>電車・バス</span>${del}</div>
+    <div class="two"><input data-side="${side}" data-i="${i}" data-f="from" value="${esc(l.from)}" placeholder="乗る駅"><input data-side="${side}" data-i="${i}" data-f="to" value="${esc(l.to)}" placeholder="降りる駅"></div>
+    <div class="two"><select data-side="${side}" data-i="${i}" data-f="line">${LINES.map(x=>`<option ${x===l.line?"selected":""}>${x}</option>`).join("")}</select>
+    <input data-side="${side}" data-i="${i}" data-f="fare" type="number" inputmode="numeric" min="0" value="${esc(l.fare)}" placeholder="運賃（円）"></div></div>`;
+}
+
+function renderEdit(){
+  const d=draft;
+  app.innerHTML=`
+  <h1>${editIndex<0?"ルートを追加":"ルートを編集"}</h1>
+  <div class="field"><label for="n">ボタンの名前</label><input id="n" data-top="name" value="${esc(d.name)}" placeholder="例：刈谷"></div>
+  <div class="field"><label for="p">実施場所</label><input id="p" data-top="place" value="${esc(d.place)}" placeholder="例：DS刈谷店"></div>
+  <div class="field"><label for="b">業務名（いつもの業務）</label><input id="b" data-top="biz" value="${esc(d.biz)}" placeholder="例：みんスマ"></div>
+  <label>ボタンの色</label>
+  <div class="colors">${COLORS.map(x=>`<button type="button" style="--c:${x}" data-color="${x}" aria-pressed="${x===d.color}" aria-label="色 ${x}"></button>`).join("")}</div>
+
+  <h2>行き</h2>
+  ${d.go.map((l,i)=>legHTML(l,"go",i)).join("")}
+  <div class="legbtns"><button class="btn" data-add="train" data-side="go" type="button">＋電車・バス</button><button class="btn" data-add="car" data-side="go" type="button">＋送迎</button><button class="btn" data-add="km" data-side="go" type="button">＋自家用車</button></div>
+
+  <h2>帰り</h2>
+  ${d.back.length?"":`<p class="hint">帰りがない（泊まりなど）場合は空のままでOKです。</p>`}
+  ${d.back.map((l,i)=>legHTML(l,"back",i)).join("")}
+  <div class="legbtns"><button class="btn" data-add="train" data-side="back" type="button">＋電車・バス</button><button class="btn" data-add="car" data-side="back" type="button">＋送迎</button><button class="btn" data-add="km" data-side="back" type="button">＋自家用車</button></div>
+
+  <div class="total" id="tot"></div>
+  <label>送信される文面（見本）</label>
+  <pre id="pv"></pre>
+  <div class="status" id="status" role="status"></div>
+  <button class="btn primary" id="save" type="button">保存</button>
+  <button class="btn" id="cancel" type="button">キャンセル</button>
+  ${editIndex>=0?`<button class="btn danger" id="del" type="button">このルートを削除</button>`:""}`;
+  const upd=()=>{app.querySelector("#tot").textContent=`合計 ${fareLabel(d)}`;app.querySelector("#pv").textContent=build(d,dateVal,"")};
+  upd();
+  app.addEventListener("input",onEditInput);
+  function onEditInput(e){
+    if(view!=="edit"){app.removeEventListener("input",onEditInput);return}
+    const x=e.target;
+    if(x.dataset.top){d[x.dataset.top]=x.value}
+    else if(x.dataset.f){d[x.dataset.side][+x.dataset.i][x.dataset.f]=(x.dataset.f==="fare"||x.dataset.f==="km")?(x.value===""?"":Number(x.value)):x.value}
+    upd();
+  }
+  app.querySelectorAll("select[data-f]").forEach(s=>s.addEventListener("change",e=>{d[s.dataset.side][+s.dataset.i].line=s.value;upd()}));
+  app.querySelectorAll("[data-color]").forEach(b=>b.addEventListener("click",()=>{d.color=b.dataset.color;app.querySelectorAll("[data-color]").forEach(x=>x.setAttribute("aria-pressed",x===b))}));
+  app.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{
+    const prev=d[b.dataset.side].slice(-1)[0];
+    d[b.dataset.side].push(b.dataset.add==="km"?{type:"km",text:"",km:""}:b.dataset.add==="car"?c(""):t(prev&&prev.type==="train"?prev.to:"","","地下鉄",""));
+    app.removeEventListener("input",onEditInput);renderEdit();
+  }));
+  app.querySelectorAll('[data-act="del"]').forEach(b=>b.addEventListener("click",()=>{
+    d[b.dataset.side].splice(+b.dataset.i,1);app.removeEventListener("input",onEditInput);renderEdit();
+  }));
+  const leave=()=>{app.removeEventListener("input",onEditInput);view="list";render()};
+  app.querySelector("#save").addEventListener("click",()=>{
+    const st=app.querySelector("#status");st.style.color="var(--danger)";
+    if(!d.name.trim()){st.textContent="ボタンの名前を入れてください";return}
+    if(!d.go.length){st.textContent="行きの経路を1つ以上入れてください";return}
+    const bad=[...d.go,...d.back].find(l=>l.type==="train"&&(!l.from.trim()||!l.to.trim()||l.fare===""));
+    if(bad){st.textContent="電車・バスの区間は、乗る駅・降りる駅・運賃をすべて入れてください";return}
+    const badKm=[...d.go,...d.back].find(l=>l.type==="km"&&(!String(l.text).trim()||l.km===""));
+    if(badKm){st.textContent="自家用車の区間は、経路と距離を入れてください";return}
+    if(editIndex<0)routes.push(d);else routes[editIndex]=d;
+    save();leave();
+  });
+  app.querySelector("#cancel").addEventListener("click",leave);
+  const del=app.querySelector("#del");
+  if(del)del.addEventListener("click",()=>{if(confirm(`「${d.name}」を削除しますか？`)){routes.splice(editIndex,1);save();leave()}});
+}
+
+render();
+</script>
+</body>
+</html>
