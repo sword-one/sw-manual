@@ -21,9 +21,9 @@
   <section>
     <h2><span class="num">1</span>何が変わった?</h2>
     <div class="ba">
-      <div class="card before"><span class="label">これまで</span><p>面談のたびに、LINEの報告やスプレッドシートを見ながら数字を拾っていました。何と比べて良いのか悪いのかもあいまいでした。</p></div>
+      <div class="card before"><span class="label">これまで</span><p>面談のたびに、LINEの報告やスプレッドシートを見ながら数字を拾っていました。何と比べて良いのか悪いのかもあいまいでした。LINEのトークも毎回書き出して保存する必要がありました。</p></div>
       <div class="arrow">→</div>
-      <div class="card after"><span class="label">いま</span><p>名前と期間を伝えるだけで、みんスマと販売ヘルパーを分けた4ページのPDFができます。上司と本人が同じ資料を見ながら話せるようになりました。</p></div>
+      <div class="card after"><span class="label">いま</span><p>名前と期間を伝えるだけで、みんスマと販売ヘルパーを分けた4ページのPDFができます。上司と本人が同じ資料を見ながら話せるようになりました。LINEの報告は公式アカウント「山口(受取専用)」が自動で記録するので、トークの書き出しもいらなくなりました。</p></div>
     </div>
   </section>
 
@@ -32,14 +32,16 @@
     <div class="cols"><table><tbody>
         <tr><td class="c">面談の前</td><td>対象スタッフの面談の前に作ります。</td></tr>
         <tr><td class="c">データを新しくしたいとき</td><td>新しい月の実績を入れるときは、先にデータの取り込みをやり直します。</td></tr>
+        <tr><td class="c">報告がLINEに投稿されたとき(自動)</td><td>「山口(受取専用)」が入ったグループで【○/○退勤報告】【業務報告】が投稿されると、その場で記録用のスプレッドシートに1行追加されます。</td></tr>
     </tbody></table></div>
   </section>
 
   <section>
     <h2><span class="num">3</span>全体の流れ</h2>
     <ol class="flow">
-      <li><div class="who human">人</div><div class="body"><strong>「○○さんの7〜9月の実績評価シートを作って」と頼む</strong></div></li>
-      <li><div class="who claude">Claude</div><div class="body"><strong>LINEの退勤報告を読み取る</strong><span>販売ヘルパーの実績を全員分まとめます。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>LINEの報告を記録用のスプレッドシートにためる</strong><span>公式アカウント「山口(受取専用)」がグループの報告だけを記録します。雑談や画像は記録しません。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>記録用のスプレッドシートをCSVで落とし、「○○さんの7〜9月の実績評価シートを作って」と頼む</strong></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>LINEの退勤報告を読み取る</strong><span>販売ヘルパーの実績を全員分まとめます。過去分はトークの書き出しを使います。</span></div></li>
       <li><div class="who claude">Claude</div><div class="body"><strong>ブラウザで店舗の報告表から数字を集める</strong><span>みんスマの実績を店舗×月×人で集計します。</span></div></li>
       <li><div class="who claude">Claude</div><div class="body"><strong>平均と比べてPDFを作る</strong><span>文章も数字から自動で組み立てます。</span></div></li>
       <li><div class="who claude">別のAI</div><div class="body"><strong>別のAI(Codex)が数字を計算し直してチェックする</strong></div></li>
@@ -51,7 +53,9 @@
     <h2><span class="num">4</span>全体の地図</h2>
 
     <div class="cols"><table><tbody>
-      <tr><td class="c">parse_helper.py</td><td>LINE「docomo案件報告」の書き出しから、販売ヘルパーの退勤報告を全員分読み取る</td></tr>
+      <tr><td class="c">山口(受取専用)</td><td>報告を受け取るための公式LINE。グループに入れておくと、報告だけを記録用のスプレッドシートに送る。グループには何も投稿しない</td></tr>
+      <tr><td class="c">記録用のスプレッドシート</td><td>「山口(受取専用) 報告記録」。日時・グループ・送った人・本文が1行ずつたまる(裏でApps Scriptが受け取っている)</td></tr>
+      <tr><td class="c">parse_helper.py</td><td>トークの書き出し(過去分)と、記録用スプレッドシートのCSV(自動記録分)から、販売ヘルパーの退勤報告を全員分読み取る</td></tr>
       <tr><td class="c">fetch_minsuma.js</td><td>ブラウザで店舗の報告表を読み、店舗×月×人の集計テキストを作る</td></tr>
       <tr><td class="c">build_sheet.py</td><td>平均・月別・店舗別・前の期間との比較を計算する</td></tr>
       <tr><td class="c">render_sheet.py</td><td>文章を組み立ててPDFにする(実行するのはこれ)</td></tr>
@@ -67,6 +71,7 @@
       <li><b>みんスマと販売ヘルパーを分ける</b>：仕事の中身が違うので、1ページ目で両方の結論を出し、詳しくは別々のページにしています。</li>
       <li><b>文章は数字から自動で作る</b>：人によって書き方がぶれないように、上か下か・前の期間より上がったかなどのルールで組み立てます。数字から言えない推測は書きません。</li>
       <li><b>別のAIがチェックする</b>：作ったAIとは別のAIに数字を計算し直させて、ずれがないことを確かめています。</li>
+      <li><b>LINEは「報告だけ」を記録する</b>：グループには雑談や個人的なやりとりもあるので、【○/○退勤報告】【業務報告】で始まるメッセージだけを残します。グループのメンバーには、集計用に入れることを伝えてあります。</li>
     </ul>
   </section>
 
@@ -79,8 +84,9 @@
       <div class="card"><span class="tag human">人がやること</span>
         <ul>
         <li>対象の人と期間を決める</li>
-        <li>LINEの「docomo案件報告」トークをテキストで書き出して渡す(新しい月を入れるとき)</li>
+        <li>記録用のスプレッドシートを「ファイル→ダウンロード→CSV」で落として渡す(新しい月を入れるとき)</li>
         <li>できたPDFを確認して、上司と本人に渡す</li>
+        <li>新しいグループで集計したいときは、メンバーに伝えてから「山口(受取専用)」を招待する</li>
         </ul>
       </div>
     </div>
@@ -89,6 +95,8 @@
   <section>
     <h2><span class="num">7</span>使っている道具</h2>
     <div class="cols"><table><tbody>
+        <tr><td class="c">LINE公式アカウント(Messaging API)</td><td>「山口(受取専用)」。報告を受け取ります。</td></tr>
+        <tr><td class="c">Googleスプレッドシート+Apps Script</td><td>受け取った報告を記録します。クラウドで動くので、山口PCが止まっていても記録されます。</td></tr>
         <tr><td class="c">Claude(ブラウザ操作)</td><td>店舗の報告表から数字を集めます。Googleにログインした状態のChromeが必要です。</td></tr>
         <tr><td class="c">Python</td><td>計算とPDFづくり。</td></tr>
         <tr><td class="c">Microsoft Edge</td><td>PDFに変換します。</td></tr>
@@ -112,6 +120,8 @@
       <details><summary>「○○さんは指定期間に勤務がありません」と出て止まる</summary><p>名前の書き方(報告表のシフト欄やLINEの表示名)と期間を確かめてください。</p></details>
       <details><summary>新しい月の数字が入っていない</summary><p>データの取り込み(LINEの読み取りと、ブラウザでの集計)をやり直してから作ります。</p></details>
       <details><summary>店舗の報告表の形が変わった</summary><p>読み取る行の位置を直す必要があります。山口に知らせてください。</p></details>
+      <details><summary>LINE Developersの「検証」で302エラーが出る</summary><p>Apps Scriptの受け取り口ではいつも出る表示です。実際の記録は動いています。テスト用のグループで【10/1退勤報告】テスト と送り、スプレッドシートに1行増えるかで確かめてください。</p></details>
+      <details><summary>報告が記録されない</summary><p>本文の先頭が【○/○退勤報告】か【業務報告】になっているか、グループに「山口(受取専用)」が入っているかを確かめてください。</p></details>
     </div>
   </section>
 
@@ -120,6 +130,7 @@
     <div class="note"><strong>店舗の報告表の数字を直すのは店舗側です</strong><p>集計側では数字を直しません。</p></div>
     <div class="note"><strong>販売ヘルパーの数字は本人の申告です</strong><p>退勤報告LINEの内容をそのまま使っています。</p></div>
     <div class="note"><strong>日数が少ない店舗の比較は参考程度に</strong><p>数日しか入っていない店舗は、平均との差が大きく出やすいです。</p></div>
+    <div class="note"><strong>受け取り用の設定は山口が管理します</strong><p>公式アカウントの鍵(アクセストークン)や受け取り口の設定はさわらないでください。</p></div>
   </section>
 
   <footer><span>わからないことは山口まで。 / 最終更新 2026年9月30日</span></footer>
