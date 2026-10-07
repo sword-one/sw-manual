@@ -14,8 +14,8 @@
   <header>
     <div class="eyebrow">SP事業部 ・ 勤怠</div>
     <h1>出退勤お知らせLINE ― 報告が遅れたらLINEで自動でお知らせ</h1>
-    <div class="tags"><span class="tag auto">見張り役(5分おき)</span><span class="tag accent">2026年9月27日から稼働</span></div>
-    <p class="lead">スタッフの出退勤報告(SmartStaff)が期限を過ぎても入っていないとき、本人と勤怠通知グループにLINEで自動でお知らせする仕組みです。</p>
+    <div class="tags"><span class="tag auto">見張り役(5分おき)</span><span class="tag accent">2026年9月27日から稼働</span><span class="tag accent">10月7日 時刻の訂正ボタンを追加</span></div>
+    <p class="lead">スタッフの出退勤報告(SmartStaff)が期限を過ぎても入っていないとき、本人と勤怠通知グループにLINEで自動でお知らせする仕組みです。報告を忘れて後から報告し「遅刻出勤」「残業退勤」になった人は、グループのボタン1つでSmartStaffの時刻を訂正できます。</p>
   </header>
 
   <section>
@@ -29,7 +29,7 @@
 
   <section>
     <h2><span class="num">2</span>いつお知らせが届く?</h2>
-    <p>毎日6:00〜23:59の間、5分おきに確認しています。下の時刻を過ぎても報告がないとお知らせが届きます。</p>
+    <p>毎日5:00〜20:59の間、5分おきに確認しています。下の時刻を過ぎても報告がないとお知らせが届きます。</p>
     <div class="cols">
       <table>
         <thead><tr><th>報告</th><th>この時刻を過ぎても未報告ならお知らせ</th></tr></thead>
@@ -48,7 +48,7 @@
     <h2><span class="num">3</span>全体の流れ</h2>
     <ol class="flow">
       <li><div class="who auto">自動</div><div class="body"><strong>5分おきにプログラムが起動</strong><span>Googleのサーバーで動くので、だれかのPCが止まっていても動きます。</span></div></li>
-      <li><div class="who auto">自動</div><div class="body"><strong>SmartStaffの手配一覧を読み取る</strong><span>会社の専用アカウントでログインして、見るだけです。SmartStaffに書き込むことはありません。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>SmartStaffの手配一覧を読み取る</strong><span>会社の専用アカウントでログインして読み取ります。SmartStaffに書き込むのは、下の「時刻の訂正」でボタンが押されたときだけです。</span></div></li>
       <li><div class="who auto">自動</div><div class="body"><strong>期限を過ぎた未報告の人を探す</strong><span>「通知対象」でOFFの人や、すでにお知らせ済みの報告は外します。</span></div></li>
       <li><div class="who auto">自動</div><div class="body"><strong>本人とグループに同時にLINE</strong><span>本人(LINE登録済みの人)には個別に、グループには未報告の人をまとめて1通で送ります。本人にも届いた人には「※本人LINE済」と付きます。</span></div></li>
       <li><div class="who auto">自動</div><div class="body"><strong>15分後もまだなら、グループに再通知</strong><span>「まだ未報告・15分経過」とグループに届きます。</span></div></li>
@@ -57,21 +57,47 @@
   </section>
 
   <section>
-    <h2><span class="num">4</span>使っている道具</h2>
+    <h2><span class="num">4</span>報告忘れの時刻の訂正(10月7日追加)</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>出勤しているのに報告を忘れ、後から報告すると、SmartStaffで「遅刻出勤」「残業退勤」になります。管理側がSmartStaffの画面を開いて、時刻を手で直していました。LINEでお知らせが届くようになってからは画面を開く機会が減り、直し忘れが増えていました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>「遅刻出勤」「残業退勤」の人を見つけると、グループに確認がボタン付きで届きます。報告を忘れただけなら［訂正する］を押すだけで、SmartStaffの時刻が直ります。</p></div>
+    </div>
+    <ol class="flow">
+      <li><div class="who auto">自動</div><div class="body"><strong>「遅刻出勤」「残業退勤」の人を見つける</strong><span>5分おきの確認のついでに、今日の手配一覧から探します。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>グループに確認を送る</strong><span>名前・勤務時間・店舗・報告した時刻と、［◯:◯◯に訂正する］［遅刻(残業)のまま］の2つのボタンが届きます。</span></div></li>
+      <li><div class="who human">管理側</div><div class="body"><strong>どちらかのボタンを押す</strong><span>報告を忘れただけなら［訂正する］、本当に遅刻・残業なら［〜のまま］。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>SmartStaffの時刻を書き換えて、結果を返信</strong><span>書き換えたあとに画面を読み直して確かめ、「✅ 訂正しました(押した人の名前)」とグループに返します。</span></div></li>
+    </ol>
+    <div class="cols">
+      <table>
+        <thead><tr><th>訂正するもの</th><th>訂正後の時刻</th></tr></thead>
+        <tbody>
+          <tr><td class="c">出勤時間</td><td>勤務開始時刻(例:9:30)</td></tr>
+          <tr><td class="c">出勤報告時間</td><td>勤務開始の10分前(例:9:20)</td></tr>
+          <tr><td class="c">退勤時間・退勤報告時間</td><td>勤務終了時刻</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><strong>なぜ人がボタンを押す作りにしたか</strong><p>「報告を忘れただけ」か「本当に遅刻した」かは、仕組みからは見分けられません。全部を自動で直すと本当の遅刻まで消えてしまうので、最後の判断だけ人がする形にしました。同じ人・同じ報告は1回しか処理しないので、2回押しても大丈夫です。</p></div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>使っている道具</h2>
     <div class="cols">
       <table>
         <tbody>
           <tr><td class="c">Googleスプレッドシート</td><td>設定と記録の置き場所。「通知対象」「通知履歴」「LINE登録」の3枚のシートがあります。</td></tr>
-          <tr><td class="c">Apps Script</td><td>プログラム本体。5分おきの確認と、LINEからのメッセージの受け取りをします。</td></tr>
+          <tr><td class="c">Apps Script</td><td>プログラム本体。5分おきの確認と、LINEからのメッセージ・ボタンの受け取りをします。</td></tr>
           <tr><td class="c">LINE公式アカウント</td><td>会社の出退勤用アカウントからメッセージを送ります。</td></tr>
-          <tr><td class="c">SmartStaff</td><td>手配一覧を読み取るだけです。</td></tr>
+          <tr><td class="c">SmartStaff</td><td>手配一覧を読み取ります。時刻の訂正ボタンが押されたときだけ、出勤・退勤報告の時刻を書き換えます。</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
   <section>
-    <h2><span class="num">5</span>みなさんがやること</h2>
+    <h2><span class="num">6</span>みなさんがやること</h2>
     <div class="two">
       <div class="card">
         <span class="tag human">スタッフ(最初の1回だけ)</span>
@@ -87,6 +113,7 @@
         <ul>
           <li>「通知対象」シートで、スタッフごとにON/OFFを切り替える(新しい人は自動でONで追加されます)</li>
           <li>自分で登録できないスタッフは、「LINE登録」シートに番号を代わりに書く</li>
+          <li>グループに時刻の訂正の確認が来たら、どちらかのボタンを押す</li>
           <li>止めたいときは、Apps Scriptの「トリガー」から定期実行を消す</li>
         </ul>
       </div>
@@ -94,7 +121,7 @@
   </section>
 
   <section>
-    <h2><span class="num">6</span>動くための条件</h2>
+    <h2><span class="num">7</span>動くための条件</h2>
     <div class="card">
       <ul>
         <li>SmartStaffの専用アカウントでログインできること(パスワードを変えたら、プログラムの設定欄も変える)</li>
@@ -106,22 +133,25 @@
   </section>
 
   <section>
-    <h2><span class="num">7</span>こんなときは</h2>
+    <h2><span class="num">8</span>こんなときは</h2>
     <div class="faq">
-      <details><summary>遅れているのにお知らせが来ない</summary><p>その人が「通知対象」でOFFになっていないか、6時より前ではないか、すでにお知らせ済みでないか(「通知履歴」シート)を確認してください。</p></details>
+      <details><summary>遅れているのにお知らせが来ない</summary><p>その人が「通知対象」でOFFになっていないか、5時より前・21時以降ではないか、すでにお知らせ済みでないか(「通知履歴」シート)を確認してください。</p></details>
       <details><summary>本人に届かない(「※本人LINE済」が付かない)</summary><p>その人はLINE未登録です。友だち追加と番号の送信をお願いするか、管理者が「LINE登録」シートに番号を書いてください。</p></details>
       <details><summary>スタッフが番号をまちがえて送った</summary><p>正しい番号をもう一度送れば上書きされます。</p></details>
+      <details><summary>［訂正する］を押したら「⚠️ 訂正できませんでした」と返ってきた</summary><p>SmartStaffの画面でいつもどおり手で直してください。かっこ内に理由が出るので、山口に伝えてください。</p></details>
+      <details><summary>訂正の確認がもう一度ほしい</summary><p>同じ人・同じ日の確認は1回しか出ません。もう一度出したいときは、山口が「通知履歴」シートのその人の「訂正確認」の行を消します。</p></details>
       <details><summary>エラーのメールが届いた</summary><p>SmartStaffにログインできなかったか、SmartStaffの画面が変わった可能性があります。パスワードが変わっていないか確認し、山口に知らせてください。</p></details>
     </div>
   </section>
 
   <section>
-    <h2><span class="num">8</span>気をつけてほしいこと</h2>
+    <h2><span class="num">9</span>気をつけてほしいこと</h2>
     <div class="note"><strong>SmartStaffの画面が変わると止まることがあります</strong><p>画面を読み取る方式なので、SmartStaff側の変更に弱い仕組みです。「最近お知らせが来ないな」と思ったら山口に声をかけてください。</p></div>
+    <div class="note"><strong>SmartStaffの同じアカウントで同時にログインしない</strong><p>この仕組みは専用のアカウントでSmartStaffに入っています。人が同じアカウントで入ると、どちらかが追い出されることがあります。手配の作業は別のアカウントでお願いします。</p></div>
     <div class="note"><strong>プログラムの編集・実行は山口だけが行います</strong><p>テスト用の操作をまちがえると、本番のお知らせが送られてしまうおそれがあります。</p></div>
   </section>
 
-  <footer><span>わからないことは山口まで。 / 2026年9月作成</span></footer>
+  <footer><span>わからないことは山口まで。 / 2026年9月作成・2026年10月7日更新</span></footer>
 </div>
 </body>
 </html>
