@@ -14,7 +14,7 @@ import html
 import pathlib
 
 ROOT = pathlib.Path(__file__).parent
-UPDATED = "2026年10月7日"
+UPDATED = "2026年10月8日"
 
 # 一覧ページのグループ(表示順)
 GROUPS = [
@@ -43,7 +43,7 @@ CASES = [
 # 手書きページ(一覧に載せるだけ)
 HANDWRITTEN = [
     dict(slug="line-shukkin", group="sp", title="出退勤お知らせLINE",
-         desc="SmartStaffの出退勤報告が期限を過ぎても入っていないと、本人と勤怠通知グループにLINEが届きます。報告忘れの遅刻・残業扱いは、ボタン1つで時刻を訂正できます。",
+         desc="SmartStaffの出退勤報告が期限を過ぎても入っていないと、本人と勤怠通知グループにLINEが届きます。報告忘れの遅刻・残業扱いの訂正や退勤の登録はボタン1つ、有給の日は自動で登録します。",
          kind=("auto", "見張り役(5分おき)"), where="クラウドで動く"),
     # cases.html は build_cases() で CASES から作る
     dict(slug="cases", group="cases", title="小さな時短事例集",
