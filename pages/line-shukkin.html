@@ -14,8 +14,8 @@
   <header>
     <div class="eyebrow">SP事業部 ・ 勤怠</div>
     <h1>出退勤お知らせLINE ― 報告が遅れたらLINEで自動でお知らせ</h1>
-    <div class="tags"><span class="tag auto">見張り役(5分おき)</span><span class="tag accent">2026年9月27日から稼働</span><span class="tag accent">10月7日 時刻の訂正ボタンを追加</span></div>
-    <p class="lead">スタッフの出退勤報告(SmartStaff)が期限を過ぎても入っていないとき、本人と勤怠通知グループにLINEで自動でお知らせする仕組みです。報告を忘れて後から報告し「遅刻出勤」「残業退勤」になった人は、グループのボタン1つでSmartStaffの時刻を訂正できます。</p>
+    <div class="tags"><span class="tag auto">見張り役(5分おき)</span><span class="tag accent">2026年9月27日から稼働</span><span class="tag accent">10月7日 時刻の訂正ボタンを追加</span><span class="tag accent">10月8日 有給の自動登録・退勤の登録ボタンを追加</span></div>
+    <p class="lead">スタッフの出退勤報告(SmartStaff)が期限を過ぎても入っていないとき、本人と勤怠通知グループにLINEで自動でお知らせする仕組みです。報告を忘れて後から報告し「遅刻出勤」「残業退勤」になった人は、グループのボタン1つでSmartStaffの時刻を訂正できます。有給の日は、出勤・退勤を自動で登録します。</p>
   </header>
 
   <section>
@@ -42,6 +42,7 @@
       </table>
     </div>
     <p>最初のお知らせから<strong>15分たってもまだ未報告なら、グループにもう一度</strong>お知らせします。同じ報告について何度も送ることはありません。</p>
+    <p>業務名に「有給」が入っている手配(有給休暇の日)は、お知らせを出しません。代わりに出勤・退勤を自動で登録します(下の4を見てください)。</p>
   </section>
 
   <section>
@@ -57,7 +58,7 @@
   </section>
 
   <section>
-    <h2><span class="num">4</span>報告忘れの時刻の訂正(10月7日追加)</h2>
+    <h2><span class="num">4</span>報告忘れの時刻の訂正・登録(10月7〜8日追加)</h2>
     <div class="ba">
       <div class="card before"><span class="label">これまで</span><p>出勤しているのに報告を忘れ、後から報告すると、SmartStaffで「遅刻出勤」「残業退勤」になります。管理側がSmartStaffの画面を開いて、時刻を手で直していました。LINEでお知らせが届くようになってからは画面を開く機会が減り、直し忘れが増えていました。</p></div>
       <div class="arrow">→</div>
@@ -80,6 +81,24 @@
       </table>
     </div>
     <div class="note"><strong>なぜ人がボタンを押す作りにしたか</strong><p>「報告を忘れただけ」か「本当に遅刻した」かは、仕組みからは見分けられません。全部を自動で直すと本当の遅刻まで消えてしまうので、最後の判断だけ人がする形にしました。同じ人・同じ報告は1回しか処理しないので、2回押しても大丈夫です。</p></div>
+    <h3>グループに届く確認と、押すボタン</h3>
+    <div class="cols">
+      <table>
+        <thead><tr><th>届く確認</th><th>どんなとき</th><th>ボタン</th></tr></thead>
+        <tbody>
+          <tr><td class="c">遅刻出勤の確認</td><td>報告を忘れて後から出勤報告し、遅刻扱いになった</td><td>［開始時刻に訂正する］／［遅刻のまま］</td></tr>
+          <tr><td class="c">残業退勤の確認</td><td>報告を忘れて後から退勤報告し、残業扱いになった</td><td>［終了時刻に訂正する］／［残業のまま］</td></tr>
+          <tr><td class="c">退勤未報告の確認</td><td>勤務終了から30分たっても退勤報告がない(退勤のお知らせと一緒に届く)</td><td>［終了時刻で退勤を登録］／［そのまま］</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>登録・訂正する時刻は、一人ひとりの勤務時間に合わせます(勤務地によって終了時刻が違っても、その人の終了時刻で登録します)。</p>
+    <h3>有給の日の自動登録(10月8日追加)</h3>
+    <ol class="flow">
+      <li><div class="who auto">自動</div><div class="body"><strong>業務名に「有給」が入っている手配を見つける</strong><span>例:「有給休暇(事務所)」。この日は未報告のお知らせを出しません。通知対象をOFFにしている人も対象です。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>開始時刻を過ぎたら出勤、終了時刻を過ぎたら退勤を登録</strong><span>出勤時間＝開始時刻・出勤報告時間＝開始10分前、退勤時間・退勤報告時間＝終了時刻。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>グループにひとこと知らせる</strong><span>「📝 有給の出勤を自動で登録しました」。登録できなかったときは「⚠️」で知らせるので、SmartStaffで手で入れてください。</span></div></li>
+    </ol>
   </section>
 
   <section>
@@ -113,7 +132,7 @@
         <ul>
           <li>「通知対象」シートで、スタッフごとにON/OFFを切り替える(新しい人は自動でONで追加されます)</li>
           <li>自分で登録できないスタッフは、「LINE登録」シートに番号を代わりに書く</li>
-          <li>グループに時刻の訂正の確認が来たら、どちらかのボタンを押す</li>
+          <li>グループに訂正・登録の確認が来たら、どちらかのボタンを押す</li>
           <li>止めたいときは、Apps Scriptの「トリガー」から定期実行を消す</li>
         </ul>
       </div>
@@ -139,6 +158,7 @@
       <details><summary>本人に届かない(「※本人LINE済」が付かない)</summary><p>その人はLINE未登録です。友だち追加と番号の送信をお願いするか、管理者が「LINE登録」シートに番号を書いてください。</p></details>
       <details><summary>スタッフが番号をまちがえて送った</summary><p>正しい番号をもう一度送れば上書きされます。</p></details>
       <details><summary>［訂正する］を押したら「⚠️ 訂正できませんでした」と返ってきた</summary><p>SmartStaffの画面でいつもどおり手で直してください。かっこ内に理由が出るので、山口に伝えてください。</p></details>
+      <details><summary>有給なのに未報告のお知らせが来た</summary><p>手配の業務名に「有給」が入っていないと、ふつうの勤務として扱います。有給の手配は、業務名に「有給」が入ったものを使ってください。</p></details>
       <details><summary>訂正の確認がもう一度ほしい</summary><p>同じ人・同じ日の確認は1回しか出ません。もう一度出したいときは、山口が「通知履歴」シートのその人の「訂正確認」の行を消します。</p></details>
       <details><summary>エラーのメールが届いた</summary><p>SmartStaffにログインできなかったか、SmartStaffの画面が変わった可能性があります。パスワードが変わっていないか確認し、山口に知らせてください。</p></details>
     </div>
@@ -151,7 +171,7 @@
     <div class="note"><strong>プログラムの編集・実行は山口だけが行います</strong><p>テスト用の操作をまちがえると、本番のお知らせが送られてしまうおそれがあります。</p></div>
   </section>
 
-  <footer><span>わからないことは山口まで。 / 2026年9月作成・2026年10月7日更新</span></footer>
+  <footer><span>わからないことは山口まで。 / 2026年9月作成・2026年10月8日更新</span></footer>
 </div>
 </body>
 </html>
