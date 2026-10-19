@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>コネクトα 実績の自動入力(クラウド版)</title>
+<title>コネクトα・SP商材 実績の自動入力(クラウド版)</title>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -12,10 +12,10 @@
   <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
 
   <header>
-    <div class="eyebrow">みんスマ ・ コネクトα</div>
-    <h1>コネクトα 実績の自動入力(クラウド版) ― PCを閉じていても、朝には数字が入っている</h1>
-    <div class="tags"><span class="tag auto">毎朝(6〜12時台に1時間おき)</span><span class="tag accent">クラウドで動く</span></div>
-    <p class="lead">さくら少額短期保険から毎朝届く申込一覧(CSV)を、山口のPCではなくGoogleのサーバー上のプログラム(Apps Script)が読み、5店舗の報告表(Googleスプレッドシート)の「実績」欄に件数を書き込みます。判断のルールはPC版とまったく同じです。</p>
+    <div class="eyebrow">みんスマ ・ コネクトα・SP商材</div>
+    <h1>コネクトα・SP商材 実績の自動入力(クラウド版) ― PCを閉じていても、数字が入っている</h1>
+    <div class="tags"><span class="tag auto">1時間おき(コネクトα 6〜12時台・SP商材 9〜15時台)</span><span class="tag accent">クラウドで動く</span></div>
+    <p class="lead">さくら少額短期保険から毎朝届く申込一覧(CSV)と、セールスパートナーから平日に届く獲得ログ(Excel)を、山口のPCではなくGoogleのサーバー上のプログラム(Apps Script)が読み、店舗の報告表(Googleスプレッドシート)の「実績」欄に件数を書き込みます。判断のルールはPC版とまったく同じです。セールスパートナーの分は2026年10月18日から加わりました。</p>
   </header>
 
   <section>
@@ -32,6 +32,7 @@
     <div class="cols"><table><tbody>
         <tr><td class="c">毎朝 6〜12時台</td><td>1時間おきに起きて、まだ処理していない新しいCSVがあれば動きます。CSVは早朝4時半ごろ届くので、ふつうは6時台に1回動いて終わりです。</td></tr>
         <tr><td class="c">10時を過ぎても前日分が無いとき</td><td>「未着」のメールを1日1回送ります。</td></tr>
+        <tr><td class="c">9〜15時台(SP商材)</td><td>1時間おきに、セールスパートナーの新しい獲得ログが届いていないかを見ます。届いていれば、次の正時に入力してレポートを送ります。届かない日(土日や抜けの日)は何もせず、「未着」のメールも送りません。</td></tr>
         <tr><td class="c">頼んだとき</td><td>山口がスクリプトの画面から「テスト実行」「今すぐ実行」を押すと、その場で動きます。</td></tr>
     </tbody></table></div>
   </section>
@@ -47,6 +48,7 @@
       <li><div class="who auto">自動</div><div class="body"><strong>NG・不成立・解約はメモを付け、解約はキャンセル欄にも件数を入れる</strong><span>審査中だった分が後日NGになれば、その分を減らしてメモを付けます。</span></div></li>
       <li><div class="who auto">自動</div><div class="body"><strong>書いた数字を読み直し、成約率の計算式が無事かを確かめる</strong></div></li>
       <li><div class="who auto">自動</div><div class="body"><strong>NG・不成立の管理表を更新し、レポートメールを送る</strong><span>新しいNGがあれば、さくら少短への確認依頼メールも送れます(設定した場合)。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>セールスパートナーの獲得ログ(Excel)も、同じようにGmailから取り出して読む</strong><span>退会した分は除き、6店舗のSP商材の行(らくらくバックアップ・広告ブロック・ケイタイサポート)に入れます。退会はメモとキャンセル欄にも書きます。</span></div></li>
       <li><div class="who human">人</div><div class="body"><strong>レポートメールに目を通す</strong><span>「要確認」の項目があれば、人が報告表を見て判断します。</span></div></li>
     </ol>
   </section>
@@ -54,13 +56,13 @@
   <section>
     <h2><span class="num">4</span>全体の地図(どこで何が動いているか)</h2>
     <div class="cols"><table><tbody>
-        <tr><td class="c">メールサーバー(レンタルサーバー)</td><td>みんスマ用アドレス宛のメールを、山口のGmailへ「残して転送」する設定。ここが止まるとCSVがGoogleに届きません。</td></tr>
-        <tr><td class="c">Gmail(山口のGoogleアカウント)</td><td>転送されたCSVメールの受け皿。差出人で振り分けるフィルタを作り、迷惑メールに入らないようにしています。</td></tr>
-        <tr><td class="c">Googleドライブ「みんスマCSV」フォルダ</td><td>取り出したCSVを日付ごとに溜めておく場所。NG管理表の履歴もここから作ります。</td></tr>
+        <tr><td class="c">メールサーバー(レンタルサーバー)</td><td>みんスマ用アドレス宛のメールを、この仕組み専用のGmailへ「残して転送」する設定。ここが止まるとCSVも獲得ログもGoogleに届きません。</td></tr>
+        <tr><td class="c">Gmail(この仕組み専用の会社用Googleアカウント)</td><td>転送されたメールの受け皿。個人のアカウントは使っていません。手で転送したメールも、添付の名前で見つけて取り込みます。</td></tr>
+        <tr><td class="c">Googleドライブ「みんスマCSV」「みんスマSPログ」フォルダ</td><td>取り出したCSVと獲得ログを日付ごとに溜めておく場所。NG管理表の履歴もここから作ります。</td></tr>
         <tr><td class="c">コントロール用スプレッドシート</td><td>スクリプトの本体が付いているシート。「実行ログ」シートに毎回の結果、「状態」シートに最後に処理した日付が残ります。</td></tr>
-        <tr><td class="c">店舗ごとの報告表(5店舗)</td><td>入力先。山口のGoogleアカウントに編集権限があるので、スクリプトも同じ権限で書き込めます。</td></tr>
+        <tr><td class="c">店舗ごとの報告表(コネクトαは5店舗、SP商材は6店舗)</td><td>入力先。専用のGoogleアカウントに編集の共有をしてあるので、スクリプトはその権限で書き込みます。</td></tr>
         <tr><td class="c">NG・不成立の管理表</td><td>自動更新の列だけをスクリプトが直接書き換えます。手入力の列には触りません。</td></tr>
-        <tr><td class="c">レポートメール</td><td>山口のメールアドレスに届きます。件名の頭は「【みんスマ自動入力】」。</td></tr>
+        <tr><td class="c">レポートメール</td><td>山口のメールアドレスに届きます。件名の頭は「【みんスマ自動入力】」、SP商材の分は「【みんスマ自動入力】セルパ」。</td></tr>
     </tbody></table></div>
   </section>
 
@@ -83,6 +85,7 @@
       <div class="bubble">(ふだんは話しかけなくて動きます)</div>
       <div class="bubble">スクリプトの画面で「テスト実行」→ 書き込まずにレポートだけ</div>
       <div class="bubble">スクリプトの画面で「今すぐ実行」→ その場で入力</div>
+      <div class="bubble">SP商材は「spDryRun」(テスト)・「spRunNow」(今すぐ)・「spCheckMailAndFiles」(届いているかの確認)</div>
       <p style="color:var(--sub)">Claudeを通さず動くので、Claudeに話しかけても動きません。ルールを変えたいときは山口がプログラムを直して、スクリプトの画面に貼り直します。</p>
       </div>
       <div class="card"><span class="tag human">人がやること</span>
@@ -111,7 +114,7 @@
     <div class="card">
       <ul>
         <li>メールサーバーの転送設定が生きていること(「残して転送」)</li>
-        <li>山口のGoogleアカウントが、5店舗の報告表を編集できること</li>
+        <li>専用のGoogleアカウントが、店舗の報告表を編集できること(SP商材は一宮中央を含む6店舗)</li>
         <li>報告表の月のタブが、いつもの形(1行目に日付、「実績【SW事務局入力欄】」の見出し、その下にコネクトαの6行)であること。形が違うと、そのお店は書かずにエラーとして報告します</li>
       </ul>
     </div>
@@ -125,6 +128,8 @@
       <details><summary>「レイアウト不一致」「タブが見つからない」のエラー</summary><p>月が替わって報告表の形が変わったときに出ます。山口がプログラムを直すまで、その月はPC版かClaudeに頼んで入力します。</p></details>
       <details><summary>「要確認」が出た</summary><p>ログで説明できない減り方(CSVから行が消えた等)なので、スクリプトは触っていません。人が報告表とCSVを見て決めてください。</p></details>
       <details><summary>数字が二重に入ることはない?</summary><p>ありません。すでに同じ数字が入っているセルは触らない作りなので、PC版と同時に動いても同じ結果になります。</p></details>
+      <details><summary>SP商材のレポートが来ない</summary><p>セールスパートナーの獲得ログは平日だけ、それも来ない日があります。届いていないだけなら異常ではありません。スクリプトの画面で「spCheckMailAndFiles」を実行すると、Gmailとドライブに何があるかが記録に出ます。</p></details>
+      <details><summary>SP商材で「要確認」が出た</summary><p>シートの数字が獲得ログより多く、退会で説明できないときに出ます。スクリプトは触っていないので、人がログと報告表を見て決めてください。</p></details>
       <details><summary>止めたい</summary><p>スクリプトの画面の「トリガー」を削除すれば止まります。</p></details>
     </div>
   </section>
@@ -137,7 +142,7 @@
     <div class="note"><strong>集計式の行は、人もさわらないでください</strong><p>スクリプトも成約率の行には書きません。書いたあとに式が残っているかを確かめています。</p></div>
   </section>
 
-  <footer><span>わからないことは山口まで。 / 最終更新 2026年10月16日</span></footer>
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年10月19日</span></footer>
 </div>
 </body>
 </html>

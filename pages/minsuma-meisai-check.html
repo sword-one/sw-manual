@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>さくら・セルパ明細の照合</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">みんスマ ・ 月次の確認</div>
+    <h1>さくら・セルパ明細の照合 ― 入金の明細と、毎日のログが合っているか</h1>
+    <div class="tags"><span class="tag auto">見張り役(5分おき)</span><span class="tag accent">山口PCが必要</span></div>
+    <p class="lead">さくら少額短期保険とセールスパートナーからは、毎月「何件分をいくら払うか」の明細が届きます。それが毎日の獲得ログ(どの店で、いつ、誰が取ったか)と合っているかを、プログラムが1件ずつ確かめます。合わないものだけを一覧にするので、人はそこだけを見れば済みます。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>事務担当が明細を開き、獲得ログと見比べて、合わないものを探していました。さくら少短の明細はさくらのWEBサイトから落として、Dropboxの決まったフォルダに手で保存していました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>さくら少短の明細は、山口PCでダウンロードするだけで、見張り役がDropboxの月のフォルダに保存し、照合レポートまで作ります。セールスパートナーの明細は、メールが届けば自動で開いて照合します。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">さくら少短の明細(毎月17〜22日ごろ)</td><td>さくら少短から「お支払のお知らせ」のメールが来たら、人がさくらのWEBサイトから明細(CSV4つとPDF)を山口PCにダウンロードします。そこから先は自動です。</td></tr>
+        <tr><td class="c">セールスパートナーの明細(申込月の2か月後の20日前後)</td><td>明細(パスワード付きの圧縮ファイル)と、パスワードのメールが別々に届きます。見張り役が2通をそろえて開きます。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who human">人</div><div class="body"><strong>さくら少短のWEBサイトから、明細とお支払いの案内PDFをダウンロードする</strong><span>PDFも必ず一緒に落とします。入金日をPDFから読むためです。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>見張り役がダウンロードフォルダから見つけ、Dropboxの「入金案内(確認用)」の月フォルダに保存する</strong><span>名前で見分けます。同じ中身がもうあれば何もしません。中身が違うときは上書きせず、別の名前で横に置きます。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>案内PDFの金額と、明細CSVの合計が合っているかを確かめる</strong><span>手数料・インセンティブ・消費税・振込金額のすべてを見ます。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>明細の1件1件を、毎日の獲得ログと突き合わせる</strong><span>募集人・申込日・プランで合わせます。契約番号は明細で初めて付くからです。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>合わないものを「要確認」として一覧にする</strong><span>たとえば「ログでは成立なのに、獲得インセンティブが付いていない契約」。過去1年では、ほとんどが契約直後の解約でした。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>セールスパートナーの明細は、圧縮ファイルを開いて店舗×商材の件数をログと比べる</strong><span>戻入(返金)の行は、担当者からもらう「戻入詳細」の行と照らし合わせます。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>レポートの「要確認」だけを見て、取引先に聞くか決める</strong><span>問い合わせのメールは人が送ります。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>なぜこの作りにしたか</h2>
+    <div class="card">
+      <ul>
+        <li><strong>さくらのWEBサイトには、プログラムも AI もログインさせない。</strong>パスワードを渡さないためです。ダウンロードだけを人がやり、そのあとを自動にしました。</li>
+        <li><strong>合っているものは見せない。</strong>件数は毎月100件を超えるので、全部を見比べるのは大変です。合わないものだけを一覧にしています。</li>
+        <li><strong>明細のPDFとCSVの金額を、最初に必ず確かめる。</strong>過去に、ダウンロードしたCSVの一部が欠けていた月がありました。金額が合わないときは、照合の結果を信じずにCSVを取り直します。</li>
+        <li><strong>読むだけで、どこにも書き込まない。</strong>管理表・報告表・取引先へのメールには触りません。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">さくらの入金案内を突き合わせて</div>
+      <div class="bubble">セルパの獲得明細を照合して</div>
+      <p style="color:var(--sub)">ふだんは話しかけなくても、ファイルやメールが届けば動きます。プログラムだけで動くので、Claudeがいなくても照合はできます。</p>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>さくら少短のWEBサイトから、明細と案内PDFをダウンロードする</li>
+        <li>レポートの「要確認」を見て、取引先に聞くか決める</li>
+        <li>問い合わせのメールを送る</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">見張り役(PowerShell)</td><td>5分おきにダウンロードフォルダとOutlookを見ています。</td></tr>
+        <tr><td class="c">照合プログラム(Python・Node.js)</td><td>明細とログを突き合わせ、レポートを作ります。</td></tr>
+        <tr><td class="c">Dropbox</td><td>さくら少短の明細の保存先。PCのDropboxアプリが動いている必要があります。</td></tr>
+        <tr><td class="c">Outlook</td><td>セールスパートナーの明細メールが届くメールボックスです。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>動くための条件</h2>
+    <div class="card">
+      <ul>
+        <li>山口のPCの電源が入っていて、ログインしていること</li>
+        <li>さくら少短の明細を、山口のPCでダウンロードすること(ほかのPCで落とした分は対象外。その場合はこれまでどおり手で保存します)</li>
+        <li>PCのDropboxアプリと、Outlookが動いていること</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>こんなときは</h2>
+    <div class="faq">
+      <details><summary>「入金日が分からない」と通知が出た</summary><p>案内PDFをダウンロードしていません。さくら少短のWEBサイトから、PDFも一緒に落としてください。</p></details>
+      <details><summary>「中身の違うファイルがあった」と通知が出た</summary><p>同じ名前で中身の違うファイルを見つけたので、上書きせず別の名前で保存しました。どちらが正しいか、人が見てください。</p></details>
+      <details><summary>「要確認」に、ログでは成立なのに明細に無い契約が出た</summary><p>多くは契約直後の解約です。翌月の明細に、その契約の「継続」の行が無ければ解約で確定です。あれば取引先に理由を聞きます。</p></details>
+      <details><summary>明細の形が変わったら?</summary><p>列の名前や日付の書き方が変わると、プログラムを直す必要があります(ある月だけ日付の並びが「月/日/年」になっていたことがあります)。おかしいと思ったら山口に知らせてください。</p></details>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">9</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>この照合は、支払書づくりの土台です</strong><p>照合で合った件数を、そのまま支払書や歩合の明細に使います。</p></div>
+    <div class="note"><strong>お客様の名前はレポートに出しません</strong><p>明細には契約者の名前が入っていますが、照合では使いません。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年10月19日</span></footer>
+</div>
+</body>
+</html>
