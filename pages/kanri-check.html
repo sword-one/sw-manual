@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>見積・請求・支払管理表チェック(林さんLINE)</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">SP事業部 ・ 経理</div>
+    <h1>見積・請求・支払管理表チェック ― 漏れと異変だけを林さんのLINEへ</h1>
+    <div class="tags"><span class="tag auto">時間になったら動く</span><span class="tag accent">クラウドで動く</span></div>
+    <p class="lead">Dropboxの「見積・請求書等月次管理表」(今年分と前年分)をClaudeが読み、過去12か月のいつもの流れと見比べて、確認が必要な行だけを文章にします。林さんのLINEには、毎月1日の朝に自動で届き、それ以外の日もボタンを押せば最新の結果が返ってきます。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>支払い・入金の漏れは、管理表を目で追って気づくしかありませんでした。当日手渡しの振込日の入れ忘れや、毎月あるはずの行の抜けは、見落とすと支払い漏れ・請求漏れにつながります。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>毎月1日に「確認してほしいこと(N件)」が林さんのLINEに届きます。管理表に入力して直したものは、次の更新から出なくなります。月の途中でも、林さんがリッチメニューの「管理表チェック」を押せば、その時点の最新結果が返信されます。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">平日 9時・12時・15時・18時ごろ</td><td>Claudeが管理表を読み直して、最新のチェック結果を作り直します(林さんには送りません)。</td></tr>
+        <tr><td class="c">毎月1日 9時台</td><td>その日の結果を林さんのLINEへ自動で送ります。</td></tr>
+        <tr><td class="c">林さんがボタンを押したとき</td><td>一番新しい結果をすぐ返信します。結果には「○月○日 ○:○○時点」と、作り直した時刻が入ります。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who auto">自動</div><div class="body"><strong>決まった時間に、Claudeが管理表(今年分・前年分)をDropboxから読む</strong><span>クラウドの予定(ルーティン)で動きます。山口PCは不要です。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>過去12か月と見比べて、確認が必要な行を選ぶ</strong><span>期日超過/記入漏れ?(当日手渡し・事前振込などの振込日が空)/期日が未入力/いつもの行が無い/金額がいつもと違う、の5種類。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>結果をGoogleドライブに「管理表チェック_日付_時刻」として保存する</strong><span>件数が前回と変わったときだけ、山口のスレッドに1行で知らせます。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>業務通知のGASが一番新しい結果を読み、林さんのLINEへ送る</strong><span>毎月1日の朝と、林さんがボタンを押したときだけ送ります。</span></div></li>
+      <li><div class="who human">林さん</div><div class="body"><strong>LINEを見て、管理表を確認・入力する</strong><span>支払い・振込・取引先への連絡はしません。チェックと提案だけです。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>全体の地図</h2>
+
+    <div class="cols"><table><tbody>
+      <tr><td class="c">読む表</td><td>Dropboxの林さん・けんさん共有フォルダにある「YYYY年見積・請求書等月次管理表」(今年分と、過去フォルダの前年分)</td></tr>
+      <tr><td class="c">チェックする人</td><td>Claude(クラウドの予定で平日4回+毎月1日)。チェックのやり方は共有フォルダの monthly_check.py</td></tr>
+      <tr><td class="c">結果の置き場</td><td>山口のGoogleドライブに「管理表チェック_YYYY-MM-DD_HHMM」のドキュメント(中身は送る文章そのもの)</td></tr>
+      <tr><td class="c">LINEを送る役</td><td>山口の業務通知GAS(売上報告LINEと同じプロジェクト)に追加した gessho_check_line.gs。毎月1日9時のトリガーと、LINEの受け口で動く</td></tr>
+      <tr><td class="c">林さんのボタン</td><td>林さんにだけ表示されるリッチメニュー「管理表チェック」。押すと最新の結果が返信される</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>なぜこの作りにしたか</h2>
+
+    <ul>
+      <li><b>「いつもと違う」だけを出す</b>:過去12か月に何度も出てくる取引を「いつもの取引」とみなし、そこから外れたものだけを知らせます。全部を並べると見なくなるためです。</li>
+      <li><b>期日前のものは出さない</b>:まだ入金・入力されていないだけの行は、期日(+7日の猶予)を過ぎるまで出しません。</li>
+      <li><b>メールではなくLINE</b>:会社アドレスからの自動送信ができなかったため、林さんが毎日見るLINEにしました。</li>
+      <li><b>ClaudeはLINEを直接送らない</b>:クラウドからはLINEに直接つながらないので、結果をドライブに置き、業務通知のGASが送ります。売上報告LINEと同じ形です。</li>
+      <li><b>林さんへ送るのは2つだけ</b>:毎月1日のチェックと、ボタンを押したときの返信だけ。ほかのお知らせは林さんには送りません。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">管理表チェック、今すぐ更新して</div>
+      <div class="bubble">管理表チェックの判定ルールを変えたい(例:猶予を7日から10日に)</div>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>林さん:LINEを見て、管理表を確認・入力する(直せば次から出なくなる)</li>
+        <li>林さん:月の途中で見たいときは、リッチメニューの「管理表チェック」を押す</li>
+        <li>けんさん:当日手渡しなどの振込日も管理表に入れる</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">Dropbox</td><td>管理表(Excel)を読みます。書き換えはしません。</td></tr>
+        <tr><td class="c">Claude(クラウドの予定)</td><td>平日4回と毎月1日に、管理表を読んでチェック結果を作ります。</td></tr>
+        <tr><td class="c">Googleドライブ</td><td>チェック結果の置き場です。</td></tr>
+        <tr><td class="c">Google Apps Script(業務通知)</td><td>結果を林さんのLINEに送る役です。</td></tr>
+        <tr><td class="c">LINE公式アカウント</td><td>林さんへのメッセージとリッチメニューのボタンです。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>動くための条件</h2>
+    <div class="card">
+      <ul>
+        <li>管理表のファイル名・置き場所が変わっていないこと(年が変わったら新しい年のファイルを読みます)</li>
+        <li>業務通知のGASのトリガー(毎月1日9時)と、LINEの受け口が動いていること</li>
+        <li>林さんが業務通知の公式アカウントを友だち追加していること</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">9</span>こんなときは</h2>
+    <div class="faq">
+      <details><summary>1日にLINEが届かない</summary><p>Googleドライブにその日の「管理表チェック_」があるか見てください。なければClaude側の失敗(スレッドに理由が出ます)、あればGASのトリガーか実行ログを確認します。</p></details>
+      <details><summary>ボタンを押しても返事がない</summary><p>LINEの受け口(GASのデプロイ)を作り直していないか確認します。作り直すとURLが変わり、LINE側の設定と合わなくなります。</p></details>
+      <details><summary>直したのに同じ項目が出る</summary><p>結果は平日4回の更新で作り直されます。次の更新後にもう一度ボタンを押してください。</p></details>
+      <details><summary>林さんのLINEを登録し直したい</summary><p>GASのスクリプトプロパティの林さん用IDを消してから、林さんに「管理表チェック登録」と送ってもらいます。</p></details>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">10</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>支払い・振込・取引先への連絡はしません</strong><p>チェックして知らせるところまでです。判断と入力は人がします。</p></div>
+    <div class="note"><strong>業務通知GASのデプロイを新しく作り直さない</strong><p>コードを直すときは、今のデプロイの「新しいバージョン」として更新します。</p></div>
+    <div class="note"><strong>林さんに別の通知を足さない</strong><p>林さんへ送るのは毎月1日のチェックとボタンの返信だけ、と決めています(2026年10月)。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年10月26日</span></footer>
+</div>
+</body>
+</html>
