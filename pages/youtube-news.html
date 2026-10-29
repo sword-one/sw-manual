@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>毎朝のYouTube・AIニュース</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">AIの学び ・ 情報収集</div>
+    <h1>毎朝のYouTube・AIニュース ― 動画を見る時間をAIが肩代わり</h1>
+    <div class="tags"><span class="tag auto">毎朝7時(定期タスク)</span><span class="tag accent">山口PCが必要</span></div>
+    <p class="lead">AI・ビジネス系のYouTubeチャンネル(15チャンネル)とnoteの新着を、毎朝Claudeが字幕から要約します。仕事への使い方まで書いたニュースにまとめ、あわせて副業アイデアやClaudeの使い方を辞典のようにためていきます。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>気になるチャンネルが増えても、全部の動画を見る時間はありませんでした。見ても、内容を仕事にどう生かすかまで整理できずに忘れてしまっていました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>毎朝、新しい動画の要約と「SP事業部ならどう使うか」が1つのファイルにまとまって届きます。動画の要約は悩み別の目次から探せて、行き詰まったときに「この動画を見るといい」とすぐ見つかります。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">毎朝7時ごろ</td><td>Claudeのデスクトップアプリが開いていれば動きます。閉じていたら、次に開いたときに動きます。</td></tr>
+        <tr><td class="c">いつでも</td><td>動画のURLを貼って「要約して」と頼むこともできます。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who auto">自動</div><div class="body"><strong>各チャンネルの過去24時間の新着動画とnoteの新着を探す</strong><span>ショート動画は除きます。PIVOT・ソフトバンクはAI関連の動画だけ拾います。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>字幕を取る(1本ごとに30〜60秒あける)</strong><span>続けて取りすぎるとYouTubeに一時的に止められるため、間をあけ、1日の本数にも上限があります。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>1本ずつ要約する</strong><span>結論・要点・具体例・SP事業部での使い方・今日やる最小行動・注意点(宣伝や誇張)・こんなときに見る(悩みのタグ)。副業の話があれば、実現できるかを精査します。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>深掘り版のニュースを書く</strong><span>今日の結論、動画ごとの深掘り、チャンネルをまたいだ分析、AIニュース(短く)、副業アイデア、今日覚えた使い方。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>副業アイデア一覧とClaudeの使い方の辞典に追記する</strong><span>同じアイデア・使い方が出てきたら回数を数えます。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>過去の動画も少しずつ要約する</strong><span>優先するチャンネルから順に、1日の上限まで。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>通知する</strong><span>結論3点とファイルの場所。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>全体の地図(どこに何があるか)</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">デスクトップ「yt」フォルダ</td><td>すべての置き場所。チャンネルごとのフォルダに字幕(transcripts)と要約(summary)があります。</td></tr>
+        <tr><td class="c">news フォルダ</td><td>毎朝のニュース(日付.md)。</td></tr>
+        <tr><td class="c">_index_all.md</td><td>悩み別の目次。「部下が動かない」「集中できない」などから動画を探せます。</td></tr>
+        <tr><td class="c">副業アイデア一覧.md</td><td>動画で出てきた副業・事業アイデアを「試す/保留/見送り」で精査した一覧。上位5件が先頭にあります。</td></tr>
+        <tr><td class="c">Claude活用術.md</td><td>動画で見たClaudeの使い方の辞典(カテゴリ別)。Claudeが新しい仕組みを提案するときにも読みます。</td></tr>
+        <tr><td class="c">内田流_要約の型.md</td><td>本の要約サイト(ORBIT)用の、わかりやすく面白い要約の書き方。</td></tr>
+        <tr><td class="c">channels.txt ／ notes.txt</td><td>チェックするYouTubeチャンネルとnoteの一覧。1行足せば対象が増えます。</td></tr>
+        <tr><td class="c">定期タスク「【毎朝】今日のYouTubeニュース」</td><td>Claudeのデスクトップアプリの「Scheduled」にあります。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>なぜこの作りにしたか</h2>
+    <div class="card">
+      <ul>
+        <li><strong>要約だけでなく「どう使うか」まで書く。</strong>見て終わりにせず、SP事業部・5課の管理・取引先への提案にどう生かすかまで書かせています。</li>
+        <li><strong>宣伝や誇張は割り引く。</strong>稼ぐ系の動画も一律には外さず、根拠・初期費用・時間・実現の手順を精査して判定します。</li>
+        <li><strong>ゆっくり取る。</strong>字幕を短い間隔で大量に取ると、YouTubeに一時的に止められるため、1本ごとに30〜60秒あけています。</li>
+        <li><strong>辞典として積み上げる。</strong>Claude自身は会話をまたいで覚えられないので、使い方や副業アイデアをファイルにためて、次に提案するときに読ませています。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">このYouTube要約して(URLを貼る)</div>
+      <div class="bubble">このチャンネルも毎朝チェックして</div>
+      <div class="bubble">最近、部下が動いてくれない(悩みから動画をおすすめ)</div>
+      <div class="bubble">副業アイデアの上位を教えて</div>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>毎朝のニュースに目を通す</li>
+        <li>気になるチャンネルやnoteがあればURLを渡す</li>
+        <li>定期タスクが止まっていたら、アプリで確認画面を許可する</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">Claudeデスクトップアプリ</td><td>毎朝の定期タスクを動かします。</td></tr>
+        <tr><td class="c">Python(字幕を取る部品)</td><td>YouTubeの字幕と動画の一覧を取ります。</td></tr>
+        <tr><td class="c">note</td><td>noteの新着記事を取ります。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>動くための条件</h2>
+    <div class="card">
+      <ul>
+        <li>朝7時にClaudeのデスクトップアプリが開いていること(閉じていたら次に開いたときに動く)</li>
+        <li>インターネットにつながっていること</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">9</span>こんなときは</h2>
+    <div class="faq">
+      <details><summary>ニュースが来ない</summary><p>アプリの「Scheduled」でタスクの記録を見ます。確認待ちで止まっていたら許可します。前の回が止まったまま残っていると次の回が始まらないので、止まった回は停止します。</p></details>
+      <details><summary>「字幕が取れず未要約」と出る</summary><p>YouTubeに一時的に止められています。たいてい1日ほどで解けるので、翌日の実行で取り直します。</p></details>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">10</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>動画の言い回しは写さない</strong><p>要約は自分の言葉で。引用は短く。</p></div>
+    <div class="note"><strong>数字は話し手の申告が多い</strong><p>売上や件数は確かめられないものとして読みます。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年10月29日</span></footer>
+</div>
+</body>
+</html>

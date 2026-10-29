@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>甚目寺のシフト→転記→手配の自動化</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">SP事業部 ・ 手配</div>
+    <h1>甚目寺のシフト ― メールが届いたら、転記と手配まで自動で</h1>
+    <div class="tags"><span class="tag auto">メールが届いたら(30分おきに確認)</span><span class="tag accent">山口PCが必要</span></div>
+    <p class="lead">甚目寺店で働く外注スタッフの翌月シフトは、毎月25日ごろに店長からメールで届きます。見張り役がこのメールを見つけると、スケジュール表への転記、SmartStaffへの手配、最後の検算までを自動で進め、LINEとPCの通知で知らせます。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>メールを開いて表を読み、スケジュール表(Googleスプレッドシート)の甚目寺の行に1日ずつ入力し、そのあとSmartStaffを開いて出勤日ごとに手配していました。毎月同じ作業ですが、手で見比べるので時間がかかりました。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>メールが届くと、見張り役が表を読み取って転記予定を作り、Claudeが確認なしで転記→検算→手配→検算まで進めます。終わると「転記○日・手配○件・コマ数一致」とLINEに届きます。SmartStaffがログアウトしているときだけ、LINEでログインをお願いします。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">毎月25日ごろ</td><td>店長から「○月のシフトについて」のメールが届いたとき。見張り役が30分おきに確認しています。</td></tr>
+        <tr><td class="c">止まったあと</td><td>Claudeに「甚目寺のシフト転記して手配まで」と言えば、続きから進めます。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who auto">自動</div><div class="body"><strong>見張り役が、店長からのシフトのメールを見つける</strong><span>みんスマの見張り役(5分おき)の中で、30分に1回だけ確認します。同じメールは2回処理しません。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>表を読み取って「転記予定」と「手配の下書き」を作る</strong><span>対象の月は件名ではなく「受信した月の翌月」で決めます。返信メールは件名が前の月のままのことがあるためです。表の日数が月の日数と合わなければ「要確認」にします。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>LINE(山口の業務通知)とPCに「シフトが届きました」と知らせる</strong><span>「SmartStaffにログインしておいてください」も一緒に届きます。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>スケジュール表の甚目寺の行に転記して、検算する</strong><span>出勤日にスタッフ名、休み・希望休は空白。下の集計欄(数式)には触りません。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>SmartStaffで受注を確認し、出勤日ごとに手配する</strong><span>その月の受注がなければ、前月の受注をコピーして勤務時間と日ごとのコマ数を合わせて作ります。外注なので金額欄には触らず、依頼メールも送りません。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>全日を読み直して、スケジュール表と手配のズレが0件か確かめる</strong></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>「完了：転記○日・手配○件・コマ数一致」をLINEとPCに知らせる</strong><span>止まったときは理由を知らせます。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>SmartStaffがログアウトしていたらログインする</strong><span>パスワードはClaudeには入力させません。ログインしたら「続きから」と頼みます。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>全体の地図(どこで何が動いているか)</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">みんスマの見張り役(Windowsのタスク)</td><td>山口PCのログオン時から動いているプログラム。この中に「甚目寺のシフト」の確認を足しました。みんスマの処理とは別に動き、失敗してもみんスマ側は止まりません。</td></tr>
+        <tr><td class="c">デスクトップ「mail-tool」の中の「matsuo-shift」フォルダ</td><td>メールを読む部品、自動で進めるときの手順書、LINEに送る部品、転記予定とその結果(reports)がまとまっています。</td></tr>
+        <tr><td class="c">自動実行のスイッチ(同じフォルダの「matsuo.autorun」)</td><td>このファイルがあると、転記と手配まで自動で進めます。消すと「届きました」の通知だけに戻ります。みんスマの自動実行のスイッチとは別です。</td></tr>
+        <tr><td class="c">Claudeのスキル「甚目寺シフト転記」</td><td>転記と手配の手順書。会話で頼んだときも、自動実行のときも、これに沿って動きます。手配のやり方は「月次の手配チェック」のスキルと同じです。</td></tr>
+        <tr><td class="c">LINE(山口の業務通知)</td><td>届いた・ログインのお願い・完了・止まった理由を知らせます。ほかのメール通知と同じ公式LINEです。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>なぜこの作りにしたか</h2>
+    <div class="card">
+      <ul>
+        <li><strong>定期タスクではなく「届いたら動く」にした。</strong>メールが届く日は月によって少しずれるので、決まった日時に見に行くより、届いたときに動くほうが取りこぼしがありません。</li>
+        <li><strong>Power Automateは使わない。</strong>メールはPOP方式で受けているので、Microsoft 365側の「メールが届いたら」は使えません。すでに動いているみんスマの見張り役に足すのがいちばん確実でした。</li>
+        <li><strong>確認なしにしたのは、このスタッフの分だけ。</strong>これまで手配がまちがったことがない、毎月同じ形の作業なので、山口の判断で確認を省きました。ほかの手配は今までどおり確認を取ります。</li>
+        <li><strong>おかしいときは止まる。</strong>日数が合わない、表にすでに別の内容がある、前月の受注も見つからない、検算がずれた、のどれかなら、書き換えずに止めて理由を知らせます。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">(ふだんは話しかけなくて動きます)</div>
+      <div class="bubble">甚目寺のシフト転記して手配まで</div>
+      <p style="color:var(--sub)">止まったあとや、自動実行を止めているときは、こう頼めば同じ流れで進めます。</p>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>SmartStaffがログアウトしていたらログインする(LINEでお願いが届きます)</li>
+        <li>「完了」のLINEに目を通す</li>
+        <li>「止めました」が届いたら、理由を見て判断する</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">Outlook</td><td>店長からのシフトのメールを受け取ります。見張り役は読むだけです。</td></tr>
+        <tr><td class="c">Googleスプレッドシート</td><td>月ごとのスケジュール表(シフトのタブ)です。</td></tr>
+        <tr><td class="c">SmartStaff</td><td>スタッフの手配システムです。ブラウザ(Chrome)で操作します。</td></tr>
+        <tr><td class="c">Claude Code</td><td>見張り役から起動されて、転記と手配を進めます。</td></tr>
+        <tr><td class="c">LINE</td><td>山口の業務通知に知らせます。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>動くための条件</h2>
+    <div class="card">
+      <ul>
+        <li>山口PCが起動していて、ログオンしていること</li>
+        <li>Outlookが使えること</li>
+        <li>Chromeが使えること(SmartStaffとスケジュール表の操作に使います)</li>
+        <li>SmartStaffにログインしていること</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">9</span>こんなときは</h2>
+    <div class="faq">
+      <details><summary>LINEが来ない</summary><p>PCが起動していない、またはOutlookがメールを受け取っていない可能性があります。見張り役の記録(mail-toolの中のsp_mail_watcher.log)に「matsuo」で始まる行があるか見ます。</p></details>
+      <details><summary>「止めました」と届いた</summary><p>理由を読んで、問題がなければClaudeに「甚目寺のシフト転記して手配まで」と頼みます。続きから進めます。</p></details>
+      <details><summary>自動を止めたい</summary><p>matsuo-shiftフォルダの「matsuo.autorun」を消します。届いた通知だけになります。</p></details>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">10</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>金額欄には触りません</strong><p>外注なので、支払条件はそのままが正しい状態です。請求計算・給与計算の画面にも入りません。</p></div>
+    <div class="note"><strong>依頼メールは送りません</strong><p>外注スタッフには送らない運用です。</p></div>
+    <div class="note"><strong>パスワードは入力しません</strong><p>SmartStaffのログインは人がします。</p></div>
+    <div class="note"><strong>見張り役のファイルを直すときは</strong><p>文字コードは「UTF-8(BOM付き)」のまま保存します。BOMがないと日本語が化けて動きません。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年10月29日</span></footer>
+</div>
+</body>
+</html>
