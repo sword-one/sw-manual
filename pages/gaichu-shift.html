@@ -15,7 +15,7 @@
     <div class="eyebrow">SP事業部 ・ 手配</div>
     <h1>外注スタッフのシフト転記と手配 ― 店長のメールから手配まで</h1>
     <div class="tags"><span class="tag auto">メールが届いたら動く</span><span class="tag accent">山口PCが必要</span></div>
-    <p class="lead">毎月25日ごろ、店舗の店長から外注スタッフ1名の翌月シフトがメールで届きます。PCの見張り役がこのメールを見つけて表を読み、転記の予定と手配の下書きを作って知らせます。山口が一言頼めば、Claudeがスケジュールの表への転記と、SmartStaffでの手配まで進めます。</p>
+    <p class="lead">毎月25日ごろ、店舗の店長から外注スタッフ1名の翌月シフトがメールで届きます。PCの見張り役がこのメールを見つけると、Claudeを起動して、スケジュールの表への転記、SmartStaffでの手配、検算まで確認なしで進め、結果を通知します。</p>
   </header>
 
   <section>
@@ -23,7 +23,7 @@
     <div class="ba">
       <div class="card before"><span class="label">これまで</span><p>メールが届いたことに気づいてから、Claudeに「シフト転記して」と頼み、次に別の作業として手配チェックを頼んでいました。OKを2回出す必要があり、メールに気づくのが遅れると手配も遅れました。</p></div>
       <div class="arrow">→</div>
-      <div class="card after"><span class="label">いま</span><p>メールが届くと30分以内にPCへ通知が出ます。通知の時点で、出勤日数・休みの日数の確認と、手配の下書きができています。「シフト転記して手配まで」と一言頼めば、転記・手配・検算まで続けて進みます。</p></div>
+      <div class="card after"><span class="label">いま</span><p>メールが届くと30分以内にPCへ通知が出ます。そのまま転記・手配・検算まで自動で進み、「○月分:完了 転記○日・手配○件・コマ数一致」と通知が来ます。人がやるのは、SmartStaffにログインしておくことだけです。</p></div>
     </div>
   </section>
 
@@ -40,11 +40,11 @@
     <ol class="flow">
       <li><div class="who auto">自動</div><div class="body"><strong>見張り役が、店長からのシフトのメールを見つける</strong><span>みんスマの見張り役(下の地図の1番)に足した部分です。</span></div></li>
       <li><div class="who auto">自動</div><div class="body"><strong>メールの表を読み、出勤日数と休みの日数を数える</strong><span>合計がその月の日数と合わないときは「要確認」として止まります。</span></div></li>
-      <li><div class="who auto">自動</div><div class="body"><strong>転記の予定と、SmartStaffの手配の下書きを作り、PCに通知する</strong><span>下書きは mail-tool の matsuo-shift フォルダの reports に保存されます。</span></div></li>
-      <li><div class="who human">人</div><div class="body"><strong>Claudeに「シフト転記して手配まで」と頼む</strong><span>SmartStaffにログインしておきます(パスワードはClaudeに入力させません)。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>Claudeを起動し、「○月シフトが届きました。転記と手配を自動で進めています」と通知する</strong><span>記録は mail-tool の matsuo-shift フォルダの reports に保存されます。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>SmartStaffにログインしておく</strong><span>人がやるのはこれだけです。パスワードはClaudeに入力させません。</span></div></li>
       <li><div class="who claude">Claude</div><div class="body"><strong>スケジュールの表の「シフト」タブに転記し、検算する</strong></div></li>
-      <li><div class="who claude">Claude</div><div class="body"><strong>SmartStaffで受注を確かめ、出勤日ごとに手配して「確定」にする</strong><span>受注がないときは先月からコピーして作ります。手配のやり方は「月次の手配チェック」と同じです。</span></div></li>
-      <li><div class="who claude">Claude</div><div class="body"><strong>全日を読み直し、ズレ0件・コマ数一致を確かめて報告する</strong><span>「○月分:転記○日・手配○件・コマ数一致」の形で報告します。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>SmartStaffで受注を確かめ、出勤日ごとに手配して「確定」にする</strong><span>手配のやり方は「月次の手配チェック」と同じです。受注がないときは自動では作らず、止まって知らせます。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>全日を読み直し、ズレ0件・コマ数一致を確かめて報告する</strong><span>「○月分:完了 転記○日・手配○件・コマ数一致」と通知します。</span></div></li>
     </ol>
   </section>
 
@@ -52,10 +52,11 @@
     <h2><span class="num">4</span>全体の地図(PCのメールの見張り役は3つ)</h2>
 
     <div class="cols"><table><tbody>
-      <tr><td class="c">1. みんスマの見張り役</td><td>Windowsのタスク「MinsumaSpMailWatcher」。ログオンしたときから5分おきに動き、みんスマのメールを取り込みます。この中に、店長のシフトメールの確認(30分おき)を足しました。</td></tr>
+      <tr><td class="c">1. みんスマの見張り役</td><td>Windowsのタスク「MinsumaSpMailWatcher」。ログオンしたときから5分おきに動き、みんスマのメールを取り込みます。この中に、店長のシフトメールの確認(30分おき)と、見つけたらClaudeを起動する部分を足しました。</td></tr>
       <tr><td class="c">2. 取引先メールのLINE通知</td><td>10分おき。みんスマの受信トレイの決まったフォルダに新しいメールが来たら、山口の業務通知LINEに知らせます。</td></tr>
       <tr><td class="c">3. 毎朝の自動メール点検</td><td>毎朝9時の「MailToolDailyCheck」。未読数と返信漏れを自分宛てのメール1通にまとめます(「毎朝の自動メール点検」のページ)。</td></tr>
       <tr><td class="c">この仕組みの置き場所</td><td>デスクトップの mail-tool フォルダの中。見張り役の本体は sp_mail_watcher.ps1、シフトを読む部分は matsuo-shift フォルダの matsuo_shift_check.ps1。変更前の見張り役は sp_mail_watcher.ps1.bak として残しています。</td></tr>
+      <tr><td class="c">自動のスイッチ</td><td>matsuo-shift フォルダの matsuo.autorun。このファイルがあると自動で転記・手配まで進みます。消すと「通知だけ」に戻ります。Claudeへの手順書は同じフォルダの auto_task.md です。</td></tr>
       <tr><td class="c">Claudeのスキル</td><td>山口PCのシフト転記のスキル(PC側の版が正式)に、5番目の手順として「SmartStaffへの手配」を足しました。</td></tr>
     </tbody></table></div>
   </section>
@@ -67,7 +68,7 @@
       <li><b>決まった日時の予約にしない</b>:メールが届く日は月によってずれるため、「25日10時に見る」ではなく「届いたら動く」にしました。</li>
       <li><b>Power Automateは使わない</b>:PCのOutlookのアカウントはどれも昔ながらの受け取り方式(POP)で、Microsoft 365の「メールが届いたら」の仕組みが使えないためです。</li>
       <li><b>新しい見張り役を増やさない</b>:すでに動いているみんスマの見張り役に足しました。見張り役が増えると、止まったときに探す場所も増えるためです。</li>
-      <li><b>人がやるのはログインだけを目指す</b>:毎月同じ形の作業で、これまでまちがいが出ていないためです。いまは手配の前に1回だけ確認がありますが、確認なしで最後まで進める形に変える予定です(この外注スタッフの分だけ)。</li>
+      <li><b>人がやるのはログインだけ</b>:毎月同じ形の作業で、これまでまちがいが出ていないためです。そのため、この外注スタッフの分だけは確認なしで最後まで進めます。おかしいと思ったときだけ止まります。</li>
     </ul>
   </section>
 
@@ -75,14 +76,14 @@
     <h2><span class="num">6</span>Claudeへの頼み方と、人がやること</h2>
     <div class="two">
       <div class="card say"><span class="tag claude">こう話しかける</span>
-      <div class="bubble">シフト転記して手配まで</div>
+      <div class="bubble">シフト転記して手配まで(止まったあと、続きから進めたいとき)</div>
       <div class="bubble">今月のシフトのメール、届いてる?</div>
       </div>
       <div class="card"><span class="tag human">人がやること</span>
         <ul>
-        <li>SmartStaffにログインする(切れたらそのたびに)</li>
-        <li>通知が出たらClaudeに一言頼む</li>
-        <li>「要確認」で止まったときは、メールの表を見て判断する</li>
+        <li>SmartStaffにログインしておく(切れたらそのたびに)</li>
+        <li>Chromeを開いておく</li>
+        <li>「止めました」の通知が来たら理由を見て、直したら「シフト転記して手配まで」と頼む</li>
         </ul>
       </div>
     </div>
@@ -105,6 +106,8 @@
       <ul>
         <li>山口のPCが起動していて、Outlookが動いていること</li>
         <li>SmartStaffにログインしていること</li>
+        <li>Chromeが開いていること(閉じているとSmartStaffを操作できず止まります)</li>
+        <li>matsuo.autorun のファイルがあること</li>
       </ul>
     </div>
   </section>
@@ -113,7 +116,8 @@
     <h2><span class="num">9</span>こんなときは</h2>
     <div class="faq">
       <details><summary>メールが届いたのに通知が出ない</summary><p>見張り役(MinsumaSpMailWatcher)がタスクスケジューラで「実行中」か確認します。matsuo-shift フォルダの last_processed.txt に、最後に処理したメールが記録されています。</p></details>
-      <details><summary>「要確認」で止まった</summary><p>出勤日数と休みの日数の合計が、その月の日数と合っていません。メールの表を見て、Claudeに正しい日を伝えてください。</p></details>
+      <details><summary>途中で止まった</summary><p>止まるのは5つのときだけです:日数が合わない(何月分かあやしい)/スケジュールの表にすでに違う内容が入っている/その月の受注がない/SmartStaffがログアウトしている/検算でズレが出た。理由が通知に出るので、直してから「シフト転記して手配まで」と頼むと続きから進みます(このときも確認なし)。</p></details>
+      <details><summary>自動をやめて通知だけにしたい</summary><p>matsuo-shift フォルダの matsuo.autorun を消します。</p></details>
       <details><summary>元に戻したい</summary><p>sp_mail_watcher.ps1 を消して、sp_mail_watcher.ps1.bak の名前を sp_mail_watcher.ps1 に戻し、見張り役のタスクを再起動します。</p></details>
     </div>
   </section>
