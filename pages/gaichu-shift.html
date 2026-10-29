@@ -43,7 +43,7 @@
       <li><div class="who auto">自動</div><div class="body"><strong>Claudeを起動し、「○月シフトが届きました。転記と手配を自動で進めています」と通知する</strong><span>記録は mail-tool の matsuo-shift フォルダの reports に保存されます。</span></div></li>
       <li><div class="who human">人</div><div class="body"><strong>SmartStaffにログインしておく</strong><span>人がやるのはこれだけです。パスワードはClaudeに入力させません。</span></div></li>
       <li><div class="who claude">Claude</div><div class="body"><strong>スケジュールの表の「シフト」タブに転記し、検算する</strong></div></li>
-      <li><div class="who claude">Claude</div><div class="body"><strong>SmartStaffで受注を確かめ、出勤日ごとに手配して「確定」にする</strong><span>手配のやり方は「月次の手配チェック」と同じです。受注がないときは自動では作らず、止まって知らせます。</span></div></li>
+      <li><div class="who claude">Claude</div><div class="body"><strong>SmartStaffで受注を確かめ、出勤日ごとに手配して「確定」にする</strong><span>手配のやり方は「月次の手配チェック」と同じです。その月の受注がないときは、先月の受注をコピーして、勤務時間と日ごとのコマ数を合わせて自動で作ります。</span></div></li>
       <li><div class="who claude">Claude</div><div class="body"><strong>全日を読み直し、ズレ0件・コマ数一致を確かめて報告する</strong><span>「○月分:完了 転記○日・手配○件・コマ数一致」と通知します。</span></div></li>
     </ol>
   </section>
@@ -116,7 +116,7 @@
     <h2><span class="num">9</span>こんなときは</h2>
     <div class="faq">
       <details><summary>メールが届いたのに通知が出ない</summary><p>見張り役(MinsumaSpMailWatcher)がタスクスケジューラで「実行中」か確認します。matsuo-shift フォルダの last_processed.txt に、最後に処理したメールが記録されています。</p></details>
-      <details><summary>途中で止まった</summary><p>止まるのは5つのときだけです:日数が合わない(何月分かあやしい)/スケジュールの表にすでに違う内容が入っている/その月の受注がない/SmartStaffがログアウトしている/検算でズレが出た。理由が通知に出るので、直してから「シフト転記して手配まで」と頼むと続きから進みます(このときも確認なし)。</p></details>
+      <details><summary>途中で止まった</summary><p>データを壊さないために止まるのは4つのときだけです:日数が合わない(何月分かあやしい)/スケジュールの表にすでに違う内容が入っている(上書きで消さないため)/先月の受注も見つからない/検算でズレが出た。ほかに、SmartStaffがログアウトしていると止まります。理由が通知に出るので、直してから「シフト転記して手配まで」と頼むと続きから進みます(このときも確認なし)。</p></details>
       <details><summary>自動をやめて通知だけにしたい</summary><p>matsuo-shift フォルダの matsuo.autorun を消します。</p></details>
       <details><summary>元に戻したい</summary><p>sp_mail_watcher.ps1 を消して、sp_mail_watcher.ps1.bak の名前を sp_mail_watcher.ps1 に戻し、見張り役のタスクを再起動します。</p></details>
     </div>
