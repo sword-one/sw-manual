@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>実行台帳(仕組みがちゃんと動いたか)</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav class="topnav"><a href="../index.html">← 一覧にもどる</a><span class="site">ソードワン 自動化マニュアル</span></nav>
+
+  <header>
+    <div class="eyebrow">メール・共通 ・ 見守り</div>
+    <h1>実行台帳 ― 自動の仕組みが止まっていたら、翌朝LINEで気づく</h1>
+    <div class="tags"><span class="tag auto">毎日1回(9:30以降)</span><span class="tag accent">山口PCが必要</span></div>
+    <p class="lead">自動で動く仕組みが増えると、どれかが止まっていても気づきにくくなります。実行台帳は、毎日1回、各仕組みが前日ちゃんと動いたかを確かめて1枚の表に書き足し、問題があったときだけLINEで知らせます。</p>
+  </header>
+
+  <section>
+    <h2><span class="num">1</span>何が変わった?</h2>
+    <div class="ba">
+      <div class="card before"><span class="label">これまで</span><p>定期タスクが確認待ちで止まったまま次の回をふさいでいたり、議事録の取り込みが何日も記録されていなかったりしても、気づくのは何日かあとでした。</p></div>
+      <div class="arrow">→</div>
+      <div class="card after"><span class="label">いま</span><p>毎日、前日分の結果が台帳(Desktop\mail-tool\実行台帳.csv)に並びます。止まっていた・失敗したものがあれば、業務通知LINEに「⚠ 止まっている仕組みがあります」と1通だけ届きます。全部OKの日は何も届きません。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>いつ動く?</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">毎日9:30以降の最初の見回り</td><td>みんスマの見張り役の中で、前日分を1回だけ確かめます。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>全体の流れ</h2>
+    <ol class="flow">
+      <li><div class="who auto">自動</div><div class="body"><strong>見張り役が1日1回、台帳の確認を呼ぶ</strong></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>各仕組みが残したもので、前日動いたかを確かめる</strong><span>毎朝のニュースのファイルがあるか、議事録の取り込みログに前日の行があるか、見張り役が動いているか、Windowsのタスクの最後の結果、など。各仕組みの本体には触りません。</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>結果を台帳に1行ずつ書き足す</strong><span>確認日時・対象の日・名前・結果(OK/NG/なし)・件数・メモ</span></div></li>
+      <li><div class="who auto">自動</div><div class="body"><strong>NGがあればLINEに1通</strong><span>全部OKなら送りません。</span></div></li>
+      <li><div class="who human">人</div><div class="body"><strong>LINEが来たら、メモを見て直す</strong><span>わからなければClaudeに台帳を見せて相談します。</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>見ている仕組み</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">毎朝のYouTube・AIニュース</td><td>その日のニュースのファイルがあるか</td></tr>
+        <tr><td class="c">金曜のClaude活用術の振り返り</td><td>金曜だけ。振り返りのファイルがあるか</td></tr>
+        <tr><td class="c">Plaud→Obsidian 議事録取り込み</td><td>取り込みログに前日の行があるか(1日2回の予定)</td></tr>
+        <tr><td class="c">みんスマの見張り役</td><td>動いているか、記録にエラーがないか</td></tr>
+        <tr><td class="c">甚目寺のシフト自動手配</td><td>メールが届いた日だけ。完了したか、途中で止まったか</td></tr>
+        <tr><td class="c">西さんメール通知LINE</td><td>最後の結果がOKか、記録にエラーがないか</td></tr>
+        <tr><td class="c">朝のメールチェック</td><td>前日に動いて、結果がOKか</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Claudeへの頼み方と、人がやること</h2>
+    <div class="two">
+      <div class="card say"><span class="tag claude">こう話しかける</span>
+      <div class="bubble">(ふだんは話しかけなくて動きます)</div>
+      <div class="bubble">実行台帳見て、止まってるものある?</div>
+      </div>
+      <div class="card"><span class="tag human">人がやること</span>
+        <ul>
+        <li>LINEが来たら、どの仕組みが止まったかを見る</li>
+        <li>定期タスクが確認待ちで止まっていたら、アプリで許可するか止める</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>使っている道具</h2>
+    <div class="cols"><table><tbody>
+        <tr><td class="c">みんスマの見張り役</td><td>台帳の確認を1日1回呼び出します。</td></tr>
+        <tr><td class="c">LINE</td><td>山口の業務通知に知らせます。</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>動くための条件</h2>
+    <div class="card">
+      <ul>
+        <li>山口PCが起動していて、ログオンしていること</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>こんなときは</h2>
+    <div class="faq">
+      <details><summary>同じ日に何度もLINEが来ない?</summary><p>1日1回だけ確かめます。</p></details>
+      <details><summary>新しい仕組みを作ったら?</summary><p>台帳で見る項目に足します(Claudeに「実行台帳にも入れて」と頼みます)。</p></details>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">9</span>気をつけてほしいこと</h2>
+    <div class="note"><strong>読むだけです</strong><p>各仕組みの本体や結果のファイルは書き換えません。</p></div>
+    <div class="note"><strong>見張り役が止まっていると、台帳も動きません</strong><p>PCが起動していない日は、次に起動したときに前日分を確かめます。</p></div>
+  </section>
+
+  <footer><span>わからないことは山口まで。 / 最終更新 2026年10月30日</span></footer>
+</div>
+</body>
+</html>
