@@ -744,7 +744,7 @@ PAGES = [
         <tr><td class="c">Plaud→Obsidian 議事録取り込み</td><td>取り込みログに前日の行があるか(1日2回の予定)</td></tr>
         <tr><td class="c">みんスマの見張り役</td><td>動いているか、記録にエラーがないか</td></tr>
         <tr><td class="c">甚目寺のシフト自動手配</td><td>メールが届いた日だけ。完了したか、途中で止まったか</td></tr>
-        <tr><td class="c">西さんメール通知LINE</td><td>最後の結果がOKか、記録にエラーがないか</td></tr>
+        <tr><td class="c">取引先メールのLINE通知</td><td>最後の結果がOKか、記録にエラーがないか</td></tr>
         <tr><td class="c">朝のメールチェック</td><td>前日に動いて、結果がOKか</td></tr>
     </tbody></table></div>
 """),
