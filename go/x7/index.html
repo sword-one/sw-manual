@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>作戦司令室</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="作戦司令室">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#04060f">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<style>
+:root{color-scheme:dark}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 30%,#3a2208,#04060f 70%);color:#f4ead8;font-family:-apple-system,"Hiragino Sans",sans-serif;text-align:center;padding:24px 16px;box-sizing:border-box}
+img{width:120px;height:120px;border-radius:26px;box-shadow:0 0 30px #ffb00066}
+h1{font-size:22px;margin:16px 0 4px;letter-spacing:.1em}
+p{font-size:14px;line-height:1.8;color:#c9bfae;margin:6px 0}
+a.go{display:inline-block;margin:18px 0;padding:14px 28px;background:#ffb000;color:#120c00;font-weight:900;text-decoration:none;border-radius:4px}
+.how{max-width:340px;margin:0 auto;text-align:left;border:1px dashed #ffb00066;padding:10px 14px;font-size:13.5px}
+</style>
+</head><body>
+<main>
+<img src="icon-180.png" alt="">
+<h1>作戦司令室</h1>
+<p id="msg">ホーム画面から開くと、そのまま司令室に移動します。</p>
+<a class="go" href="https://claude.ai/artifact/Ww5xjzSCXayLzLPmHA8sFd#w">司令室を開く</a>
+<div class="how"><b>ホーム画面に追加する方法（iPhone）</b><br>1. 下の共有ボタン（□に↑）を押す<br>2.「ホーム画面に追加」を押す<br>3. 右上の「追加」を押す</div>
+</main>
+<script>
+var URL_HQ = 'https://claude.ai/artifact/Ww5xjzSCXayLzLPmHA8sFd#w';
+if (window.navigator.standalone || matchMedia('(display-mode: standalone)').matches) {
+  document.getElementById('msg').textContent = '司令室に接続中…';
+  location.replace(URL_HQ);
+}
+</script>
+</body></html>
